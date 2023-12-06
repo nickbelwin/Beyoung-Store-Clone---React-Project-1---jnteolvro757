@@ -1,0 +1,44 @@
+
+.offerImgBox{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.offerImgBox::-webkit-scrollbar {
+    display: none;
+}
+.offerImg{
+    width: 63vw;
+    margin-right: 2rem;
+}
+.container1{
+    width: 49%;
+    border-radius: 15px;
+}
+.block1{
+    position: absolute;
+    width: 99vw;
+    height: 46vh;
+    top: 0;
+    /* background-color: rgba(0, 0, 255, 0.247); */
+}
+.block2{
+    position: absolute;
+    width: 28vw;
+    height: 47vh;
+    top: 48.8%;
+    left: 6.4%;
+}
+.block3{
+    position: absolute;
+    width: 28vw;
+    height: 47vh;
+    top: 49%;
+    left: 35.7%;
+}
+.block4{
+    position: absolute;
+    width: 28vw;
+    height: 47vh;
+    top: 49%;
+    left: 65%;
+}

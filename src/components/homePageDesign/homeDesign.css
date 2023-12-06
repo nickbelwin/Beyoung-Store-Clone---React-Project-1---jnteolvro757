@@ -1,0 +1,30 @@
+.cardBox{
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+    cursor: pointer;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    min-height: 20.7rem;
+    overflow: hidden;
+    /* border: 1px solid black; */
+}
+.card p{
+    cursor: pointer;
+}
+.cardName{
+    height: 1.5rem;
+    overflow: hidden;
+}
+.image{
+    width: 100%;
+}
+.loading{
+    margin: auto;
+    width: 10rem;
+}

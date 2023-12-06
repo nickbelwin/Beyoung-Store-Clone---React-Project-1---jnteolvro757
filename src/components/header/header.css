@@ -1,0 +1,43 @@
+.header{
+    /* position: fixed;
+    width: 100vw; */
+    background-color: white;
+    border: 1px solid rgb(202, 201, 201);
+    z-index: 10;
+}
+.navBox1{
+    background-color: rgb(255, 217, 0);
+}
+.navBox2{
+    width: 76vw;
+    font-size: .8rem;
+    margin: auto;
+}
+.navBox3{
+    width: 76vw;
+}
+.hover-bg-yellow:hover{
+    background-color: rgb(254, 233, 0);
+}
+.cartCount{
+    background-color: rgb(255, 225, 0);
+    border-radius: 50%;
+    top: -6px;
+    right: -10px;
+}
+.cartCount p{
+    margin: 0;
+    font-size: 70%;
+    min-width: 1rem;
+    min-height: .8rem;
+}
+.fit-content{
+    height: fit-content;
+    width: fit-content;
+}
+
+@media (max-width:1280px){
+    .navNameList{
+        display: none;
+    }
+}

@@ -1,0 +1,20 @@
+.posi{
+    bottom: -28.6rem;
+    left: 0;
+}
+.main{
+    cursor: default;
+    border: 1px solid rgb(247, 246, 246);
+    background-color: white;
+}
+.listName{
+    cursor: pointer;
+}
+.listName:hover{
+    color: rgb(243, 243, 10);
+    font-weight: 600;
+}
+.box{
+    width: 19vw;
+    text-align: start;
+}
