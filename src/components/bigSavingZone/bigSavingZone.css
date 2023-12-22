@@ -1,11 +1,27 @@
-.savingBox{
-    /* overflow-x: scroll; */
-    display: flex;
+.bigSavingZoneTag{
+    border-left: 4px solid yellow;
 }
+.savingBox{
+    display: flex;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+} 
 .bigImg{
-    width: 45rem;
-    margin: 0 1rem;
+    width: 31rem;
+    margin: 0 .5rem 0 0;
+    scrollbar-width: none;
 }
 .bigImg img{
-    width: 100%;
+    border-radius: 7px;
+}
+.savingDualBox1{
+    width: 98%;
+    margin-bottom: 1rem;
+}
+.savingDualBox2{
+    width: 98%;
+    margin-top: 1rem;
+}
+.savingBox::-webkit-scrollbar {
+    display: none;
 }

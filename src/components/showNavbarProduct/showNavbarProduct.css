@@ -1,0 +1,40 @@
+.navCategoryBox{
+    margin: auto;
+    justify-content: center;
+    /* width: 80vw; */
+    /* background-color: aqua; */
+}
+/* .filterSide{
+    width: 48vw;
+} */
+.filterSide{
+    -ms-overflow-style: none;
+}
+.filterSide::-webkit-scrollbar {
+    display: none;
+}
+.allCardBox{
+    max-width: 67vw;
+    flex-grow: 1;
+    justify-content: center;
+}
+.card{
+    max-width: 15rem;
+    min-width: 8rem;
+}
+.cardName{
+    text-align: left;
+    
+}
+@media (max-width:1280px){
+    .allCardBox{
+        max-width: 100%;
+    }
+    .allCardBox{
+        justify-content: center;
+    }
+    .allCardBox{
+        max-width: 90vw;
+        justify-content: center;
+    }
+}

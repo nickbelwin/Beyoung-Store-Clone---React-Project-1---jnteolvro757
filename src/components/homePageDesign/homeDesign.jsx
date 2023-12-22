@@ -3,6 +3,7 @@ import { products } from "../contants/constants";
 // import fetch from "node-fetch";
 import "./homeDesign.css"
 import { Link, redirect, useNavigate } from "react-router-dom";
+import Filter from "../filterSection/filter";
 const HomeDesign=(props)=>{
     const {showCard="flex"}=props;
     const navigate= useNavigate();
@@ -38,7 +39,11 @@ const HomeDesign=(props)=>{
         navigate(`/product-details/${e.target.parentNode.id}`);
     }
     return(
-            <div style={{display:"flex "}} className="cardBox">
+            <section className="flex homeDesign">
+                <div>
+                    <Filter/>
+                </div>
+                <div style={{display:"flex "}} className="cardBox">
                 {!loader? product?.map((val)=>{
                     return(
                         <div onClick={linkHandler} key={val._id}>
@@ -51,7 +56,8 @@ const HomeDesign=(props)=>{
                         </div>
                     )
                 }): <img className="loading" src="https://www.beyoung.in/beyoung-loader.gif"/> }
-            </div>
+                </div>
+            </section>
     
     )
 }

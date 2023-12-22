@@ -1,8 +1,89 @@
+
+.headerContainer{
+    border: 1px solid rgb(202, 201, 201);
+    z-index: 20;
+}
+.sticky{ 
+    border: 1px solid rgb(202, 201, 201);
+    background-color: white;
+    position: fixed;
+    z-index: 20;
+    width: 100vw;
+    top: 0;
+    /* opacity: 1;
+    transition: 1s; */
+}
+.hamShow{
+    display: none;
+}
+.visuallyHidden {
+    position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height: 1px; width: 1px; 
+    margin: -1px; padding: 0; border: 0; 
+}
+.hamburgerBox{
+    align-items: center;
+}
+.hamburger {
+    margin: 0 auto;
+    
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.hamburger .bar {
+    padding: 0;
+    width: 30px;
+    height: 3px;
+    
+    background-color: black;
+    display: block;
+    border-radius: 4px;
+    transition: all 0.4s ease-in-out;
+    position: absolute;
+}
+.bar1 {
+    top: 4px;
+}
+.bar2,
+.bar3 {
+    top: 13.5px;
+}
+.bar3 {
+    right: 0;
+}
+.bar4 {
+    bottom: 4px;
+}
+.checkbox1:checked + label > .hamburger1 > .bar1{
+    transform: rotate(45deg);
+    transform-origin: 5%;
+    width: 30px
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar2 {
+    transform: translateX(-40px);
+    background-color: transparent;
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar3 {
+    transform: translateX(40px);
+    background-color: transparent;
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar4 {
+    transform-origin: 5%;
+    transform: rotate(-45deg);
+    width: 30px;
+}
+
 .header{
     /* position: fixed;
     width: 100vw; */
     background-color: white;
-    border: 1px solid rgb(202, 201, 201);
     z-index: 10;
 }
 .navBox1{
@@ -16,6 +97,9 @@
 .navBox3{
     width: 76vw;
 }
+/* .backColor{
+    background-color: rgb(254, 233, 0);
+} */
 .hover-bg-yellow:hover{
     background-color: rgb(254, 233, 0);
 }
@@ -37,7 +121,30 @@
 }
 
 @media (max-width:1280px){
+    
     .navNameList{
         display: none;
+    }
+    .hamShow{
+        display: block;
+    }
+    .navBox3{
+        width: 92%;
+    }
+}
+@media (max-width:520px){
+    
+    .navBox1 p{
+        font-size: .6rem;
+    }
+    .navBox2{
+        width: 95%;
+    }
+    .navBox3{
+        width: 92%;
+    }
+    .logo{
+        width: 6rem;
+        height: 2rem;
     }
 }

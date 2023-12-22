@@ -1,72 +1,93 @@
-import { useState } from "react";
 
 export const mensCatagory=[
-    {classname:"box", heading1:"Topwear",list1:[
-         "T-Shirts","Casual Shirts","Formal Shirts","Sweatshirts","Sweaters","Jackets","Blazers & Coats","Suits","Rain Jackets"
-     ],heading2:"Indian & Festive Wear",list2:[
-         "Kurtas & Kurta Sets","Sherwanis","Nehru Jackets","Dhotis"
+    {classname:"box", heading1:"Topwear",gender:"Men",list1:[{id:"Printed T-Shirt", name:"Printed T-Shirts"},{id:"Oversized T-Shirt", name:"Oversize T-Shirts"},{id:"Full Sleeve T-Shirt", name:"Full Sleeve T-Shirts"},{id:"shirt", name:"Shirts"},{id:"Plus Size Shirt", name:"Plus Size Shirts"},{id:"Polo", name:"Polo T-Shirts"},{id:"Half Sleeve T-Shirt", name:"Half Sleeve T-Shirts"},
+     ],heading2:"Bottomwear",list2:[{id:"Jogger", name:"Joggers"},{id:"Chino", name:"Chino Shorts"},{id:"Shorts", name:"Boxers"},{id:"Shorts", name:"Shorts"},{id:"Cargo Pants", name:"Cargo Pants"},{id:"Pyjamas", name:"Pyjamas"},{id:"Jeans", name:"Jeans"},
      ]},
-     {classname:"box", heading1:"Bottomwear",list1:[
-             "Jeans","Casual Trousers","Formal Trousers","Shorts","Track Pants & Joggers",
-         ],heading2:"Innerwear & Sleepwear",list2:[
-             "Briefs & Trunks","Boxers","Vests","Sleepwear & Loungewear","Thermals",
-         ],heading3:"Plus Size",
+     {classname:"box", heading1:"Theme",gender:"Men",list1:[{id:"shirt", name:"Travel"},{id:"tracksuit", name:"Gym"},{id:"Oversized T-Shirts", name:"Cartoon"},{id:"tracksuit", name:"Sports"},{id:"Oversized T-Shirts", name:"Funcky"}],heading2:"Shirts",list2:[{id:"Regular", name:"Regular Track"},{id:"hoodie", name:"Limited Edition"},],
      },
-     {classname:"box", heading1:"Footwear",list1:[
-         "Casual Shoes",
-         "Sports Shoes",
-         "Formal Shoes",
-         "Sneakers",
-         "Sandals & Floaters",
-         "Flip Flops",
-         "Socks",
-         ],heading2:"Personal Care & Grooming",heading3:"Sunglasses & Frames",
-         heading4:"Watches",
+     {classname:"box",
+     heading1:"Winter Wears",gender:"Men",list1:[{id:"sweater", name:"Sweatshirts"},{id:"hoodie", name:"Hoodies"},],
      },
-     {classname:"box", heading1:"Footwear",list1:[
-        "Casual Shoes",
-        "Sports Shoes",
-        "Formal Shoes",
-        "Sneakers",
-        "Sandals & Floaters",
-        "Flip Flops",
-        "Socks",
-        ],heading2:"Personal Care & Grooming",heading3:"Sunglasses & Frames",
-        heading4:"Watches",
-    },
+ ];
+
+ export const womenCatagory=[
+    {classname:"box", heading1:"Topwear",list1:[{id:"Printed", name:"Printed T-Shirts"},{id:"Oversized T-Shirt", name:"Oversize T-Shirts"},{id:"kurti", name:"Kurti"},{id:"shirt", name:"Women Shirts"},{id:"kurta", name:"Kurta Sets"},{id:"Plus Size T-Shirt", name:"Plus Size T-Shirts"},
+     ],heading2:"Bottomwear",list2:[{id:"Shorts", name:"Boxer for Women"},{id:"Jeans", name:"Jeggings"},{id:"pant", name:"Women Jogger"},
+    ]},
+     {classname:"box", heading1:"Theme",list1:[{id:"T-shirt", name:"Travel"},{id:"Printed", name:"Cartoon"},{id:"Oversized T-Shirt", name:"Funcky"}],
+     },
+     {classname:"box",
+     heading1:"Special",list1:[{id:"kurta", name:"Special Kurta"},{id:"pant", name:"New Women Joggers"},],
+     },
      
  ];
+
+export const offerZone=[
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/1-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/2-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/3-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/4-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/5-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/6-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/7-new.png"},
+]   
 
 export const bigSavingZone=[
     {image1:["https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/Joggers-banner.jpg",],
     class:"bigImg", 
-    id1:"jogger"},
+    id1:"Jogger",
+    gender:"Men"},
     
     {image1:"https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/new-Plain-T-shirts-banner.jpg",
     class:"bigImg", 
-    id1:"tshirt",
+    id1:"T-shirt",
     image2:"https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/new-Polo-banner.jpg",
-    id2:"tshirt"},
+    id2:"Polo",
+    gender:"Men"},
 
     {image1:"https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/winter-hotdeal-section1.jpg",
     class:"bigImg", 
-    id1:"sweater"},
+    id1:"Sweater",
+    gender:"Men"},
 
     {image1:"https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/Chinos-Homepage-Banner.jpg",
      image2:"https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/new-Pyjama-banner.jpg",
     class:"bigImg", 
     id1:"trouser",
-    id2:"pyjamas"},
+    id2:"Pyjamas",
+    gender:"Men"},
 
     {image1:"https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/oversized-home-page-banner.jpg",
     class:"bigImg",
-    id1:"hoodie"},
+    id1:"Oversized T-Shirt",
+    gender:"Men"},
     
     {image1:"https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/new-Printed-T-shirts-banner.jpg",
      image2:"https://www.beyoung.in/api/catalog/homepage-3-10/hot-deals-banner/new-Boxers-banner.jpg",
     class:"bigImg", 
-    id1:"tshirt",
-    id2:"shorts"},
+    id1:"Printed T-shirt",
+    id2:"Shorts",
+    gender:"Men"},
+]
+
+export const newArrivals=[
+    {id:"tracksuit",name:"Activewear", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/3.jpg"},
+    {id:"sweater",name:"Sweatshirts", image:"https://www.beyoung.in/api/catalog/homepage-28-11/new-arrival/new-arrival-Sweatshirts-mobile-desktop-view.jpg"},
+    {id:"jogger",name:"Cargo Pants", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/6.jpg"},
+    {id:"shirt",name:"Shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/1.jpg"},
+    {id:"Oversized T-shirt",name:"Oversized T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/5.jpg"},
+    {id:"trouser",name:"Trousers", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/2.jpg"},
+]
+ 
+export const forMenTshirt=[
+    {id:"tshirt", name1:"Oversized", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/oversized.jpg",
+    name2:"Plain", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/6.jpg"},
+    {id:"tshirt", name1:"Polo", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/polo.jpg",
+    name2:"Full Sleeve", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/3.jpg"},
+    {id:"tshirt", name1:"Printed", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/7.jpg"
+    ,name2:"Activewear", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/4.jpg"},
+    {id:"tshirt", name1:"Pluse Size", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/2.jpg", 
+    name2:"Classic Polo", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/1.jpg"},
 ]
 
  export const products= [

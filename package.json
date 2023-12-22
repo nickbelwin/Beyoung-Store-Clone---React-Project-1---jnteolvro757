@@ -10,6 +10,8 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "html-react-parser": "^5.0.7",
+    "interweave": "^13.1.0",
     "node-fetch": "^3.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

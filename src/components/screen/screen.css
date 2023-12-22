@@ -1,4 +1,16 @@
-
+.mainBox{
+    margin: auto;
+    max-width: 75rem;
+    margin-bottom: 3.5rem;
+}
+.mainBanner{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.img1{
+    width: 18rem;
+}
 .offerImgBox{
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -16,29 +28,62 @@
 }
 .block1{
     position: absolute;
-    width: 99vw;
-    height: 46vh;
+    width: 100%;
+    height: 46%;
     top: 0;
     /* background-color: rgba(0, 0, 255, 0.247); */
 }
 .block2{
     position: absolute;
-    width: 28vw;
-    height: 47vh;
+    width: 29%;
+    height: 48%;
     top: 48.8%;
     left: 6.4%;
 }
 .block3{
     position: absolute;
-    width: 28vw;
-    height: 47vh;
+    width: 28.2%;
+    height: 48.2%;
     top: 49%;
     left: 35.7%;
 }
 .block4{
     position: absolute;
-    width: 28vw;
-    height: 47vh;
+    width: 28.3%;
+    height: 48.2%;
     top: 49%;
     left: 65%;
+}
+.bestSelling{
+    background-color: rgb(247,247,247);
+}
+.bestSellingName{
+    border-left: 4px solid yellow;
+}
+
+@media (max-width:520px){
+    .mainBanner{
+        margin-bottom: 2rem;
+    }
+    .offerImgBox{
+        margin-top: 0rem;
+    }
+    .offerImg{
+        width: 100vw;
+    }
+    .block1{
+        height: 10vh;
+    }
+    .block2{
+        height: 10vh;
+    }
+    .block3{
+        height: 10vh;
+    }
+    .block4{
+        height: 10vh;
+    }
+    .mainBox{
+        gap: 2rem;
+    }
 }

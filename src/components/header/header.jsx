@@ -1,65 +1,156 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { products } from "../contants/constants";
 import MenCatagory from "../navListCatagory/menCatagory";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import SearchBar from "../searchBar/searchBar";
+import WomenCatagory from "../navListCatagory/womenCategory";
+import Login from "../loginSignup/login";
+import Signup from "../loginSignup/signup";
+import { AppContext } from "../../contextApi/AppContext";
+import { Filter } from "interweave";
 
-const Header=(props)=>{
-    const {goToHomeHandler,menOnMouseOver,menOnMouseLeave,womenOnMouseOver,womenOnMouseLeave,winterOnMouseLeave,winterOnMouseOver,newOnMouseLeave,newOnMouseOver, stat,onClickHandler}= props;
-    const [searchStatus, setSearchStatus]=useState("none");
-    const [searchFlag, setSearchFlags]=useState(false);
-    const searchFunc=()=>{
-        if(!searchFlag){
+
+const Header = (props) => {
+    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox, submitData } = props;
+    const [searchStatus, setSearchStatus] = useState("none");
+    const [searchParam, setSearchParam] = useState("");
+    const [searchFlag, setSearchFlags] = useState(false);
+    const [isLogoutOk, setIsLogoutOk]= useState(false);
+    const [addStyle, setAddStyle] = useState({});
+    const navigate = useNavigate();
+    const { token,logout, isLogout,openLogin,openSignup } = useContext(AppContext);
+    const searchFunc = () => {
+        if (!searchFlag) {
             setSearchFlags(true);
             setSearchStatus("flex");
         }
-        else{
+        else {
             setSearchFlags(false)
             setSearchStatus("none");
         }
     }
 
+    const cartHandler = () => {
+        if(token){
+            navigate("/cart");
+        }else{
+            openLogin();
+        }
+    }
 
+    useEffect(()=>{
+        setIsLogoutOk(token);
+    },[token])
+
+    const isSticky = (e) => {
+        const header = document.getElementById('mainHeader');
+        const scrollTop = window.scrollY;
+        scrollTop >= 80 ? header.classList.add('sticky') : header.classList.remove('sticky');
+        const sticky = document.querySelector('.sticky');
+      
+    };
+   
+    const doLogout = () => {
+        logout();
+    }
 
     
-    return(
-        <header className="header1">
-            <div className="headerBox">
-                <div className="navBox1 text-sm py-1.5"><p>Free Shipping on All Orders | Get Flat <span className="font-bold">₹150</span> OFF on Spent of ₹1499 Use Code: <span className="font-bold">BB150</span></p></div>
-                <div className=" bg-black ">
-                    <div className="navBox2 flex items-center bg-black text-white justify-between py-2">
-                    <nav className="flex"><img className="w-4 h-5 mr-2" src="./img/locationLogo.png" alt="" /><span className="fit-content">TRACK YOUR ORDER</span></nav>
-                    <nav className="flex items-center"><a href="#" className="fit-content mr-4">LOG IN</a><span>|</span><a href="#" className="fit-content ml-4">SIGNUP</a></nav>
-                    </div>
-                </div>
-                <div className=" flex justify-center py-3.5 header">
-                    <div className="navBox3 flex justify-between items-center">
-                        <nav className="flex relative">
-                            <Link to="/"><img onClick={goToHomeHandler} className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2" src="./img/beyoungLogo.png" alt="" /></Link>
-                            <nav className="flex text-sm font-semibold cursor-pointer navNameList">
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center" onMouseLeave={menOnMouseLeave} onMouseOver={menOnMouseOver}>MEN <MenCatagory status={stat} clickHandler={()=>{onClickHandler()}} /></p>
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center" onMouseLeave={womenOnMouseLeave} onMouseOver={womenOnMouseOver}>WOMEN</p>
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center">COMBOS</p>
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center">BB KE FAVORITES</p>
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver}>WINTER WEARS</p>
-                                <p className="hover-bg-yellow px-6 py-2 flex items-center" onMouseLeave={newOnMouseLeave} onMouseOver={newOnMouseOver}>NEW ARRIVALS</p>
-                            </nav>
-                        </nav>
-                        <nav className="flex items-center">
-                            
-                            <div className="relative"><img onClick={searchFunc} className="w-4 h-4 mr-4 cursor-pointer" src="./img/searchIcon.png" alt="" />
-                            <SearchBar displaySearch={searchStatus}/></div>
-                            <img className="w-4 h-4 cursor-pointer" src="./img/love-icon.png" alt="" />
-                            <div className="relative ml-4 cursor-pointer">
-                                <img className="w-4 h-4 cursor-pointer" src="./img/cart-icon.png" alt="" />
-                                <div className="cartCount absolute cursor-pointer"><p>0</p></div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
+    const searchHandler = (e) => {
+        setSearchParam(e.target.value);
+    }
+
+    const searchButtonHandler = () => {
+        let userSearch = searchParam.split(" ");
+
+    }
+    const favoriteItems=()=>{
+        if(token){
+            navigate("/favoriteItems")
+        }
+        else{
+            openLogin();
+        }
+        
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', isSticky);
+        return () => {
+            window.removeEventListener('scroll', isSticky);
+        };
+    });
+
+    return (
+        <>
+            <div className=" fixed w-5 h-5 z-30 ">
+                <Login  /> 
+                <Signup />
             </div>
-        </header>
+            <header className="header1 relative">
+                <section className="headerBox ">
+                    {/* header 1 */}
+                    <header className="navBox1 text-sm py-1.5 z-20">
+                        <p>Free shipping available on all orders. Don't miss out – shop now!</p>
+
+                    </header>
+                    {/* header 2 */}
+                    <section className=" bg-black z-20">
+                        <header className="navBox2 flex items-center bg-black text-white justify-between py-2">
+                            <nav className="flex"><img className="w-4 h-5 mr-2" src="./img/locationLogo.png" alt="" /><span className="fit-content">TRACK YOUR ORDER</span></nav>
+                            <nav className="flex items-center" >
+                                {!isLogoutOk ? <>
+                                    <a onClick={()=> openLogin()} href="#" className="fit-content mr-4">LOG IN</a><span>|</span><a onClick={()=> openSignup()} href="#" className="fit-content ml-4">SIGNUP</a></>
+                                    : <a href="#" className="fit-content ml-4 font-semibold" onClick={doLogout}>Logout</a>}
+                            </nav>
+                        </header>
+                    </section>
+                    {/* header 3 */}
+                    <section id="mainHeader">
+                        <header className=" flex justify-center py-2 relative headerContainer">
+                            
+                            <div className="navBox3 flex justify-between items-center">
+                                <nav className="flex relative">
+                                    {/* hamburgerBox */}
+                                    <section className="flex hamburgerBox">
+                                        <div className="mr-3 hamShow">
+                                            <input type="checkbox" id="checkbox1" class=" checkbox1 visuallyHidden" />
+                                            <label for="checkbox1">
+                                                <div class="hamburger hamburger1">
+                                                    <span class="bar bar1"></span>
+                                                    <span class="bar bar2"></span>
+                                                    <span class="bar bar3"></span>
+                                                    <span class="bar bar4"></span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <Link to="/"><img onClick={goToHomeHandler} className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 mr-5 logo" src="./img/beyoungLogo.png" alt="" /></Link>
+                                    </section>
+                                    <nav className="flex text-sm font-semibold cursor-pointer navNameList">
+                                        <p id="men" className=" relative hover-bg-yellow px-6 py-2 flex items-center catMen" onMouseLeave={menOnMouseLeave} onMouseOver={menOnMouseOver} >MEN <MenCatagory status={stat} clickHandler={() => { onClickHandler() }} /></p>
+                                        <p className="relative hover-bg-yellow px-6 py-2 flex  items-center catWomen" onMouseLeave={womenOnMouseLeave} onMouseOver={womenOnMouseOver}>WOMEN <WomenCatagory status2={stat2} clickHandler={() => { onClickHandler() }} /></p>
+                                        <p className="hover-bg-yellow px-6 py-2 flex items-center catWinter" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver} >WINTER WEARS</p>
+                                        <p className="hover-bg-yellow px-6 py-2 flex items-center catNew" onMouseLeave={newOnMouseLeave} onMouseOver={newOnMouseOver}>NEW ARRIVALS</p>
+                                    </nav>
+                                </nav>
+                                <nav className="flex items-center">
+                                    <div className="relative mr-3"><img onClick={searchFunc} className="w-4 h-4 mr-4 cursor-pointer" src="./img/searchIcon.png" alt="" />
+                                        <SearchBar displaySearch={searchStatus} searchHandler={searchHandler} searchButtonHandler={searchButtonHandler} /></div>
+                                    <a href="#" onClick={favoriteItems}>
+                                    <img  className="w-4 h-4 cursor-pointer mr-3" src="./img/love-icon.png" alt="" />
+                                    </a>
+                                    <a href="#" onClick={cartHandler} className="relative ml-4 cursor-pointer">
+                                        <img className="w-4 h-4 cursor-pointer" src="./img/cart-icon.png" alt="" />
+                                        <div className="cartCount absolute cursor-pointer"><p>0</p></div>
+                                    </a>
+                                </nav>
+                            </div>
+                        </header>
+                    </section>
+                </section>
+            </header>
+            <Outlet />
+        </>
     )
 }
 

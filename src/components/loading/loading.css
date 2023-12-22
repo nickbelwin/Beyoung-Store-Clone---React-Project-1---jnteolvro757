@@ -1,0 +1,8 @@
+.loading{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.loading img{
+    width: 12vw;
+}

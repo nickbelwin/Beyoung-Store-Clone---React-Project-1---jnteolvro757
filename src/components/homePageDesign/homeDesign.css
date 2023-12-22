@@ -1,6 +1,7 @@
+
 .cardBox{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 1.5rem;
     flex-wrap: wrap;
     padding: 2rem;
@@ -9,7 +10,7 @@
 .card{
     display: flex;
     flex-direction: column;
-    width: 17rem;
+    width: 17rem; 
     min-height: 20.7rem;
     overflow: hidden;
     /* border: 1px solid black; */

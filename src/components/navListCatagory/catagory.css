@@ -1,0 +1,42 @@
+.dropBox {
+    z-index: 18;
+    width: 4.5rem;
+    height: 13px;
+    position: absolute;
+    top: 35px;
+    left: .3rem;
+    /* background-color: blue; */
+}
+.dropBox2{
+    /* background-color: aqua; */
+    z-index: 18;
+    width: 6rem;
+    height: 13px;
+    position: absolute;
+    top: 35px;
+    left: .3rem;
+}
+.posi{
+    top: 3rem;
+    left: -8rem;
+}
+.posi2{
+    top: 3rem;
+    left: -12.95rem;
+}
+.main{
+    cursor: default;
+    border: 1px solid rgb(247, 246, 246);
+    background-color: white;
+}
+.listName{
+    cursor: pointer;
+}
+.listName:hover{
+    color: rgb(255, 255, 10);
+    font-weight: 600;
+}
+.box{
+    width: 19vw;
+    text-align: start;
+}

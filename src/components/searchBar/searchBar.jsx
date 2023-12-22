@@ -22,7 +22,7 @@ const SearchBar=(props)=>{
     return(
         <div>
             <div style={{display:displaySearch}} className="flex align-middle justify-center absolute bg-white py-5 px-8 searchBox">
-                <input onClick={searchHandler} type="text" className="border w-full pl-3" placeholder="Search entire store here..."/>
+                <input onChange={searchHandler} type="text" className="border w-full pl-3" placeholder="Search entire store here..."/>
                 <button onClick={searchButtonHandler} className="bg-black py-1.5 px-6 text-sm text-white">Search</button>
             </div>
         </div>

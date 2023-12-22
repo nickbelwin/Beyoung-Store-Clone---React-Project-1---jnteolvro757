@@ -1,0 +1,18 @@
+.newArrivalTag{
+    border-left: 4px solid yellow;
+}
+.newArrivalBox{
+    -ms-overflow-style: none;
+}
+.newArrivalBox::-webkit-scrollbar {
+    display: none;
+}
+.newArrivalName{
+    position: absolute;
+    bottom: 1rem;
+    left: .5rem;
+    border-left: 4px solid yellow;
+    padding-left: .7rem;
+    font-weight: 400;
+    
+}

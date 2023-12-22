@@ -1,0 +1,32 @@
+.allBox{
+    margin: auto;
+    /* width: 80vw; */
+    justify-content: center;
+}
+.cardBox{
+    max-width: 67vw;
+    flex-grow: 1;
+    justify-content: center;
+}
+.card{
+    max-width: 15rem;
+    min-width: 8rem;
+}
+
+.filterContainer{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.filterContainer::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width:1280px){
+    .allBox{
+        justify-content: center;
+    }
+    .cardBox{
+        max-width: 90vw;
+        justify-content: center;
+    }
+}

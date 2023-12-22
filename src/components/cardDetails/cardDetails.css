@@ -1,6 +1,24 @@
+.singleCard{
+    width: 75%;
+    margin: auto;
+    height: auto;
+}
 .cardImage{
     height: 90vh;
-
+    display: flex;
+}
+.productDescription{
+    text-align: left;
+    background-color: #F2F2F2;
+}
+.productDetailsName{
+    text-align: left;
+}
+.customerReviewBox{
+    background-color: #F2F2F2;
+}
+.customerReview{
+    border-bottom: 2px solid yellow;
 }
 .boxOfColor{
     border: 1px solid rgb(184, 184, 184);
@@ -38,14 +56,16 @@
     display: flex;
     border-radius: 7px;
     color: white;
-    gap: .5rem;
+    font-size: .8rem;
     align-items: center;
-    padding: .8rem 2rem;
+    padding: 0.69rem 1rem;
 }
-.byebtn{
+
+.buybtn{
     align-items: center;
-    padding: .7rem 8vw;
+    padding: .7rem 6vw;
     border-radius: 7px;
+    font-size: .9rem;
 }
 .scrollImg{
     scrollbar-width: none;
@@ -53,4 +73,24 @@
 }
 .scrollImg::-webkit-scrollbar {
     display: none;
+}
+#quantity{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.3rem;
+}
+
+@media (max-width:1280px){
+    .singleCard{
+        width: 80%;
+        margin: auto;
+        height: auto;
+    }
+    .cardImage{
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .productDetailBox{
+        width: 100%;
+    }
 }
