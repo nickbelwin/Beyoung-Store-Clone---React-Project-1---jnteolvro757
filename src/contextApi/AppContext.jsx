@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react"
+import { Navigate } from "react-router-dom";
 
 
 
@@ -6,45 +7,34 @@ export const AppContext = createContext();
 
 
 const AppContextProvider = ({children})=>{
-    const [isLogin, setIsLogin]=useState(false);
+
     const [token, setToken]=useState();
-    const [isLogout, setIsLogout]=useState(false);
     const [loginStatus, setLoginStatus] = useState("none");
     const [signupStatus, setSignupStatus] = useState("none");
+    const [totalCart, setTotalCart]= useState(0);
     
-    const login=()=>{
-        setIsLogin(true);
-        setIsLogout(true);
-        console.log("user loged in");
-    }
-    const userToken=(getToken)=>{
-        setToken(getToken);
-        console.log("tokanget at AppContext: ",getToken);
-    }
-    console.log("tokanget",token);
-    const logout=()=>{
-        setIsLogin(false);
-        setIsLogout(false);
+    // for logout
+    const logout=()=>{     
         setToken("");
     }
+    // for display login modal
     const openLogin = () => {
         setLoginStatus("flex");
         setSignupStatus("none");
     }
+    // for display signup modal
     const openSignup = () => {
         setLoginStatus("none");
         setSignupStatus("flex");
     }
+    // for close login and signup modal
     const closeHandler=()=>{
         setSignupStatus("none");
         setLoginStatus("none");
     }
-    useEffect(()=>{
-
-    })
     
     return (
-        <AppContext.Provider value= {{login,userToken,openLogin,openSignup,logout,closeHandler,isLogout,token,loginStatus,signupStatus}}>
+        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart, setTotalCart,loginStatus,signupStatus}}>
             {children}
         </AppContext.Provider>
     )

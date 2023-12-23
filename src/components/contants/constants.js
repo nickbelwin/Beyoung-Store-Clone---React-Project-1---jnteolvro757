@@ -75,7 +75,7 @@ export const newArrivals=[
     {id:"sweater",name:"Sweatshirts", image:"https://www.beyoung.in/api/catalog/homepage-28-11/new-arrival/new-arrival-Sweatshirts-mobile-desktop-view.jpg"},
     {id:"jogger",name:"Cargo Pants", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/6.jpg"},
     {id:"shirt",name:"Shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/1.jpg"},
-    {id:"Oversized T-shirts",name:"Oversized T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/5.jpg"},
+    {id:"Oversized T-shirt",name:"Oversized T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/5.jpg"},
     {id:"trouser",name:"Trousers", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/2.jpg"},
 ]
  

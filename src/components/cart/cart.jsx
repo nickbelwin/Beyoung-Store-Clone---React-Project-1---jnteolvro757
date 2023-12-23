@@ -6,23 +6,27 @@ import isAuth from "../../isAuth/isAuth";
 import { AppContext } from "../../contextApi/AppContext";
 const Cart = () => {
     const [product, setProduct] = useState([]);
+    const [cartProduct, setCartProduct] = useState([]);
     const [loader, setLoader] = useState(true);
-    const { isLogout, openLogin, token } = useContext(AppContext);
-    const getCartproducts = async () => {
+    const { token, setTotalCart } = useContext(AppContext);
 
+    const getCartproducts = async () => {
         console.log("getCart Token", token);
         try {
             setLoader(true);
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
                 {
                     method: 'GET',
-                    headers: { 'projectID': 'zx5u429ht9oj',
-                    "Authorization": `Bearer ${token}`},
+                    headers: {
+                        'projectID': 'zx5u429ht9oj',
+                        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                    },
                 }
             );
-            let data = await getData.json();
-            console.log("cart Data", data);
-            setProduct([data.data]);
+            let jsonData = await getData.json();
+            console.log("cart Data", jsonData);
+            setCartProduct([jsonData.data])
+            setProduct([...jsonData.data.items]);
             setLoader(false);
         }
         catch (error) {
@@ -30,11 +34,36 @@ const Cart = () => {
             setLoader(false);
         }
     }
+    console.log(cartProduct);
     console.log(product);
 
+    const removeFromCart = async (e) => {
+        let productId = e.target.parentNode.id;
+        try {
+            setLoader(true);
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'projectID': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                }
+            );
+            let jsonData = await getData.json();
+            console.log("removedCart Data", jsonData);
+            getCartproducts();
+            setLoader(false);
+        }
+        catch (error) {
+            console.log(error);
+            setLoader(false);
+        }
+    }
+
     useEffect(() => {
-        getCartproducts()
-    }, []);
+        getCartproducts();
+    }, [token]);
 
     return (
         <section className="cartMainbox">
@@ -56,45 +85,58 @@ const Cart = () => {
                     <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl">Continue Shopping</button>
                     </Link>  
                 </div> */}
-                <div className=" mt-10">
-                    <div className="flex flex-wrap justify-center w-fit m-auto">
-                        <div className=" productDiv w-fit overflow-y-scroll">
-                            {product?.map((val) => {
-                                return (
-                                    <>
-                                        {/* <div className="flex w-fit flex-col bg-white p-5">
-                                            <div className="flex mb-4">
-                                                <div className="cartImage">
-                                                    <img className="" src={val.displayImage} alt="" />
+                <div className=" mt-10 checkoutProccessBox">
+                    <div className="flex flex-wrap justify-center bg-white w-fit m-auto">
+                        <div className="p-5">
+                            <div className=" productDiv  overflow-y-scroll">
+                                {product.map((val) => {
+                                    return (
+                                        <>
+                                            <div className="flex flex-col m-4 bg-white p-5 products">
+                                                <div className="flex mb-2 pb-4 cartImgBox">
+                                                    <div className="cartImage">
+                                                        <Link to={`/product-details/${val.product._id}`}><img className="" src={val.product.displayImage} alt="" /></Link>
+                                                    </div>
+                                                    <div className="flex flex-col ml-4 gap-3 ">
+                                                        <p className=" w-fit text-left cartProductName">{val.product
+                                                            .name
+                                                        }</p>
+                                                        
+                                                        <p className="text-start w-fit text-xl font-semibold">₹ {val.product
+                                                            .price
+                                                        }</p>
+                                                        <p className=" w-fit text-left">Size: {val.size}</p>
+                                                    </div>
                                                 </div>
-                                                <div className="flex flex-col gap-3 ">
-                                                    <p className=" w-fit text-left">{val.name}</p>
-                                                    <p className=" w-fit text-left">{val.subCategory}</p>
-                                                    <p className="text-start w-fit text-xl font-semibold">₹ {val.price}</p>
-                                                    <p className=" flex justify-between  text-left">Color: {val.color} <p className=" w-fit text-left">Size: {val.size[0]}</p></p>
+                                                <div id={val.product._id} className="flex">
+                                                    <button onClick={removeFromCart} className=" my-2 removeBtn">REMOVE</button>
+                                                    <button className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
                                                 </div>
                                             </div>
-                                            <div className="flex">
-                                                <button className=" my-2 removeBtn">REMOVE</button>
-                                                <button className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
-                                            </div>
-                                        </div> */}
 
-                                    </>
-                                )
-                            })}
+
+
+                                        </>
+                                    )
+                                })}
+                            </div>
                         </div>
                         <div className=" bg-white py-8 productDetailsBox ">
-                            <div className="px-8">
-                                <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS (3 Items) </h1>
-                                <div className="flex flex-col gap-y-1 text-left mb-3 borderBottom">
-                                    <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>599</span></p>
-                                    <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium">Free</span></p>
-                                    <p className=" flex justify-between mb-2">Cart Total <span>599</span></p>
-                                </div>
-                                <h2 className=" flex justify-between my-1">Total Amount <span>599</span></h2>
-                                <button className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
-                            </div>
+                            {cartProduct?.map((val) => {
+                                return (
+                                    <div className="px-8">
+                                        <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
+                                        <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
+                                            <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
+                                            <p className=" flex justify-between ">Discount <span>-268</span></p>
+                                            <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
+                                            <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
+                                        </div>
+                                        <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
+                                        <button className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

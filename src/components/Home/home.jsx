@@ -12,6 +12,8 @@ import NotFoundProduct from "../../notFound/notFound";
 import AppContextProvider from "../../contextApi/AppContext";
 import Favorites from "../../favorites/favorites";
 import Login from "../loginSignup/login";
+import Signup from "../loginSignup/signup";
+
 
 
 const Home = () => {
@@ -64,6 +66,7 @@ const Home = () => {
                         <Route path="allProducts/:id" element={<ShowAllProducts />} />
                         <Route path="favoriteItems" element={<Favorites/>} />
                         <Route path="login" element={<Login/>} />
+                        <Route path="signup" element={<Signup/>} />
                         <Route path="*" element={<NotFoundProduct />} />
                     </Route>
 

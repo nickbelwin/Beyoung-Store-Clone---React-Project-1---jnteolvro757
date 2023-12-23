@@ -12,12 +12,13 @@ const CardDetails = (props) => {
     const [product, setProduct] = useState("");
     const [review, setReview] = useState("");
     const [loader, setLoader] = useState(true);
+    const [loader2, setLoader2] = useState(false);
     const [displayImg, setDisplayImg] = useState("");
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [totalReviews, setTotalReviews] = useState("");
     const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""})
-    const { isLogout,openLogin, token } = useContext(AppContext);
+    const { openLogin, token,setTotalCart } = useContext(AppContext);
     const getProduct = async () => {
         try {
             setLoader(true);
@@ -42,8 +43,9 @@ const CardDetails = (props) => {
 
     const patchCart = async () => {
         console.log("patchCart Token",token, "id: ",id);
+        setLoader2(true);
         try {
-            setLoader(true);
+            
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${id}`,
                 {
                     method: 'PATCH',
@@ -55,25 +57,52 @@ const CardDetails = (props) => {
            if(getData.ok){
             let data = await getData.json();
             console.log("patch Data",data);
-            alert("added to cart !!!");
-            setLoader(false);
+            alert("added to cart")
+            getCartproducts()
+            setLoader2(false);
            }
-           setLoader(false);
+           setLoader2(false);
         }
         catch (error) {
             console.log(error);
-            setLoader(false);
+            alert("faild to cart")
+            setLoader2(false);
         }
     }
 
     const addToCartHandler = () => {
-        if (token && selectedQuantity && selectedSize) {
-            setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
-            patchCart();
+        if (token ) {
+            if(selectedQuantity && selectedSize){
+                setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
+                patchCart();
+            }
+            else if(!selectedQuantity){
+                alert("please select quantity")
+            }
+            else if(!selectedSize){
+                alert("please select size")
+            }
         }else{
             openLogin();
         }
-
+    }
+    const getCartproducts = async () => {
+        try {
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'projectID': 'zx5u429ht9oj',
+                        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                    },
+                }
+            );
+            let jsonData = await getData.json();
+            setTotalCart(jsonData.data.items.length);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     console.log(addToCartData);
     
@@ -184,7 +213,7 @@ const CardDetails = (props) => {
                                     </select>
                                 </div>
                                 <div className="flex  gap-5 ">
-                                    <a href="#" onClick={addToCartHandler}><button  className="bg-sky-400 font-semibold text-base cartbtn "><img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button></a>
+                                    <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />:<img className=" w-1/4 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
                                     <button className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>

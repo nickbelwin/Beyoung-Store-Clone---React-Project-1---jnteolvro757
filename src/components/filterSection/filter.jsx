@@ -46,9 +46,9 @@ const Filter = (props) => {
                 </div>
             </section>
             <section className="mobileFilterBox">
-                <p onClick={openFilter} className=" fixed left-0 top-28 bg-white text-xl font-semibold rounded-md p-2 mobileFilterBtn">Filter</p>
+                <p onClick={openFilter} className=" fixed left-5 top-30 bg-white text-xl font-semibold rounded-md p-2 cursor-pointer mobileFilterBtn">Filter</p>
                 <div id="mobileFilter"  className="bg-white mt-5 px-5 filter">
-                    <p onClick={closeFilter}  className="flex mb-10 text-lg font-semibold">Close</p>
+                    <p onClick={closeFilter}  className="flex mb-10 text-lg cursor-pointer font-semibold">Close</p>
                     <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
                     <div className=" ">
                         <div className="flex justify-between py-3 colorBox">

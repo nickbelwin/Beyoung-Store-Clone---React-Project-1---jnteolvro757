@@ -40,3 +40,45 @@
     width: 19vw;
     text-align: start;
 }
+.mobileCategoryMainBox{
+    display: none;
+}
+
+@media (max-width:1280px){
+    .backSideOfMobileCategory{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.539);
+    }
+    .mobileCategoryMainBox{
+        display: flex;
+        width: 70vw;
+        height: 100vh;
+        border: 1px solid;
+    }
+    .listBox{
+        /* border-bottom: 2px dotted rgb(207, 179, 179); */
+        margin-bottom: 1rem;
+    }
+    .colorBox{
+        padding-right: 1.5rem;
+        border-top: 1px solid;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.213);
+    }
+    .yellowText{
+        color: rgb(162, 162, 32);
+    }
+    #sidebar{
+        transform: translateX(-100rem);
+        transition: 1s;
+    }
+}
+
+@media (max-width:520px){
+    .mobileCategoryMainBox{
+        width: 70vw;
+    }
+    .text-lg {
+        font-size: 1rem;
+    }
+}

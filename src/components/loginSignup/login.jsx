@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import "./loginSignup.css";
 import { AppContext } from "../../contextApi/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
     const { displayLogin, } = props;
-    // const [dis, setDis]=useState(displayLogin);
-    const {login, userToken, loginStatus, closeHandler } = useContext(AppContext);
+    const {login, userToken, loginStatus,setToken, closeHandler } = useContext(AppContext);
     const [user, setUser] = useState({ email: '', password: '', "appType": "ecommerce" })
     const handleChange2 = (e) => {
         if (e.target.id === "username") {
@@ -20,7 +20,8 @@ const Login = (props) => {
         }
     }
 
-    const postLogin = async () => {
+    const postLogin = async (e) => {
+        e.preventDefault();
         try {
             let postData = await fetch("https://academics.newtonschool.co/api/v1/user/login",
                 {
@@ -29,31 +30,17 @@ const Login = (props) => {
                     body: JSON.stringify({...user}),
                 });
             if (postData.ok) {
-                let jsonData = await postData.json();
-                
+                let jsonData = await postData.json();                
                 console.log("jsonData", jsonData);
-                userToken(jsonData.token);
-                login();
+                setToken(jsonData.token);
                 closeHandler();
-                navigate('/')
             }
-
-            // navigate('/')
         }
         catch (error) {
             console.log("error", error);
         }
 
     }
-    // const openlogin=()=>{
-    //     setDis(displayLogin);
-    // }
-    // const loginCloseHandler=()=>{
-    //     setDis("none");
-    // }
-    // useEffect(()=>{
-    //     openlogin();
-    // },[displayLogin])
 
     return (
         <div style={{ display: loginStatus }} className=" absolute  loginFormOutsideBox">
@@ -64,9 +51,9 @@ const Login = (props) => {
                     <p className=" font-semibold text-2xl mb-1 px-5">Login</p>
                     <p className=" text-gray-500 text-xs px-5">Get Exciting Offers & Track Order</p>
                     <form className=" flex p-3 flex-col" onSubmit={postLogin}>
-                        <input onChange={handleChange2} autoComplete="" id="username" className=" h-10 mb-2 px-3 rounded loginsignInput" type="email" placeholder="Enter your email" />
+                        <input onChange={handleChange2} autoComplete="on" id="username" className=" h-10 mb-2 px-3 rounded loginsignInput" type="email" placeholder="Enter your email" />
                         <input onChange={handleChange2} id="password" className=" h-10 mb-3 px-3 rounded loginsignInput" type="password" placeholder="Enter your password" />
-                        <button type="submit" className=" font-semibold py-3 rounded text-white loginButton">Login</button>
+                        <button type="submit" autoComplete="current-password" className=" font-semibold py-3 rounded text-white loginButton">Login</button>
                     </form>
                 </div>
             </div>

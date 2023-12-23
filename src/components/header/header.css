@@ -58,7 +58,7 @@
 .bar4 {
     bottom: 4px;
 }
-.checkbox1:checked + label > .hamburger1 > .bar1{
+/* .checkbox1:checked + label > .hamburger1 > .bar1{
     transform: rotate(45deg);
     transform-origin: 5%;
     width: 30px
@@ -78,7 +78,7 @@
     transform-origin: 5%;
     transform: rotate(-45deg);
     width: 30px;
-}
+} */
 
 .header{
     /* position: fixed;
