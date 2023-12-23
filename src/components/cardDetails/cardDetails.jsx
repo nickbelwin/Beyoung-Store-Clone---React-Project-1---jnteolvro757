@@ -41,14 +41,14 @@ const CardDetails = (props) => {
     }
 
     const patchCart = async () => {
-        console.log("patchCart Token",token);
+        console.log("patchCart Token",token, "id: ",id);
         try {
             setLoader(true);
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${id}`,
                 {
                     method: 'PATCH',
-                    Authorization: `Bearer "${token}"`,
-                    headers: { 'projectId': 'zx5u429ht9oj' },
+                    headers: { 'projectId': 'zx5u429ht9oj',
+                    "Authorization": `Bearer ${token}` },
                     body: JSON.stringify({...addToCartData})
                 }
             );
@@ -58,6 +58,7 @@ const CardDetails = (props) => {
             alert("added to cart !!!");
             setLoader(false);
            }
+           setLoader(false);
         }
         catch (error) {
             console.log(error);

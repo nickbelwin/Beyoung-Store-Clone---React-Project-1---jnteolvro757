@@ -19,7 +19,7 @@ const AppContextProvider = ({children})=>{
     }
     const userToken=(getToken)=>{
         setToken(getToken);
-        console.log("tokanget",getToken);
+        console.log("tokanget at AppContext: ",getToken);
     }
     console.log("tokanget",token);
     const logout=()=>{

@@ -16,8 +16,8 @@ const Cart = () => {
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
                 {
                     method: 'GET',
-                    Authorization: `Bearer${token}`,
-                    headers: { 'projectID': 'zx5u429ht9oj'},
+                    headers: { 'projectID': 'zx5u429ht9oj',
+                    "Authorization": `Bearer ${token}`},
                 }
             );
             let data = await getData.json();

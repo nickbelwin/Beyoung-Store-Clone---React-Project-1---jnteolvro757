@@ -23,9 +23,9 @@ const Signup = (props) => {
             update={...update,password:e.target.value }
             setUser(update);
         }
-        console.log("setUserInfo", user);
+        // console.log("setUserInfo", user);
     }
-    console.log("setUserInfo", user);
+    // console.log("setUserInfo", user);
 
     const postSignup= async()=>{
         let postData= await fetch("https://academics.newtonschool.co/api/v1/user/signup",
@@ -44,7 +44,7 @@ const Signup = (props) => {
             closeHandler();
             // navigate('/');
         }else{
-            console.log("fail to signup...");
+            alert("fail to signup...");
         }
     }
     // const openSignup=()=>{
