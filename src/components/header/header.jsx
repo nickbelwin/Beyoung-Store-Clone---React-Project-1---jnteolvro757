@@ -13,7 +13,7 @@ import MobileViewCategory from "../navListCatagory/mobileViewCategory";
 
 
 const Header = (props) => {
-    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox, submitData } = props;
+    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver,winterDisplay,newDisplay, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox, submitData } = props;
     const [searchStatus, setSearchStatus] = useState("none");
     const [searchParam, setSearchParam] = useState("");
     const [searchFlag, setSearchFlags] = useState(false);
@@ -160,8 +160,10 @@ const Header = (props) => {
                                     <nav className="flex text-sm font-semibold cursor-pointer navNameList">
                                         <p id="men" className=" relative hover-bg-yellow px-6 py-2 flex items-center catMen" onMouseLeave={menOnMouseLeave} onMouseOver={menOnMouseOver} >MEN <MenCatagory status={stat} clickHandler={() => { onClickHandler() }} /></p>
                                         <p className="relative hover-bg-yellow px-6 py-2 flex  items-center catWomen" onMouseLeave={womenOnMouseLeave} onMouseOver={womenOnMouseOver}>WOMEN <WomenCatagory status2={stat2} clickHandler={() => { onClickHandler() }} /></p>
-                                        <p className="hover-bg-yellow px-6 py-2 flex items-center catWinter" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver} >WINTER WEARS</p>
-                                        <p className="hover-bg-yellow px-6 py-2 flex items-center catNew" onMouseLeave={newOnMouseLeave} onMouseOver={newOnMouseOver}>NEW ARRIVALS</p>
+                                        <p className="hover-bg-yellow relative px-6 py-2 flex items-center catWinter" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver} >WINTER WEARS <div style={{display: winterDisplay}} onClick={() => { onClickHandler() }} className=" absolute flex flex-col top-10 pt-3 bg-white winterCategory"><Link to={`allProducts/sweater`}><p onClick={closeCategory} id="sweater" className=" text-sm p-2 font-medium text-left hover-text-yellow">Sweater</p></Link>
+                    <Link to={`allProducts/hoodie`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">Hoodies</p></Link></div> </p>
+                                        <p className="hover-bg-yellow relative px-6 py-2 flex items-center catNew" onMouseLeave={newOnMouseLeave} onMouseOver={newOnMouseOver}>NEW ARRIVALS <div style={{display: newDisplay}} onClick={() => { onClickHandler() }} className=" absolute flex flex-col top-10 pt-3 pb-1 bg-white newCategory">
+                    <Link to={`allProducts/t-shirt`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">New Arrivals</p></Link></div></p>
                                     </nav>
                                 </nav>
                                 <nav className="flex items-center">

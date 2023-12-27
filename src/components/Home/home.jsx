@@ -21,6 +21,8 @@ import Wishlist from "../wishlist/wishlist";
 const Home = () => {
     const [status, setStatus] = useState("none");
     const [status2, setStatus2] = useState("none");
+    const [status3, setStatus3] = useState("none");
+    const [status4, setStatus4] = useState("none");
     const [loginSignup, setLoginSignup] = useState();
     const [categoryType, setCategoryType] = useState("");
     const [showProducts, setShowProducts] = useState("none");
@@ -42,15 +44,27 @@ const Home = () => {
         // document.getElementById("men").classList.remove("backColor");
         // setCategoryType("women");
     }
+    const winterOnMouseOver=(e)=>{
+        e.stopPropagation();
+        setStatus3("flex");
+    }
     const categoryClose = () => {
         setStatus("none");
         setStatus2("none");
+        setStatus3("none");
+        setStatus4("none");
         // setCategoryType("");
+    }
+    const newOnMouseOver=(e)=>{
+        e.stopPropagation();
+        setStatus4("flex");
     }
     const showlist = () => {
         setShowProducts("flex");
         setStatus("none");
         setStatus2("none");
+        setStatus3("none");
+        setStatus4("none");
     }
 
     const submitData = () => {
@@ -61,7 +75,7 @@ const Home = () => {
         <AppContextProvider>
             <div className="overflow-hidden">
                 <Routes>
-                    <Route path="/" element={<Header goToHomeHandler={goToHomeHandler} menOnMouseOver={menCatagoryShow} menOnMouseLeave={categoryClose} womenOnMouseOver={womenOnMouseOver} womenOnMouseLeave={categoryClose} stat={status} stat2={status2} onClickHandler={showlist} submitData={submitData} />} >
+                    <Route path="/" element={<Header goToHomeHandler={goToHomeHandler} menOnMouseOver={menCatagoryShow} menOnMouseLeave={categoryClose} womenOnMouseOver={womenOnMouseOver} womenOnMouseLeave={categoryClose} winterOnMouseOver={winterOnMouseOver} winterOnMouseLeave={categoryClose} newOnMouseOver={newOnMouseOver} newOnMouseLeave={categoryClose} newDisplay={status4} winterDisplay={status3} stat={status} stat2={status2} onClickHandler={showlist} submitData={submitData} />} >
                         <Route index element={<Screen />} />
                         <Route path="product-details/:id" element={<CardDetails />} />
                         <Route path="category/:id/:gender" element={<ShowNavbarProducts />} />
