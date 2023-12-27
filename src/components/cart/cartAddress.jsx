@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contextApi/AppContext";
+import Loading from "../loading/loading";
 
 const UserAddress = () => {
     const [cartProduct, setCartProduct] = useState([]);
@@ -130,7 +131,7 @@ const UserAddress = () => {
                         </nav>
                     </div>
                 </header>
-                <div className="flex flex-row justify-center mt-10 w-fit m-auto addressAllBox">
+                {!loader? <div className="flex flex-row justify-center mt-10 w-fit m-auto addressAllBox">
                     <div className=" mr-9 addressDiv">
                         <li className=" text-left mb-6 font-semibold">SHIPPING DETAILS</li>
                         <form className=" flex flex-wrap gap-x-4 gap-y-5 addressFormBox">
@@ -160,7 +161,7 @@ const UserAddress = () => {
                             )
                         })}
                     </div>
-                </div>
+                </div>: <Loading/>}
             </section>
         </>
     )

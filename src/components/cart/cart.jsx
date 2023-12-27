@@ -4,6 +4,7 @@ import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import isAuth from "../../isAuth/isAuth";
 import { AppContext } from "../../contextApi/AppContext";
+import Loading from "../loading/loading";
 const Cart = () => {
     const [product, setProduct] = useState([]);
     const [cartProduct, setCartProduct] = useState([]);
@@ -115,7 +116,7 @@ const Cart = () => {
                     <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl">Continue Shopping</button>
                     </Link>  
                 </div> */}
-                <div className=" mt-10 checkoutProccessBox">
+                {!loader? <div className=" mt-10 checkoutProccessBox">
                     <div className="flex flex-wrap justify-center bg-white w-fit m-auto">
                         <div className="p-5">
                             <div className=" productDiv  overflow-y-scroll">
@@ -169,7 +170,7 @@ const Cart = () => {
                             })}
                         </div>
                     </div>
-                </div>
+                </div>: <Loading/>}
 
             </main>
 

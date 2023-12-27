@@ -17,16 +17,18 @@ const Wishlist=()=>{
                 {
                     method: 'GET',
                     headers: { 'projectId': 'zx5u429ht9oj',
-                    "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,},
+                    "Authorization": `Bearer ${token}`,},
                 }
             );
             let jsonData = await getData.json();
             let cartItem= jsonData.data.items;
             setFavoriteItems(cartItem);
             console.log("wishlist",cartItem);
+            setLoader(false);
         }
         catch(error){
             console.log("ERROR",error);
+            setLoader(false);
         }
         console.log(favoriteItems);
     }
@@ -41,7 +43,7 @@ const Wishlist=()=>{
 
 
     return(<>
-            <section className="flex justify-center wishlistMainBox">
+            {!loader? <section className="flex justify-center wishlistMainBox">
                 <div className="flex flex-wrap gap-5 ">
                 {favoriteItems?.map((val)=>{
                     return(
@@ -67,7 +69,7 @@ const Wishlist=()=>{
                     )
                 })}
                 </div>
-            </section>
+            </section>: <Loading/>}
     </>)
 }
 
