@@ -7,7 +7,7 @@ const Footer=()=>{
                 <section className="footerMainBox">
                 <div className=" flex mb-10 justify-between footerInfoBox1">
                     <div className=" text-left mr-5">
-                        <h1 className=" text-3xl font-semibold text-yellow-400">NEED HELP</h1>
+                        <h1 className=" text-2xl font-semibold text-yellow-400">NEED HELP</h1>
                         <p>Contact Us</p>
                         <p>Track Order</p>
                         <p>Returns & Refunds</p>
@@ -15,7 +15,7 @@ const Footer=()=>{
                         <p>Career</p>
                     </div>
                     <div className=" text-left mr-5">
-                        <h1 className=" text-3xl font-semibold text-yellow-400">COMPANY </h1>
+                        <h1 className=" text-2xl font-semibold text-yellow-400">COMPANY </h1>
                         <p>About Us</p>
                         <p>Beyoung Blog</p>
                         <p>Beyoungistan</p>
@@ -23,18 +23,18 @@ const Footer=()=>{
                         <p>Media</p>
                     </div>
                     <div className=" text-left mr-5">
-                        <h1 className=" text-3xl font-semibold text-yellow-400">MORE INFO</h1>
+                        <h1 className=" text-2xl font-semibold text-yellow-400">MORE INFO</h1>
                         <p>Term and Conditions</p>
                         <p>Privacy Policy</p>
                         <p>Shipping Policy</p>
                         <p>Sitemap</p>
                     </div>
                     <div className=" text-left">
-                        <h1 className=" text-3xl font-semibold text-yellow-400">LOCATION</h1>
+                        <h1 className=" text-2xl font-semibold text-yellow-400">LOCATION</h1>
                         <p>support@beyoung.in</p>
                         <p>Eklingpura Chouraha, Ahmedabad Main Road</p>
                         <p>(NH 8- Near Mahadev Hotel) Udaipur, India- 313002</p>
-                        <h1 className=" mt-5 mb-2 text-3xl font-semibold text-yellow-400">DOWNLOAD THE APP</h1>
+                        <h1 className=" mt-5 mb-2 text-2xl font-semibold text-yellow-400">DOWNLOAD THE APP</h1>
                         <div className="flex flex-wrap">
                             <button className="mr-5 mb-5"><img src="https://www.beyoung.in/api/catalog/footer/11Play-Store-footer.png" alt="" /></button>
                             <button className=" w-fit h-fit"><img src="https://www.beyoung.in/api/catalog/footer/12App-Store-footer.png" alt="" /></button>
@@ -58,7 +58,7 @@ const Footer=()=>{
                         </div>
                     </div>
                 </div>
-                <p className="text-lg font-bold pb-10">Copyright © 2023 Beyoung Folks Pvt Ltd. All rights reserved.</p>
+                <p className=" text-base font-semibold pb-7">Copyright © 2023 Beyoung Folks Pvt Ltd. All rights reserved.</p>
                 </section>
             </footer>
         </>

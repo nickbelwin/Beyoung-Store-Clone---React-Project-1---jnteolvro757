@@ -3,13 +3,13 @@
     margin: auto;
 }
 .footerInfoBox1 p{
-    margin-top: 1rem;
+    margin-top: .5rem;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .socialMediaIcon img{
-    width: 3rem;
-    margin-right: 2rem;
+    width: 2.5rem;
+    margin-right: 1.5rem;
 }
 .paymentIcon{
     border-right: 1px solid yellow;
