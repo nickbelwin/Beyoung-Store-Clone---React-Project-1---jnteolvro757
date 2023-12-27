@@ -36,8 +36,8 @@ const Footer=()=>{
                         <p>(NH 8- Near Mahadev Hotel) Udaipur, India- 313002</p>
                         <h1 className=" mt-5 mb-2 text-2xl font-semibold text-yellow-400">DOWNLOAD THE APP</h1>
                         <div className="flex flex-wrap">
-                            <button className="mr-5 mb-5"><img src="https://www.beyoung.in/api/catalog/footer/11Play-Store-footer.png" alt="" /></button>
-                            <button className=" w-fit h-fit"><img src="https://www.beyoung.in/api/catalog/footer/12App-Store-footer.png" alt="" /></button>
+                            <button className="mr-5 mb-5 w-fit"><img className=" w-3/4" src="https://www.beyoung.in/api/catalog/footer/11Play-Store-footer.png" alt="" /></button>
+                            <button className=" w-fit h-fit"><img className=" w-3/4" src="https://www.beyoung.in/api/catalog/footer/12App-Store-footer.png" alt="" /></button>
                         </div>
                     </div>
                 </div>

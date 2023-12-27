@@ -92,4 +92,7 @@
     .bestSelling {
        display: none;
     }
+    .forStrips{
+        width: 150%;
+    }
 }

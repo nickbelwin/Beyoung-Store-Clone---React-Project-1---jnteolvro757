@@ -25,3 +25,10 @@
 .savingBox::-webkit-scrollbar {
     display: none;
 }
+.leftArrow{
+    top: 50%;
+}
+.rightArrow{
+    right: 0;
+    top: 50%;
+}

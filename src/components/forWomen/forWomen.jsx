@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { newArrivals } from "../contants/constants";
-import "./newArrivals.css";
+import "./forWomen.css";
 import { useState } from "react";
+import { forWomen, newArrivals } from "../contants/constants";
 
-const NewArrivals = () => {
+const ForWomen=()=>{
     const navigate=useNavigate();
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-    const [newArrivalsProducts, setNewArrivalsProducts] = useState(newArrivals);
+    const [newArrivalsProducts, setNewArrivalsProducts] = useState(forWomen);
 
     const prevImg = () => {
         if (activeSlideIndex > 0) {
@@ -19,20 +19,17 @@ const NewArrivals = () => {
             setActiveSlideIndex(activeSlideIndex + 1);
         }
     }
-
-
     const newArrivalsHandler=(e)=>{
         e.stopPropagation();
-        navigate(`/category/${e.target.parentNode.id}/Men`);
+        navigate(`/category/${e.target.parentNode.id}/Women`);
 
     }
-
-    return (
+    return(
         <div className=" relative">
             <div onClick={prevImg} className=" bg-white p-1 border absolute cursor-pointer z-10 leftArrow">{`<`}</div>
             <div onClick={nextImg} className="bg-white p-1 border absolute cursor-pointer z-10 rightArrow">{`>`}</div>
             <div className="mb-7">
-                <p className="w-fit pl-3 font-semibold text-xl newArrivalTag">NEW ARRIVALS</p>
+                <p className="w-fit pl-3 font-semibold text-xl newArrivalTag">NEW FOR WOMENS</p>
             </div>
             <div className="flex overflow-x-auto h-auto newArrivalBox">
                 {newArrivalsProducts?.map((val,idx) => {
@@ -40,7 +37,7 @@ const NewArrivals = () => {
                         <>{idx >= activeSlideIndex ? <div key={val.name} className="mr-9">
                         <div className="w-64 relative cursor-pointer newArrivalBox" onClick={newArrivalsHandler} id={val.id}>
                             <img className="rounded-lg" src={val.image} alt="" />
-                            <p className="newArrivalName">{val.name}</p>
+                            <p className="forWomenName">{val.name}</p>
                         </div>
                     </div>:""}
                         </>
@@ -52,4 +49,4 @@ const NewArrivals = () => {
     )
 }
 
-export default NewArrivals;
+export default ForWomen;

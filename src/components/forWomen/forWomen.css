@@ -1,0 +1,9 @@
+.forWomenName{
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+    border-left: 4px solid yellow;
+    padding-left: .7rem;
+    font-weight: 400;
+    
+}

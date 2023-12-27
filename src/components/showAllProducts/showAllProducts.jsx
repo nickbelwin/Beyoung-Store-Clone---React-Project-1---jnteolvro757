@@ -194,6 +194,9 @@ const ShowAllProducts = () => {
         getAllSizes();
         setFilterProducts(product);
     }, [product]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      },[]);
 
     return (
         <>

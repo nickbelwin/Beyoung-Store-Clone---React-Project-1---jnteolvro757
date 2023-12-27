@@ -9,6 +9,7 @@ import NewArrivals from "../newArrivals/newArrivals";
 import ForMenTshirt from "../forMenTshirt/forMenTshirt";
 import ForMenShirt from "../forMenShirt/forMenShirt";
 import Footer from "../footer/footer";
+import ForWomen from "../forWomen/forWomen";
 
 const Screen = () => {
     const navigate = useNavigate();
@@ -54,7 +55,7 @@ const Screen = () => {
                     <div className="p-6 bestSelling">
                         <div className="flex justify-between">
                             <p className="mb-8 text-xl font-semibold pl-4 text-left bestSellingName">BEST SELLING PRODUCT</p>
-                            <Link to={`allProducts/${"tshirt"}`}><span className="text-xs cursor-pointer h-4 underline decoration-solid">View All</span></Link>
+                            <Link to={`allProducts/${"t-shirt"}`}><span className="text-xs cursor-pointer h-4 underline decoration-solid">View All</span></Link>
                         </div>
                         <img className="rounded-lg" src="https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Combo-banner/Combo-banner.jpg" alt="" />
                     </div>
@@ -63,10 +64,15 @@ const Screen = () => {
                     </div>
                     {/* Mens Category */}
                     <div>
-                        <img src="./img/forMenStrip.png" alt="" />                        
+                        <img className="forStrips" src="/img/forMenStrip.png" alt="" />                        
                             <ForMenTshirt />
                             <ForMenShirt/>
                     </div>
+                    {/* Womens Category */}
+                    <>
+                        <img className="forStrips" src="/img/forWomenStrip.png" alt="" />
+                        <ForWomen/>
+                    </>
                     
    
                 </div>

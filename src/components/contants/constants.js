@@ -78,6 +78,15 @@ export const newArrivals=[
     {id:"Oversized T-shirt",name:"Oversized T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/5.jpg"},
     {id:"trouser",name:"Trousers", image:"https://www.beyoung.in/api/catalog/homepage-3-10/new-arrival/new/2.jpg"},
 ]
+
+export const forWomen=[
+    {id:"Oversized T-shirt",name:"Oversized T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/1.jpg"},
+    {id:"Printed T-shirt",name:"Printed T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/3.jpg"},
+    {id:"T-shirt",name:"New T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/4.jpg"},
+    {id:"Kurti",name:"Kurtis", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/2.jpg"},
+    {id:"Shirt",name:"Women Shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/7.jpg"},
+    {id:"Plus Size T-shirt",name:"Plus Size T-shirts", image:"https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Women/5.jpg"},
+]
  
 export const forMenTshirt=[
     {id1:"Oversized T-shirt", name1:"Oversized", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/oversized.jpg",id2:"T-shirt",

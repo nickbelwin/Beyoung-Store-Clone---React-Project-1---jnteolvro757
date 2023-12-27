@@ -310,6 +310,9 @@ const ShowNavbarProducts = () => {
         getAllColor();
         getAllSizes();
     }, [product]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      },[]);
 
     return (
         <>

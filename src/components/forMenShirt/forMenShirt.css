@@ -2,6 +2,9 @@
     border-left: 4px solid yellow;
 }
 @media (max-width:520px){
+    .forMenShirtBox{
+        display: none;
+    }
     .mt-12 {
         margin-top: 1rem;
     }
