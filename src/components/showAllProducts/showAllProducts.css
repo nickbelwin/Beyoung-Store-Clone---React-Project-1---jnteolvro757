@@ -3,6 +3,7 @@
     /* width: 80vw; */
     justify-content: center;
     margin-bottom: 35rem;
+    min-height: 80vh;
 }
 .cardBox{
     max-width: 55vw;

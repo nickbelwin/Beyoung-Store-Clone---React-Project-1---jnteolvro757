@@ -2,6 +2,7 @@
     margin: auto;
     justify-content: center;
     margin-bottom: 35rem;
+    min-height: 80vh;
     /* width: 80vw; */
     /* background-color: aqua; */
 }
@@ -88,5 +89,8 @@
         max-width: 9rem;
         min-width: 8rem;
         
+    }
+    .footerBottom {
+        bottom: -44rem;
     }
 }

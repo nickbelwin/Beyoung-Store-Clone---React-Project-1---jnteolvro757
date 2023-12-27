@@ -224,6 +224,29 @@ const ShowNavbarProducts = () => {
 
         }
     }
+    const selectedColorMobile = (e) => {
+        let id = e.target.id;
+        if (prevColor != id) {
+            allColors?.forEach((val) => {
+                document.getElementById(val).style.border = "1px solid rgb(203, 203, 203)";
+            });
+
+            document.getElementById(id).style.border = "1px solid blue";
+            setFilterProducts(product);
+            setSelectColor(id);
+            setPrevColor(id);
+        }
+        else {
+            allColors?.forEach((val) => {
+                document.getElementById(val).style.border = "none";
+            });
+            setFilterProducts(product);
+
+            setSelectColor("");
+            setPrevColor("");
+
+        }
+    }
     // function for check which size is selected
     const checkSize = (e) => {
         let id = e.target.id;
@@ -292,7 +315,7 @@ const ShowNavbarProducts = () => {
         <>
             <section className="flex pb-10 relative justify-start pt-8 mt-10 navCategoryBox">
                 {!loader ? product ? <div className=" overflow-y-scroll filterSide">
-                    <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
+                    <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedColorMobile={selectedColorMobile} selectedSize={checkSize} />
                 </div> : <NotFoundProduct /> : ""}
                 <div className="flex flex-wrap gap-8 allCardBox">
                     {!loader ? filterProducts?.map((val) => {
