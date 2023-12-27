@@ -10,3 +10,12 @@
 .savingDualBox2{
     border-radius: 7px;
 }
+.nameTagOfMenTshirt{
+    border-left: 2px solid yellow;
+    left: -6.25rem;
+}
+@media (max-width:520px){
+    .bigImg {
+        width: 14rem;
+    }
+}

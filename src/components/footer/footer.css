@@ -1,0 +1,90 @@
+.footerMainBox{
+    width: 80vw;
+    margin: auto;
+}
+.footerInfoBox1 p{
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.socialMediaIcon img{
+    width: 3rem;
+    margin-right: 2rem;
+}
+.paymentIcon{
+    border-right: 1px solid yellow;
+}
+@media (max-width:1280px){
+    .footerInfoBox1{
+        flex-wrap: wrap;
+    }
+    .footerInfoBox1 h1{
+        margin-top: .8rem;
+    }
+    .footerInfoBox1 p {
+        margin-top: 0.5rem;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .paymentSocialMediaBox{
+        flex-direction: column;
+    }
+    .paymentIcon{
+        border-right: none;
+        width: 100%;
+    }
+    .paymentIcon h1{
+        font-size: 1.3rem;
+    }
+    .socialMediaIcon h1{
+        font-size: 1.3rem;
+    }
+    .socialMediaIcon img{
+        width: 1.7rem;
+        margin-right: .8rem;
+    }
+    .footerMainBox {
+        width: 86vw; 
+        margin: auto;
+    }
+    .mb-10 {
+        margin-bottom: 1.5rem;
+    }
+}
+@media (max-width:520px){
+    .footerInfoBox1{
+        flex-wrap: wrap;
+    }
+    .footerInfoBox1 h1{
+        margin-top: .8rem;
+    }
+    .footerInfoBox1 p {
+        margin-top: 0.5rem;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .paymentSocialMediaBox{
+        flex-direction: column;
+    }
+    .paymentIcon{
+        border-right: none;
+        width: 100%;
+    }
+    .paymentIcon h1{
+        font-size: 1.3rem;
+    }
+    .socialMediaIcon h1{
+        font-size: 1.3rem;
+    }
+    .socialMediaIcon img{
+        width: 1.7rem;
+        margin-right: .8rem;
+    }
+    .footerMainBox {
+        width: 86vw; 
+        margin: auto;
+    }
+    .mb-10 {
+        margin-bottom: 1.5rem;
+    }
+}

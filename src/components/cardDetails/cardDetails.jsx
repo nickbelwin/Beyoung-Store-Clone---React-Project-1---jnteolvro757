@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Markup } from "interweave";
 import "./cardDetails.css"
 import { AppContext } from "../../contextApi/AppContext";
@@ -7,6 +7,7 @@ import Loading from "../loading/loading";
 
 const CardDetails = (props) => {
     // const { addToCartHandler } = props;
+    
     const { id } = useParams();
     console.log("id: ", id);
     const [product, setProduct] = useState("");
@@ -19,6 +20,7 @@ const CardDetails = (props) => {
     const [totalReviews, setTotalReviews] = useState("");
     const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""})
     const { openLogin, token,setTotalCart } = useContext(AppContext);
+    const navigate=useNavigate();
     const getProduct = async () => {
         try {
             setLoader(true);
@@ -82,6 +84,13 @@ const CardDetails = (props) => {
             else if(!selectedSize){
                 alert("please select size")
             }
+        }else{
+            openLogin();
+        }
+    }
+    const buyNowHandler=()=>{
+        if(token){
+            navigate(`/address/${id}/${addToCartData.quantity}`)
         }else{
             openLogin();
         }
@@ -169,14 +178,14 @@ const CardDetails = (props) => {
                             </div>
                             {/* Product Details Box */}
                             <div className="w-2/5 p-4 flex flex-col gap-3 productDetailBox">
-                                <p className="w-fit text-xl font-semibold productDetailsName">{val.name}
-                                    <p className="w-fit text-slate-400 text-base">{val.subCategory}</p>
+                                <p className="text-left text-xl font-semibold productDetailsName">{val.name}
+                                    <p className="text-left text-slate-400 text-base">{val.subCategory}</p>
                                 </p>
 
-                                <p className="text-start w-fit text-xl font-semibold">₹ {val.price}
-                                    <p className=" w-fit text-slate-500 font-bold text-sm">Inclusive of All Taxes + Free Shipping</p></p>
+                                <p className=" text-left text-xl font-semibold">₹ {val.price}
+                                    <p className="text-left text-slate-500 font-bold text-sm">Inclusive of All Taxes + Free Shipping</p></p>
 
-                                <p className="flex align-middle text-xs font-semibold gap-2 "><img className="w-8" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ_ZRSlCDu_TPpI8LDW0Kc34LtYh1N1kCUnbO7mKFP1WU2s4VqG" alt="" /><p className="mt-2.5">Extra ₹100 OFF on ₹999 (Code:BEYOUNG100)</p></p>
+                                <p className="flex align-middle text-xs font-semibold gap-2 "><img className="w-8" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ_ZRSlCDu_TPpI8LDW0Kc34LtYh1N1kCUnbO7mKFP1WU2s4VqG" alt="" /><p className="text-left mt-2.5">Extra ₹100 OFF on ₹999 (Code:BEYOUNG100)</p></p>
                                 <div className="flex">
                                     <div className="flex mr-3">
                                         {[...Array(Math.floor(val.ratings))].map((val) => {
@@ -209,12 +218,12 @@ const CardDetails = (props) => {
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
-                                        <option value="4">7</option>
+                                        <option value="4">4</option>
                                     </select>
                                 </div>
                                 <div className="flex  gap-5 ">
                                     <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />:<img className=" w-1/4 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
-                                    <button className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
+                                    <button onClick={buyNowHandler} className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>
                         </div>

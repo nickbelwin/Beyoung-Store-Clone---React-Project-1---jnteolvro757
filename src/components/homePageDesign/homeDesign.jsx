@@ -62,4 +62,4 @@ const HomeDesign=(props)=>{
     )
 }
 
-export default HomeDesign;
+// export default HomeDesign;

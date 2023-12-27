@@ -8,6 +8,7 @@ import BigSavingZone from "../bigSavingZone/bigSavingZone";
 import NewArrivals from "../newArrivals/newArrivals";
 import ForMenTshirt from "../forMenTshirt/forMenTshirt";
 import ForMenShirt from "../forMenShirt/forMenShirt";
+import Footer from "../footer/footer";
 
 const Screen = () => {
     const navigate = useNavigate();
@@ -65,15 +66,11 @@ const Screen = () => {
                         <img src="./img/forMenStrip.png" alt="" />                        
                             <ForMenTshirt />
                             <ForMenShirt/>
-
                     </div>
-
-
-
-
-                  
+                    
+   
                 </div>
-
+                <Footer/>
             </div>
 
         </div>

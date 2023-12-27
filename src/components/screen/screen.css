@@ -1,6 +1,6 @@
 .mainBox{
     margin: auto;
-    max-width: 75rem;
+    max-width: 75vw;
     margin-bottom: 3.5rem;
 }
 .mainBanner{
@@ -63,13 +63,14 @@
 
 @media (max-width:520px){
     .mainBanner{
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     .offerImgBox{
         margin-top: 0rem;
     }
-    .offerImg{
-        width: 100vw;
+    .offerImg {
+        width: 19rem;
+        margin-right: 1rem;
     }
     .block1{
         height: 10vh;
@@ -84,6 +85,11 @@
         height: 10vh;
     }
     .mainBox{
-        gap: 2rem;
+        gap: 1rem;
+        max-width: 100vw;
+        padding: 0 1rem;
+    }
+    .bestSelling {
+       display: none;
     }
 }

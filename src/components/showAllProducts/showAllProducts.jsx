@@ -4,6 +4,7 @@ import Filter from "../filterSection/filter";
 import "./showAllProducts.css"
 import NotFoundProduct from "../../notFound/notFound";
 import Loading from "../loading/loading";
+import Footer from "../footer/footer";
 
 const ShowAllProducts = () => {
     const { id } = useParams();
@@ -195,8 +196,9 @@ const ShowAllProducts = () => {
     }, [product]);
  
     return (
-        <section id="allBoxId" className="flex justify-start pt-8 mt-8 allBox">
-            {!loader ? filterProducts ? <div className=" overflow-y-scroll pr-2 filterContainer">
+        <>
+            <section id="allBoxId" className="flex pb-10 justify-start pt-8 mt-8 allBox">
+            {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
                 <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
             </div> : <NotFoundProduct/> : ""}
             <div className="flex cardBox">
@@ -205,15 +207,17 @@ const ShowAllProducts = () => {
                         <div onClick={linkHandler} key={val._id}>
                             <div className="card" id={val._id}>
                                 {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
-                                <span className="cardName w-fit text-slate-700 font-semibold">{val.name}</span>
-                                <span className="w-fit text-gray-400 text-sm">{val.subCategory}</span>
-                                <p className="w-fit mt-2">₹{val.price}</p>
+                                <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
+                                <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
+                                <p className="text-left mt-2">₹{val.price}</p>
                             </div>
                         </div>
                     )
                 }) : <Loading  />}
             </div>
         </section>
+        <Footer/>
+        </>
     )
 }
 

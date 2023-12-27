@@ -80,13 +80,13 @@ export const newArrivals=[
 ]
  
 export const forMenTshirt=[
-    {id:"tshirt", name1:"Oversized", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/oversized.jpg",
+    {id1:"Oversized T-shirt", name1:"Oversized", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/oversized.jpg",id2:"T-shirt",
     name2:"Plain", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/6.jpg"},
-    {id:"tshirt", name1:"Polo", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/polo.jpg",
+    {id1:"Polo", name1:"Polo", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/polo.jpg",id2:"Full Sleeve T-shirt",
     name2:"Full Sleeve", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/3.jpg"},
-    {id:"tshirt", name1:"Printed", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/7.jpg"
-    ,name2:"Activewear", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/4.jpg"},
-    {id:"tshirt", name1:"Pluse Size", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/2.jpg", 
+    {id1:"Printed T-shirt", name1:"Printed", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/7.jpg", id2:"tracksuit",
+    name2:"Activewear", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/4.jpg"},
+    {id1:"Plus Size shirt", name1:"Plus Size", image1:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/2.jpg",id2:"Polo",
     name2:"Classic Polo", image2:"https://www.beyoung.in/api/catalog/homepage-3-10/T-shirt-section/new/1.jpg"},
 ]
 

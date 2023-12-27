@@ -86,7 +86,7 @@ const Header = (props) => {
     }
     const favoriteItems = () => {
         if (token) {
-            navigate("/favoriteItems")
+            navigate("/wishlist")
         }
         else {
             openLogin();

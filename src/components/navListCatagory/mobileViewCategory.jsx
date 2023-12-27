@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { mensCatagory, womenCatagory } from "../contants/constants";
 import "./catagory.css";
 
@@ -22,7 +23,7 @@ const MobileViewCategory = (props) => {
                                                 <h1 className=" font-semibold text-lg">{val.heading1}</h1>
                                                 {val.list1.map((listItems) => {
                                                     return (
-                                                        <p onClick={closeCategory} key={listItems.name}  id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p>
+                                                        <Link to={`category/${listItems.id}/Men`}><p key={listItems.name}  id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p></Link>
                                                     )
                                                 })}
                                             </div>
@@ -30,7 +31,7 @@ const MobileViewCategory = (props) => {
                                                 <h1 className=" font-semibold text-lg">{val.heading2}</h1>
                                                 {val.list2.map((listItems) => {
                                                     return (
-                                                        <p onClick={closeCategory} key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p>
+                                                        <Link to={`category/${listItems.id}/Men`}><p  key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p></Link>
                                                     )
                                                 })}
                                             </div>
@@ -55,7 +56,7 @@ const MobileViewCategory = (props) => {
                                                 <h1 className=" font-semibold text-lg">{val.heading1}</h1>
                                                 {val.list1.map((listItems) => {
                                                     return (
-                                                        <p onClick={closeCategory} key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p>
+                                                        <Link to={`category/${listItems.id}/Women`} ><p  key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p></Link>
                                                     )
                                                 })}
                                             </div>
@@ -63,7 +64,7 @@ const MobileViewCategory = (props) => {
                                                 <h1 className=" font-semibold text-lg">{val.heading2}</h1>
                                                 {val.list2.map((listItems) => {
                                                     return (
-                                                        <p onClick={closeCategory} key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p>
+                                                        <Link to={`category/${listItems.id}/Women`}><p  key={listItems.name} id={listItems.id} className=" text-sm font-normal yellowText">{listItems.name}</p></Link>
                                                     )
                                                 })}
                                             </div>
@@ -79,8 +80,8 @@ const MobileViewCategory = (props) => {
                         <span className=" text-lg px-5 font-semibold">Winter Collections</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
                     </div>
                     <div className=" pb-2 px-5 listBox">
-                        <p onClick={closeCategory} id="sweater" className=" text-sm text-left font-normal yellowText">Sweater</p>
-                        <p onClick={closeCategory} id="hoodie" className=" text-sm text-left font-normal yellowText">Hoodies</p>
+                    <Link to={`allProducts/sweater`}><p onClick={closeCategory} id="sweater" className=" text-sm text-left font-normal yellowText">Sweater</p></Link>
+                    <Link to={`allProducts/hoodie`}><p onClick={closeCategory} id="hoodie" className=" text-sm text-left font-normal yellowText">Hoodies</p></Link>
                     </div>
                 </div>
                 <div className="newArrivalCategoryBox">

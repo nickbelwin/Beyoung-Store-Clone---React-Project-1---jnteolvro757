@@ -12,6 +12,7 @@ const AppContextProvider = ({children})=>{
     const [loginStatus, setLoginStatus] = useState("none");
     const [signupStatus, setSignupStatus] = useState("none");
     const [totalCart, setTotalCart]= useState(0);
+    const [wishlistProducts, setWishlistProducts]=useState([]);
     
     // for logout
     const logout=()=>{     
@@ -34,7 +35,7 @@ const AppContextProvider = ({children})=>{
     }
     
     return (
-        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart, setTotalCart,loginStatus,signupStatus}}>
+        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart, setTotalCart,wishlistProducts, setWishlistProducts,loginStatus,signupStatus}}>
             {children}
         </AppContext.Provider>
     )

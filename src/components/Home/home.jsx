@@ -13,6 +13,8 @@ import AppContextProvider from "../../contextApi/AppContext";
 import Favorites from "../../favorites/favorites";
 import Login from "../loginSignup/login";
 import Signup from "../loginSignup/signup";
+import UserAddress from "../cart/cartAddress";
+import Wishlist from "../wishlist/wishlist";
 
 
 
@@ -64,13 +66,14 @@ const Home = () => {
                         <Route path="product-details/:id" element={<CardDetails />} />
                         <Route path="category/:id/:gender" element={<ShowNavbarProducts />} />
                         <Route path="allProducts/:id" element={<ShowAllProducts />} />
-                        <Route path="favoriteItems" element={<Favorites/>} />
+                        <Route path="wishlist" element={<Wishlist/>} />
                         <Route path="login" element={<Login/>} />
                         <Route path="signup" element={<Signup/>} />
                         <Route path="*" element={<NotFoundProduct />} />
                     </Route>
 
                     <Route path="cart" element={<Cart />} />
+                    <Route path="address/:id/:qty" element={<UserAddress/>} />
                 </Routes>
             </div>
         </AppContextProvider>

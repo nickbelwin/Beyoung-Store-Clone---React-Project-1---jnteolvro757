@@ -4,12 +4,15 @@
     justify-content: center;
 }
 .cardBox{
-    max-width: 67vw;
-    flex-grow: 1;
+    max-width: 55vw;
+    flex-grow: 1; 
     justify-content: center;
 }
+.cardName{
+    text-overflow: ellipsis;
+}
 .card{
-    max-width: 15rem;
+    max-width: 18rem;
     min-width: 8rem;
 }
 

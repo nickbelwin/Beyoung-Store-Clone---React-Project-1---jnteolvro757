@@ -19,7 +19,7 @@ const NewArrivals = () => {
                 {newArrivals?.map((val) => {
                     return (
                         <div key={val.name} className="mr-9">
-                            <div className="w-64 relative cursor-pointer" onClick={newArrivalsHandler} id={val.id}>
+                            <div className="w-64 relative cursor-pointer newArrivalBox" onClick={newArrivalsHandler} id={val.id}>
                                 <img className="rounded-lg" src={val.image} alt="" />
                                 <p className="newArrivalName">{val.name}</p>
                             </div>

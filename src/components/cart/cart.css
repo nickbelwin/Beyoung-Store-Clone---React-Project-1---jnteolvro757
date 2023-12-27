@@ -64,6 +64,28 @@
 .checkoutBtn{
     background-color: #51CBCC;
 }
+.addressMainbox{
+    margin: auto;
+    width: 96%;
+    min-height: 100vh;
+    background-color: #F4F4F6;
+}
+.addressDiv{
+    width: 40rem;
+    gap: 1rem;
+}
+.addressFormBox{
+    
+}
+.addressAllBox{
+    
+}
+.addressDiv input{
+    border: 1px solid;
+    border-radius: 3px;
+    padding: .5rem .5rem;
+    width: 48%;
+}
 
 @media (max-width:1120px){
     .productDetailsBox{

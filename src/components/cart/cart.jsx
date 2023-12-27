@@ -1,5 +1,5 @@
 import Header from "../header/header"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import isAuth from "../../isAuth/isAuth";
@@ -9,6 +9,7 @@ const Cart = () => {
     const [cartProduct, setCartProduct] = useState([]);
     const [loader, setLoader] = useState(true);
     const { token, setTotalCart } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const getCartproducts = async () => {
         console.log("getCart Token", token);
@@ -19,7 +20,7 @@ const Cart = () => {
                     method: 'GET',
                     headers: {
                         'projectID': 'zx5u429ht9oj',
-                        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                        "Authorization": `Bearer ${token}`,
                     },
                 }
             );
@@ -59,6 +60,35 @@ const Cart = () => {
             console.log(error);
             setLoader(false);
         }
+    }
+    const moveToWishlist = async (e) => {
+        let productId = e.target.parentNode.id;
+        try {
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ "productId": productId })
+
+                }
+            );
+            let jsonData = await getData.json();
+            console.log("added");
+            // setFavoriteItems(jsonData.data.items);
+        }
+        catch (error) {
+            console.log("ERROR", error);
+        }
+
+    }
+    const checkOutHandler = (e) => {
+        e.stopPropagation();
+
+        console.log(`/address/${product[0].product._id}/${product[0].quantity}`);
+        navigate(`/address/${product[0].product._id}/${product[0].quantity}`)
     }
 
     useEffect(() => {
@@ -101,21 +131,19 @@ const Cart = () => {
                                                         <p className=" w-fit text-left cartProductName">{val.product
                                                             .name
                                                         }</p>
-                                                        
+
                                                         <p className="text-start w-fit text-xl font-semibold">₹ {val.product
                                                             .price
                                                         }</p>
                                                         <p className=" w-fit text-left">Size: {val.size}</p>
+                                                        <p className=" w-fit text-left">Quantity: {val.quantity}</p>
                                                     </div>
                                                 </div>
                                                 <div id={val.product._id} className="flex">
                                                     <button onClick={removeFromCart} className=" my-2 removeBtn">REMOVE</button>
-                                                    <button className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
+                                                    <button onClick={moveToWishlist} className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
                                                 </div>
                                             </div>
-
-
-
                                         </>
                                     )
                                 })}
@@ -128,18 +156,21 @@ const Cart = () => {
                                         <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
                                         <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
                                             <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
-                                            <p className=" flex justify-between ">Discount <span>-268</span></p>
+                                            <p className=" flex justify-between ">Beyoung Discount <span>-268</span></p>
                                             <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
                                             <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
                                         </div>
-                                        <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                        <button className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                        <div>
+                                            <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
+                                            <button onClick={checkOutHandler} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                        </div>
                                     </div>
                                 )
                             })}
                         </div>
                     </div>
                 </div>
+
             </main>
 
         </section>
@@ -148,72 +179,3 @@ const Cart = () => {
 
 export default isAuth(Cart);
 
-// brand
-// :
-// "Bewakoof®"
-// category
-// :
-// "clothes"
-// color
-// :
-// "PURPLE"
-// createdAt
-// :
-// "2023-10-07T09:50:49.758Z"
-// description
-// :
-// "Feeling Nenless in your style game? No Problem, this Hunter X Hunter Men's Regular T-Shirt got you! Team this purple t-shirt with denim shorts and trainer shoes for an enhanced appeal.<br><b style=\"font-family: montserrat-bold, sans-serif\"> Country of Origin - </b>India<br><br><b style=\"font-family: montserrat-bold, sans-serif\"> Manufactured By - </b>Bewakoof Brands Pvt Ltd, Sairaj logistic hub #A5,BMC pipeline road, Opposite all saints high school, Amane, Bhiwandi, Thane, Maharashtra 421302<br><br><b style=\"font-family: montserrat-bold, sans-serif\"> Packed By - </b>Bewakoof Brands Pvt Ltd, Sairaj logistic hub #A5,BMC pipeline road, Opposite all saints high school, Amane, Bhiwandi, Thane, Maharashtra 421302<br><br><b style=\"font-family: montserrat-bold, sans-serif\"> Commodity - </b>Men's T-Shirt<br>"
-// displayImage
-// :
-// "https://images.bewakoof.com/t1080/men-s-purple-hunter-x-hunter-graphic-printed-t-shirt-591081-1694762671-1.jpg"
-// fabric
-// :
-// null
-// features
-// :
-// []
-// gender
-// :
-// "Men"
-// images
-// :
-// (5)['https://images.bewakoof.com/t1080/men-s-purple-hun…r-graphic-printed-t-shirt-591081-1694762676-2.jpg', 'https://images.bewakoof.com/t1080/men-s-purple-hun…r-graphic-printed-t-shirt-591081-1694762682-3.jpg', 'https://images.bewakoof.com/t1080/men-s-purple-hun…r-graphic-printed-t-shirt-591081-1694762687-4.jpg', 'https://images.bewakoof.com/t1080/men-s-purple-hun…r-graphic-printed-t-shirt-591081-1694762693-5.jpg', 'https://images.bewakoof.com/t1080/men-s-purple-hun…r-graphic-printed-t-shirt-591081-1694762698-6.jpg']
-// name
-// :
-// "Men's Purple Hunter X Hunter Graphic Printed T-shirt"
-// price
-// :
-// 399
-// ratings
-// :
-// 3.2222222222222223
-// reviews
-// :
-// []
-// seller
-// :
-// { name: 'Bewakoof®' }
-// sellerTag
-// :
-// "best seller"
-// size
-// :
-// (4)['S', 'M', 'L', 'XL']
-// subCategory
-// :
-// "tshirt"
-// theme
-// :
-// null
-// type
-// :
-// null
-// videos
-// :
-// []
-// __v
-// :
-// 0
-// _id
-// :
-// "652675cddaf00355a783837a"
