@@ -312,8 +312,11 @@ const ShowNavbarProducts = () => {
                     }) : <Loading />}
 
                 </div>
+                {!loader? <div className=" absolute footerBottom">
+                        <Footer />
+                    </div>:""}
             </section>
-            <Footer />
+            
         </>
 
     )

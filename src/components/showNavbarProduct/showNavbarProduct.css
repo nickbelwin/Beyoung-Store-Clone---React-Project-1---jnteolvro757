@@ -1,6 +1,7 @@
 .navCategoryBox{
     margin: auto;
     justify-content: center;
+    margin-bottom: 35rem;
     /* width: 80vw; */
     /* background-color: aqua; */
 }
@@ -32,6 +33,14 @@
     display: block;
    
   }
+
+  .footerBottom{
+    cursor: default;
+    background-color: black;
+    width: 100vw;
+    bottom: -35rem;
+    left: 0;
+}
   
   .icon-wishlist {
     cursor: pointer;

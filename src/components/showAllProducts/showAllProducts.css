@@ -2,6 +2,7 @@
     margin: auto;
     /* width: 80vw; */
     justify-content: center;
+    margin-bottom: 35rem;
 }
 .cardBox{
     max-width: 55vw;
@@ -23,7 +24,13 @@
 .filterContainer::-webkit-scrollbar {
     display: none;
 }
-
+.footerBottom{
+    cursor: default;
+    background-color: black;
+    width: 100vw;
+    bottom: -35rem;
+    left: 0;
+}
 @media (max-width:1280px){
     .allBox{
         justify-content: center;

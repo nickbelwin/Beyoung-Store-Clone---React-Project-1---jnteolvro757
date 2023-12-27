@@ -11,18 +11,18 @@ const ShowAllProducts = () => {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
     const [product, setProduct] = useState([]);
-    const [filterProducts,setFilterProducts]=useState([]);
+    const [filterProducts, setFilterProducts] = useState([]);
     const [allColors, setAllColors] = useState([]);
     const [allSizes, setAllSizes] = useState([]);
-    const [selectColor, setSelectColor]=useState("");
-    const [selectSize, setSelectSize]=useState("");
-    const [prevColor, setPrevColor]=useState("");
-    const [prevSize, setPrevSize]=useState("");
-    const [colorFlag, setColorFlag]=useState(true);
-    const [sizeFlag, setSizeFlag]=useState(true);
+    const [selectColor, setSelectColor] = useState("");
+    const [selectSize, setSelectSize] = useState("");
+    const [prevColor, setPrevColor] = useState("");
+    const [prevSize, setPrevSize] = useState("");
+    const [colorFlag, setColorFlag] = useState(true);
+    const [sizeFlag, setSizeFlag] = useState(true);
 
     console.log(id);
-    
+
     const getProducts = async () => {
         try {
             setLoader(true);
@@ -194,29 +194,33 @@ const ShowAllProducts = () => {
         getAllSizes();
         setFilterProducts(product);
     }, [product]);
- 
+
     return (
         <>
-            <section id="allBoxId" className="flex pb-10 justify-start pt-8 mt-8 allBox">
-            {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
-                <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
-            </div> : <NotFoundProduct/> : ""}
-            <div className="flex cardBox">
-                {!loader ? filterProducts?.map((val) => {
-                    return (
-                        <div onClick={linkHandler} key={val._id}>
-                            <div className="card" id={val._id}>
-                                {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
-                                <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
-                                <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
-                                <p className="text-left mt-2">₹{val.price}</p>
+            <section id="allBoxId" className="flex relative justify-start pt-8 mt-8 allBox">
+                {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
+                    <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
+                </div> : <NotFoundProduct /> : ""}
+                <div className="flex cardBox">
+                    {!loader ? filterProducts?.map((val) => {
+                        return (
+                            <div onClick={linkHandler} key={val._id}>
+                                <div className="card" id={val._id}>
+                                    {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
+                                    <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
+                                    <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
+                                    <p className="text-left mt-2">₹{val.price}</p>
+                                </div>
                             </div>
-                        </div>
-                    )
-                }) : <Loading  />}
-            </div>
-        </section>
-        <Footer/>
+                        )
+                    }) : <Loading />}
+                    {!loader? <div className=" absolute footerBottom">
+                        <Footer />
+                    </div>:""}
+                </div>
+
+            </section>
+
         </>
     )
 }
