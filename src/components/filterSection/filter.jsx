@@ -17,7 +17,7 @@ const Filter = (props) => {
                     <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
                     <div className=" ">
                         <div className="flex justify-between py-3 colorBox">
-                            <span>COLOR</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
+                            <span>COLOR</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer" id="colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
                         </div>
                         <div id="allColors" className="flex flex-wrap gap-2 pb-4 bottomDotted">
                             {allColors?.map((val) => {
@@ -31,7 +31,7 @@ const Filter = (props) => {
                     </div>
                     <div>
                         <div className="flex justify-between  py-3 colorBox ">
-                            <span>SIZE</span><span id="size" onClick={closeFuncHandler}><img className="w-4 sizeArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
+                            <span>SIZE</span><span id="size" onClick={closeFuncHandler}><img className="w-4 cursor-pointer sizeArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
                         </div>
                         <div id="allSizes" className="flex flex-col gap-2 pb-4 bottomDotted">
                             {allSizes?.map((val) => {

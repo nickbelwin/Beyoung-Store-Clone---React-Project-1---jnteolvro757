@@ -43,6 +43,7 @@ const Wishlist=()=>{
 
 
     return(<>
+            <h1>Wishlist</h1>
             {!loader? <section className="flex justify-center wishlistMainBox">
                 <div className="flex flex-wrap gap-5 ">
                 {favoriteItems?.map((val)=>{

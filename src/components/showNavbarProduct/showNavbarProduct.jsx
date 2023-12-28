@@ -24,7 +24,7 @@ const ShowNavbarProducts = () => {
     const [colorFlag, setColorFlag] = useState(true);
     const [sizeFlag, setSizeFlag] = useState(true);
     const [favoriteItems, setFavoriteItems] = useState([]);
-    const [active, setActive] = useState(false)
+    const [active, setActive] = useState(false);
 
     const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
 
@@ -172,16 +172,16 @@ const ShowNavbarProducts = () => {
     }
     // close function for closing colors and size box
     const closeFunc = (e) => {
-        console.log(e.target.parentNode.id)
-        if (e.target.parentNode.id === "color") {
+        console.log("color:",e.target.parentNode.id);
+        if (e.target.parentNode.id === "color") { 
             if (colorFlag) {
                 document.getElementById("allColors").style.display = "none";
-                document.querySelector(".colorArrow").style.transform = "rotate(-90deg)";
+                document.getElementById("colorArrow").style.transform = "rotate(-90deg)";
                 setColorFlag(false);
             }
             else {
                 document.getElementById("allColors").style.display = "flex";
-                document.querySelector(".colorArrow").style.transform = "rotate(90deg)";
+                document.getElementById("colorArrow").style.transform = "rotate(90deg)";
                 setColorFlag(true);
             }
 

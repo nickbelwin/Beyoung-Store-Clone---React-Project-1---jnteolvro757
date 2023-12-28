@@ -22,7 +22,7 @@
 .colorBox{
     align-items: center;
 }
-.colorArrow{
+#colorArrow{
     transform: rotate(90deg);
 }
 .sizeArrow{
