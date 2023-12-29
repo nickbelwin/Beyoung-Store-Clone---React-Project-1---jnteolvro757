@@ -43,9 +43,9 @@ const Wishlist=()=>{
 
 
     return(<>
-            <h1>Wishlist</h1>
+            <h1 className=" text-left font-semibold ml-10 mt-5 wishlistTag">Wishlist</h1>
             {!loader? <section className="flex justify-center wishlistMainBox">
-                <div className="flex flex-wrap gap-5 ">
+                <div className="flex flex-wrap gap-5 wishlistItems">
                 {favoriteItems?.map((val)=>{
                     return(
                         <div onClick={linkHandler} key={val.products._id} className=" cursor-pointer">
