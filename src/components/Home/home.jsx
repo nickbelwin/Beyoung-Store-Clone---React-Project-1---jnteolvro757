@@ -4,9 +4,9 @@ import HomeDesign from "../homePageDesign/homeDesign";
 import Screen from "../screen/screen";
 import CardDetails from "../cardDetails/cardDetails";
 import { Route, Routes } from "react-router-dom";
-import ShowAllProducts from "../showAllProducts/showAllProducts";
-import Cart from "../cart/cart";
-import ShowNavbarProducts from "../showNavbarProduct/showNavbarProduct";
+// import ShowAllProducts from "../showAllProducts/showAllProducts";
+// import Cart from "../cart/cart";
+// import ShowNavbarProducts from "../showNavbarProduct/showNavbarProduct";
 import React from "react";
 import NotFoundProduct from "../../notFound/notFound";
 import AppContextProvider from "../../contextApi/AppContext";
@@ -14,11 +14,13 @@ import Favorites from "../../favorites/favorites";
 import Login from "../loginSignup/login";
 import Signup from "../loginSignup/signup";
 import UserAddress from "../cart/cartAddress";
-import Wishlist from "../wishlist/wishlist";
+// import Wishlist from "../wishlist/wishlist";
 import Loading from "../loading/loading";
 
-const products1= React.lazy(()=> import('../showAllProducts/showAllProducts'));
-const products2= React.lazy(()=> import('../showNavbarProduct/showNavbarProduct'));
+const ShowAllProducts= React.lazy(()=> import('../showAllProducts/showAllProducts'));
+const ShowNavbarProducts= React.lazy(()=> import('../showNavbarProduct/showNavbarProduct'));
+const Cart= React.lazy(()=> import('../cart/cart'));
+const Wishlist= React.lazy(()=> import('../wishlist/wishlist'));
 
 const Home = () => {
     const [status, setStatus] = useState("none");

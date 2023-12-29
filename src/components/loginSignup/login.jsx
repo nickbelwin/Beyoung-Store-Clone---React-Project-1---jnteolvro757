@@ -34,10 +34,13 @@ const Login = (props) => {
                 console.log("jsonData", jsonData);
                 setToken(jsonData.token);
                 closeHandler();
+            }else{
+                alert("unable to login check your id or password..")
             }
         }
         catch (error) {
             console.log("error", error);
+            alert("unable to login check your id or password..")
         }
 
     }
