@@ -9,7 +9,7 @@ const Cart = () => {
     const [product, setProduct] = useState([]);
     const [cartProduct, setCartProduct] = useState([]);
     const [loader, setLoader] = useState(true);
-    const { token, setTotalCart } = useContext(AppContext);
+    const { token, totalCart,setTotalCart } = useContext(AppContext);
     const navigate = useNavigate();
 
     const getCartproducts = async () => {
@@ -26,6 +26,7 @@ const Cart = () => {
                 }
             );
             let jsonData = await getData.json();
+            setTotalCart(jsonData.data.items.length)
             console.log("cart Data", jsonData);
             setCartProduct([jsonData.data])
             setProduct([...jsonData.data.items]);
@@ -38,6 +39,7 @@ const Cart = () => {
     }
     console.log(cartProduct);
     console.log(product);
+    console.log(totalCart);
 
     const removeFromCart = async (e) => {
         let productId = e.target.parentNode.id;

@@ -83,7 +83,7 @@ const UserAddress = () => {
                     method: 'GET',
                     headers: {
                         'projectID': 'zx5u429ht9oj',
-                        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                        "Authorization": `Bearer ${token}`,
                     },
                 }
             );
@@ -105,7 +105,7 @@ const UserAddress = () => {
                 method: 'POST',
                 headers: {
                     'projectID': 'zx5u429ht9oj',
-                    "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({...user})
             })

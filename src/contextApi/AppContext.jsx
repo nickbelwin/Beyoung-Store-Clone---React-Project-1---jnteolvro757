@@ -35,7 +35,7 @@ const AppContextProvider = ({children})=>{
     }
     
     return (
-        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart, setTotalCart,wishlistProducts, setWishlistProducts,loginStatus,signupStatus}}>
+        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,wishlistProducts, setWishlistProducts,loginStatus,signupStatus}}>
             {children}
         </AppContext.Provider>
     )

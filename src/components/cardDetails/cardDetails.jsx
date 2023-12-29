@@ -102,7 +102,7 @@ const CardDetails = (props) => {
                     method: 'GET',
                     headers: {
                         'projectID': 'zx5u429ht9oj',
-                        "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODNkMzZlYWVjOTkyMWMyOTVmNjg4NiIsImlhdCI6MTcwMzMyMzI1NSwiZXhwIjoxNzM0ODU5MjU1fQ.JM2QH4lDuFBmTLYKEb777cSa9pBZ4SU4ytEY55sA-5o`,
+                        "Authorization": `Bearer ${token}`,
                     },
                 }
             );
@@ -221,7 +221,7 @@ const CardDetails = (props) => {
                                         <option value="4">4</option>
                                     </select>
                                 </div>
-                                <div className="flex  gap-5 ">
+                                <div className="flex flex-wrap gap-5 ">
                                     <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />:<img className=" w-1/4 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
                                     <button onClick={buyNowHandler} className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>

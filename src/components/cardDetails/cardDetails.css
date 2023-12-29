@@ -5,7 +5,6 @@
 }
 .cardImage{
     height: 35rem;
-
     display: flex;
 }
 /* .displayImage{
@@ -84,7 +83,7 @@
     padding: 0.3rem;
 }
 
-@media (max-width:1180px){
+@media (max-width:780px){
     .singleCard{
         width: 95%;
         margin: auto;
