@@ -3,9 +3,6 @@
     margin: auto;
     margin-top: 2.5rem;
 }
-.wishlistItems{
-    justify-content: space-evenly;
- }
 
 @media (max-width:520px){
     .wishlistMainBox{
@@ -13,5 +10,8 @@
         margin: auto;
         margin-top: 1rem;
     }
+    .wishlistItems{
+        justify-content: space-evenly;
+     }
     
 }
