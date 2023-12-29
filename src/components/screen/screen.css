@@ -1,9 +1,11 @@
 .mainBox{
     margin: auto;
     max-width: 75vw;
+    
     margin-bottom: 3.5rem;
 }
 .mainBanner{
+    min-height: 80vh;
     margin: auto;
     display: flex;
     justify-content: center;

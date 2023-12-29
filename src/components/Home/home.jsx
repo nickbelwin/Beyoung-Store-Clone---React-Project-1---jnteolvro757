@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Header from "../header/header";
 import HomeDesign from "../homePageDesign/homeDesign";
 import Screen from "../screen/screen";
@@ -7,7 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import ShowAllProducts from "../showAllProducts/showAllProducts";
 import Cart from "../cart/cart";
 import ShowNavbarProducts from "../showNavbarProduct/showNavbarProduct";
-
+import React from "react";
 import NotFoundProduct from "../../notFound/notFound";
 import AppContextProvider from "../../contextApi/AppContext";
 import Favorites from "../../favorites/favorites";
@@ -15,8 +15,10 @@ import Login from "../loginSignup/login";
 import Signup from "../loginSignup/signup";
 import UserAddress from "../cart/cartAddress";
 import Wishlist from "../wishlist/wishlist";
+import Loading from "../loading/loading";
 
-
+const products1= React.lazy(()=> import('../showAllProducts/showAllProducts'));
+const products2= React.lazy(()=> import('../showNavbarProduct/showNavbarProduct'));
 
 const Home = () => {
     const [status, setStatus] = useState("none");
@@ -28,6 +30,8 @@ const Home = () => {
     const [showProducts, setShowProducts] = useState("none");
     const [loader, setLoader] = useState(false);
     const [submitFormData, setSubmitFormData] = useState();
+
+    
 
     const goToHomeHandler = () => {
         setShowProducts("none");
@@ -74,6 +78,7 @@ const Home = () => {
     return (
         <AppContextProvider>
             <div className="overflow-hidden">
+                <Suspense fallback={<Loading/>}>
                 <Routes>
                     <Route path="/" element={<Header goToHomeHandler={goToHomeHandler} menOnMouseOver={menCatagoryShow} menOnMouseLeave={categoryClose} womenOnMouseOver={womenOnMouseOver} womenOnMouseLeave={categoryClose} winterOnMouseOver={winterOnMouseOver} winterOnMouseLeave={categoryClose} newOnMouseOver={newOnMouseOver} newOnMouseLeave={categoryClose} newDisplay={status4} winterDisplay={status3} stat={status} stat2={status2} onClickHandler={showlist} submitData={submitData} />} >
                         <Route index element={<Screen />} />
@@ -89,6 +94,7 @@ const Home = () => {
                     <Route path="cart" element={<Cart />} />
                     <Route path="address/:id/:qty" element={<UserAddress/>} />
                 </Routes>
+                </Suspense>
             </div>
         </AppContextProvider>
 

@@ -17,8 +17,10 @@ const Header = (props) => {
     const [searchStatus, setSearchStatus] = useState("none");
     const [searchParam, setSearchParam] = useState("");
     const [searchFlag, setSearchFlags] = useState(false);
-    const [categoryFlag, setCategoryFlag] = useState(false);
+    const [searchAll, setSearchAll] = useState(false);
     const [cart, setCart] = useState(0);
+    const [searchLink, setSearchLink] = useState("");
+    const [gender, setGender] = useState("");
     const navigate = useNavigate();
     const { token, logout, openLogin, openSignup, totalCart, setTotalCart } = useContext(AppContext);
     const searchFunc = () => {
@@ -77,12 +79,135 @@ const Header = (props) => {
     };
 
     const searchHandler = (e) => {
-        setSearchParam(e.target.value);
+        let words = e.target.value;
+        setSearchParam(words);
+        words = words.toLowerCase();
+        console.log(words);
+        let userSearch = words.split(" ");
+        console.log(userSearch);
+        if (userSearch.includes("men" || "mens")) {
+            setSearchAll(false);
+            setGender("Men");
+            if (userSearch.includes("tshirt") || userSearch.includes("tshirts")) {
+                setSearchLink("T-shirt");
+            } else if (userSearch.includes("trouser")||userSearch.includes("trousers")) {
+                setSearchLink("Trouser");
+            } else if (userSearch.includes("tracksuit")||userSearch.includes("tracksuits")) {
+                setSearchLink("Tracksuit");
+            } else if (userSearch.includes("sweater")||userSearch.includes("sweaters")) {
+                setSearchLink("sweater");
+            } else if (userSearch.includes("short")||userSearch.includes("shorts")) {
+                setSearchLink("short");
+            }
+            else if (userSearch.includes("shirt")|| userSearch.includes("shirts")) {
+                setSearchLink("shirt");
+            }
+            else if (userSearch.includes("pyjama")||userSearch.includes("pyjamas")) {
+                setSearchLink("pyjama");
+            }
+            else if (userSearch.includes("kurti")||userSearch.includes("kurtis")) {
+                setSearchLink("kurti");
+            }
+            else if (userSearch.includes("kurta")||userSearch.includes("kurtas")) {
+                setSearchLink("kurta");
+            } else if (userSearch.includes("jumpsuit")||userSearch.includes("jumpsuits")) {
+                setSearchLink("jumpsuit");
+            } else if (userSearch.includes("jogger")||userSearch.includes("joggers")) {
+                setSearchLink("jogger");
+            } else if (userSearch.includes("jeans")) {
+                setSearchLink("jeans");
+            } else if (userSearch.includes("hoodie")||userSearch.includes("hoodies")){
+                setSearchLink("hoodie");
+            }
+        } else if (userSearch.includes("women" || "womens")) {
+            setSearchAll(false);
+            setGender("Women");
+            if (userSearch.includes("tshirt") || userSearch.includes("tshirts")) {
+                setSearchLink("T-shirt");
+            } else if (userSearch.includes("trouser")||userSearch.includes("trousers")) {
+                setSearchLink("Trouser");
+            } else if (userSearch.includes("tracksuit")||userSearch.includes("tracksuits")) {
+                setSearchLink("Tracksuit");
+            } else if (userSearch.includes("sweater")||userSearch.includes("sweaters")) {
+                setSearchLink("sweater");
+            } else if (userSearch.includes("short")||userSearch.includes("shorts")) {
+                setSearchLink("short");
+            }
+            else if (userSearch.includes("shirt")|| userSearch.includes("shirts")) {
+                setSearchLink("shirt");
+            }
+            else if (userSearch.includes("pyjama")||userSearch.includes("pyjamas")) {
+                setSearchLink("pyjama");
+            }
+            else if (userSearch.includes("kurti")||userSearch.includes("kurtis")) {
+                setSearchLink("kurti");
+            }
+            else if (userSearch.includes("kurta")||userSearch.includes("kurtas")) {
+                setSearchLink("kurta");
+            } else if (userSearch.includes("jumpsuit")||userSearch.includes("jumpsuits")) {
+                setSearchLink("jumpsuit");
+            } else if (userSearch.includes("jogger")||userSearch.includes("joggers")) {
+                setSearchLink("jogger");
+            } else if (userSearch.includes("jeans")) {
+                setSearchLink("jeans");
+            } else if (userSearch.includes("hoodie")||userSearch.includes("hoodies")){
+                setSearchLink("hoodie");
+            }
+        } else {
+            setSearchAll(true);
+            setGender("");
+            if (userSearch.includes("tshirt") || userSearch.includes("tshirts")) {
+                setSearchLink("T-shirt");
+            } else if (userSearch.includes("trouser")||userSearch.includes("trousers")) {
+                setSearchLink("Trouser");
+            } else if (userSearch.includes("tracksuit")||userSearch.includes("tracksuits")) {
+                setSearchLink("Tracksuit");
+            } else if (userSearch.includes("sweater")||userSearch.includes("sweaters")) {
+                setSearchLink("sweater");
+            } else if (userSearch.includes("short")||userSearch.includes("shorts")) {
+                setSearchLink("short");
+            }
+            else if (userSearch.includes("shirt")|| userSearch.includes("shirts")) {
+                setSearchLink("shirt");
+            }
+            else if (userSearch.includes("pyjama")||userSearch.includes("pyjamas")) {
+                setSearchLink("pyjama");
+            }
+            else if (userSearch.includes("kurti")||userSearch.includes("kurtis")) {
+                setSearchLink("kurti");
+            }
+            else if (userSearch.includes("kurta")||userSearch.includes("kurtas")) {
+                setSearchLink("kurta");
+            } else if (userSearch.includes("jumpsuit")||userSearch.includes("jumpsuits")) {
+                setSearchLink("jumpsuit");
+            } else if (userSearch.includes("jogger")||userSearch.includes("joggers")) {
+                setSearchLink("jogger");
+            } else if (userSearch.includes("jeans")) {
+                setSearchLink("jeans");
+            } else if (userSearch.includes("hoodie")||userSearch.includes("hoodies")){
+                setSearchLink("hoodie");
+            }
+        }
+
     }
+    const searchButtonHandler = (e) => {
+        e.stopPropagation();
+        if (searchParam) {
+            setSearchFlags(false)
+            setSearchStatus("none");
+            document.getElementById("searchBarInput").value="";
+            searchProducts();
+            setSearchLink("");
+        }
 
-    const searchButtonHandler = () => {
-        let userSearch = searchParam.split(" ");
 
+    }
+    const searchProducts = () => {
+        if (searchAll) {
+            navigate(`allProducts/${searchLink}`);
+        } else {
+            navigate(`/category/${searchLink}/${gender}`);
+        }
     }
     const favoriteItems = () => {
         if (token) {
