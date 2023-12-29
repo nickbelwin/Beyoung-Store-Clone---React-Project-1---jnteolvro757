@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./filter.css";
 
 const Filter = (props) => {
@@ -9,11 +10,23 @@ const Filter = (props) => {
     const closeFilter = () => {
         document.getElementById("mobileFilter").style.transform = "translateX(-100rem)";
     }
+    const isSticky = (e) => {
+        const filter = document.getElementById('filterSection');
+        const scrollTop = window.scrollY;
+        scrollTop >= 80 ? filter.classList.add('stickyFilter') : filter.classList.remove('stickyFilter');
+        const sticky = document.querySelector('.stickyFilter');
+    };
+    useEffect(() => {
+        window.addEventListener('scroll', isSticky);
+        return () => {
+            window.removeEventListener('scroll', isSticky);
+        };
+    });
 
     return (
         <>
             <section className=" filterBox">
-                <div className="mt-5 filter">
+                <div id="filterSection" className="mt-5">
                     <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
                     <div className=" ">
                         <div className="flex justify-between py-3 colorBox">

@@ -89,7 +89,7 @@ const MobileViewCategory = (props) => {
                         <span className=" text-lg px-5 font-semibold">New Arrivals</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
                     </div>
                     <div className=" pb-2 px-5 listBox">
-                        <p onClick={closeCategory} id="sweater" className=" text-sm text-left font-normal yellowText">New Arrivals</p>
+                        <Link to={"allProducts/T-shirt"} ><p onClick={closeCategory} id="sweater" className=" text-sm text-left font-normal yellowText">New Arrivals</p></Link>
                     </div>
                 </div>
             </section>

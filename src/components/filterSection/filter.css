@@ -14,10 +14,10 @@
 .mobileFilterBox{
     display: none;
 }
-.filter{
+.stickyFilter{
     position: fixed;
     width: 14rem;
-    top: 8rem;
+    top: 3rem;
 }
 .colorBox{
     align-items: center;

@@ -148,6 +148,7 @@ const ShowNavbarProducts = () => {
 
 
     // Filter code -----------------------------------------------------------------------------
+    
     const getAllColor = () => {
         let color = product?.map((val) => {
             return val.color;
@@ -312,7 +313,7 @@ const ShowNavbarProducts = () => {
     }, [product]);
     useEffect(() => {
         window.scrollTo(0, 0);
-      },[]);
+      },[id]);
 
     return (
         <>
@@ -320,7 +321,7 @@ const ShowNavbarProducts = () => {
                 {!loader ? product ? <div className=" overflow-y-scroll filterSide">
                     <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedColorMobile={selectedColorMobile} selectedSize={checkSize} />
                 </div> : <NotFoundProduct /> : ""}
-                <div className="flex flex-wrap gap-8 allCardBox">
+                <div id="allCardBoxId" className="flex flex-wrap gap-8 allCardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
                             <div onClick={linkHandler} key={val._id}>
