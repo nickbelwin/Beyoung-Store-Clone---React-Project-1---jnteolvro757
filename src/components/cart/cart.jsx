@@ -41,6 +41,10 @@ const Cart = () => {
     console.log(product);
     console.log(totalCart);
 
+    useEffect(()=>{
+        console.log(totalCart);
+    },[totalCart]);
+
     const removeFromCart = async (e) => {
         let productId = e.target.parentNode.id;
         try {
@@ -112,13 +116,13 @@ const Cart = () => {
                 </div>
             </header>
             <main>
-                {/* <div className="flex flex-col headerMainBox ">
+                {!totalCart? <div className="flex flex-col headerMainBox ">
                     <img className="emptyCartImg" src="https://www.beyoung.in/desktop/images/checkout/EMPTY%20CARTORDER%20PAGE..png" alt="" />
                     <Link to="/">
-                    <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl">Continue Shopping</button>
+                    <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
                     </Link>  
-                </div> */}
-                {!loader? <div className=" mt-10 checkoutProccessBox">
+                </div>: 
+                <>{!loader? <div className=" mt-10 checkoutProccessBox">
                     <div className="flex flex-wrap justify-center bg-white w-fit m-auto">
                         <div className="p-5">
                             <div className=" productDiv  overflow-y-scroll">
@@ -172,7 +176,9 @@ const Cart = () => {
                             })}
                         </div>
                     </div>
-                </div>: <Loading/>}
+                </div>: <Loading/>}</>}
+                 
+                
 
             </main>
 
