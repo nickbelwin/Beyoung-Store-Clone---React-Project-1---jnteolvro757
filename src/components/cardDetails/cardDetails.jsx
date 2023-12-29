@@ -164,9 +164,9 @@ const CardDetails = (props) => {
             {!loader ? Array.isArray(product) && product?.map((val) => {
                 return (
                     <div id={val._id} key={val._id} className="singleCard">
-                        <div className="cardImage">
+                        <div className=" justify-center cardImage">
                             {/* Display Images */}
-                            <div className="flex w-fit gap-x-2 flex-row p-4">
+                            <div className="flex w-fit gap-x-2 justify-center flex-row p-4 ">
                                 <div className="flex flex-col overflow-y-scroll overflow-hidden gap-y-1 scrollImg" >
                                     {val.images?.map((val, index) => {
                                         return (

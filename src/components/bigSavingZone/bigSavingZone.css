@@ -32,3 +32,8 @@
     right: 0;
     top: 50%;
 }
+@media (max-width:520px){
+    .bigImg {
+        width: 14rem;
+    }
+}

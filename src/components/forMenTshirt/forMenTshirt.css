@@ -1,13 +1,13 @@
-.bigImg{
+.bigImgMenTshirt{
     width: 30rem;
 }
 .smallImg{
     width: 15rem;
 }
-.savingDualBox1{
+.menTshirt1{
     border-radius: 7px;
 }
-.savingDualBox2{
+.menTshirt2{
     border-radius: 7px;
 }
 .nameTagOfMenTshirt{
@@ -15,7 +15,18 @@
     left: -6.25rem;
 }
 @media (max-width:520px){
-    .bigImg {
-        width: 14rem;
+    .bigImgMenTshirt {
+        display: none;
+    }
+    .smallImg{
+        display: flex;
+        flex-direction: row;
+        width: 20rem;
+        gap: 1rem;
+    }
+    .nameTagOfMenTshirt{
+        border-left: 2px solid yellow;
+        left: -10rem;
+        bottom: 1rem;
     }
 }

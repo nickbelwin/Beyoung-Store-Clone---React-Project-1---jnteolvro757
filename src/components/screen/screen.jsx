@@ -31,15 +31,15 @@ const Screen = () => {
                 <div>
                     <div className="mainBanner">
                         <div className="overflow-hidden w-fit relative ">
-                            <img src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/SHIRT-BANNER-DESKTOP-VIEW.jpg" alt="" />
+                            <img className="mainBannerImage" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/SHIRT-BANNER-DESKTOP-VIEW.jpg" alt="" />
                             <Link to={`allProducts/${"shirt"}`}><div className="block1"></div></Link>
                             <Link to={`allProducts/${"shirt"}`}><div className="block2"></div></Link>
                             <Link to={`allProducts/${"T-shirt"}`}><div className="block3"></div></Link>
                             <Link to={`allProducts/${"Printed Shirt"}`}><div className="block4"></div></Link>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-14 mb-20 px-8 mainBox">
-                        <div className="flex overflow-x-auto mt-16 offerImgBox">
+                    <div className="flex flex-col gap-8 mb-20  mainBox">
+                        <div className="flex overflow-x-auto mt-8 offerImgBox">
                             {offerZone?.map((val) => {
                                 return <img className={val.class} src={val.image} alt="offer Image" />
                             })}
