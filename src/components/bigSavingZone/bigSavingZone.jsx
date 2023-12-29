@@ -25,8 +25,8 @@ const BigSavingZone = (props) => {
     // }, [activeSlideIndex]);
     return (
         <div className=" relative">
-            <div onClick={prevImg} className=" bg-white p-1 border absolute cursor-pointer leftArrow">{`<`}</div>
-            <div onClick={nextImg} className="bg-white p-1 border absolute cursor-pointer rightArrow">{`>`}</div>
+            <img onClick={prevImg} className="  absolute leftArrow" src="/img/previousBtn.png" alt="" />
+            <img onClick={nextImg} className="  absolute rightArrow" src="/img/nextBtn.png" alt="" />
             <div className="mb-6">
                 <p className="w-fit text-xl font-semibold pl-3 bigSavingZoneTag">BIG SAVING ZONE</p>
             </div>

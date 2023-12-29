@@ -27,10 +27,23 @@
 }
 .leftArrow{
     top: 50%;
+    width: 2rem;
+    left: .5rem;
+    background-color: rgba(196, 194, 194, 0.665);
+    border-radius: 50%;
 }
 .rightArrow{
-    right: 0;
+    right: .5rem;
     top: 50%;
+    width: 2rem;
+    background-color: rgba(196, 194, 194, 0.665);
+    border-radius: 50%;
+}
+.leftArrow:hover, .rightArrow:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.308);
+    border-radius: 50%;
 }
 @media (max-width:520px){
     .bigImg {

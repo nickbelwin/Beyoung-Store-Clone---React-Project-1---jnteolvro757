@@ -313,7 +313,7 @@ const ShowNavbarProducts = () => {
     }, [product]);
     useEffect(() => {
         window.scrollTo(0, 0);
-      },[id]);
+      },[id,selectColor, selectSize]);
 
     return (
         <>

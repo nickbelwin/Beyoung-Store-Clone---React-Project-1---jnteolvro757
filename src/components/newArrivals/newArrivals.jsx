@@ -29,8 +29,8 @@ const NewArrivals = () => {
 
     return (
         <div className=" relative">
-            <div onClick={prevImg} className=" bg-white p-1 border absolute cursor-pointer z-10 leftArrow">{`<`}</div>
-            <div onClick={nextImg} className="bg-white p-1 border absolute cursor-pointer z-10 rightArrow">{`>`}</div>
+            <img onClick={prevImg} className="  absolute z-10 leftArrow" src="/img/previousBtn.png" alt="" />
+            <img onClick={nextImg} className="  absolute z-10 rightArrow" src="/img/nextBtn.png" alt="" />
             <div className="mb-7">
                 <p className="w-fit pl-3 font-semibold text-xl newArrivalTag">NEW ARRIVALS</p>
             </div>

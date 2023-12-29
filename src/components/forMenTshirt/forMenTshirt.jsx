@@ -25,8 +25,8 @@ const ForMenTshirt = () => {
 
     return (
         <div className=" relative">
-            <div onClick={prevImg} className=" bg-white p-1 border z-10 absolute cursor-pointer leftArrow">{`<`}</div>
-            <div onClick={nextImg} className="bg-white p-1 border z-10 absolute cursor-pointer rightArrow">{`>`}</div>
+            <img onClick={prevImg} className="  absolute z-10 leftArrow" src="/img/previousBtn.png" alt="" />
+            <img onClick={nextImg} className="  absolute z-10 rightArrow" src="/img/nextBtn.png" alt="" />
             <p className=" text-left mt-12 text-2xl font-semibold pl-4 shirtTag">T-SHIRTS</p>
             <p className=" text-left ml-5 mb-3">High On Demand</p>
             <div className="flex overflow-x-scroll">
