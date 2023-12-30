@@ -9,7 +9,7 @@ const Cart = () => {
     const [product, setProduct] = useState([]);
     const [cartProduct, setCartProduct] = useState([]);
     const [loader, setLoader] = useState(true);
-    const { token, totalCart,setTotalCart } = useContext(AppContext);
+    const { token, totalCart,setTotalCart, setWishlistProducts } = useContext(AppContext);
     const navigate = useNavigate();
 
     const getCartproducts = async () => {
@@ -45,8 +45,8 @@ const Cart = () => {
         console.log(totalCart);
     },[totalCart]);
 
-    const removeFromCart = async (e) => {
-        let productId = e.target.parentNode.id;
+    const removeFromCart = async (e, parentId) => {
+        let productId = parentId? parentId : e.target.parentNode.id;
         try {
             setLoader(true);
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
@@ -68,27 +68,41 @@ const Cart = () => {
             setLoader(false);
         }
     }
-    const moveToWishlist = async (e) => {
-        let productId = e.target.parentNode.id;
+    const addFavotiteItems = async (idx) => {
+        console.log(token, "===", idx);
+        console.log(JSON.stringify({ "productId": idx }))
+        let obj = { "productId": idx }
         try {
-            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/`,
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
                 {
                     method: 'PATCH',
                     headers: {
                         'projectId': 'zx5u429ht9oj',
                         "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ "productId": productId })
+                    body: JSON.stringify({ ...obj })
 
                 }
             );
             let jsonData = await getData.json();
-            console.log("added");
-            // setFavoriteItems(jsonData.data.items);
+            console.log("added", jsonData);
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setWishlistProducts(cartItem);
         }
         catch (error) {
             console.log("ERROR", error);
         }
+    }
+    const moveToWishlist = async (e) => {
+        let productId = e.target.parentNode.id;
+        addFavotiteItems(productId);
+        removeFromCart(e,productId);
 
     }
     const checkOutHandler = (e) => {

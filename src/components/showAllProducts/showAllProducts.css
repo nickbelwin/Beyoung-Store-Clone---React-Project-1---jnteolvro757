@@ -6,7 +6,7 @@
     min-height: 80vh;
 }
 .cardBox{
-    max-width: 55vw;
+    max-width: 57vw;
     flex-grow: 1; 
     justify-content: center;
 }
@@ -14,7 +14,7 @@
     text-overflow: ellipsis;
 }
 .card{
-    max-width: 18rem;
+    max-width: 14rem;
     min-width: 8rem;
 }
 

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import Filter from "../filterSection/filter";
 import "./showAllProducts.css"
 import NotFoundProduct from "../../notFound/notFound";
 import Loading from "../loading/loading";
 import Footer from "../footer/footer";
+import { AppContext } from "../../contextApi/AppContext";
 
 const ShowAllProducts = () => {
     const { id } = useParams();
@@ -20,7 +21,7 @@ const ShowAllProducts = () => {
     const [prevSize, setPrevSize] = useState("");
     const [colorFlag, setColorFlag] = useState(true);
     const [sizeFlag, setSizeFlag] = useState(true);
-
+    const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
     console.log(id);
 
     const getProducts = async () => {
@@ -52,6 +53,90 @@ const ShowAllProducts = () => {
         console.log("product: ", e.target.parentNode.id);
         navigate(`/product-details/${e.target.parentNode.id}`);
     }
+
+
+    const addFavotiteItems = async (idx) => {
+        console.log(token, "===", idx);
+        console.log(JSON.stringify({ "productId": idx }))
+        let obj = { "productId": idx }
+        try {
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...obj })
+
+                }
+            );
+            let jsonData = await getData.json();
+            console.log("added", jsonData);
+        }
+        catch (error) {
+            console.log("ERROR", error);
+        }
+    }
+    const getCartProducts = async () => {
+        try {
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                }
+            );
+            let jsonData = await getData.json();
+            let cartItem = jsonData.data.items;
+            setFavoriteItems(cartItem);
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setWishlistProducts(cartItem);
+        }
+        catch (error) {
+            console.log("ERROR", error);
+        }
+        console.log(wishlistProducts);
+    }
+    console.log(wishlistProducts);
+
+    const favoriteIconFunc = (e) => {
+        e.stopPropagation();
+        let parentId = e.target.parentNode.id;
+        let idx = e.target.id;
+        console.log("parentId", parentId)
+        console.log("idx", idx);
+        if (token) {
+            if (!wishlistProducts.includes(parentId)) {
+                document.getElementById(idx).classList.add("in-wishlist");
+                addFavotiteItems(parentId);
+                console.log("added")
+            }
+            else {
+                document.getElementById(idx).classList.remove("in-wishlist");
+                console.log("removed")
+            }
+        } else {
+            openLogin();
+        }
+
+    }
+
+    useEffect(() => {
+        if (!token) {
+            setWishlistProducts([])
+        }
+    }, [token])
+    useEffect(() => {
+        getCartProducts();
+    }, [token]);
 
     // filter code------------------------------------------------------------------------
 
@@ -196,7 +281,7 @@ const ShowAllProducts = () => {
     }, [product]);
     useEffect(() => {
         window.scrollTo(0, 0);
-      },[]);
+    }, []);
 
     return (
         <>
@@ -208,7 +293,10 @@ const ShowAllProducts = () => {
                     {!loader ? filterProducts?.map((val) => {
                         return (
                             <div onClick={linkHandler} key={val._id}>
-                                <div className="card" id={val._id}>
+                                <div className=" relative card" id={val._id}>
+                                    <div class="absolute right-2 bottom-1 wrapper" id={val._id} >
+                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div>}
+                                    </div>
                                     {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
                                     <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
@@ -217,9 +305,9 @@ const ShowAllProducts = () => {
                             </div>
                         )
                     }) : <Loading />}
-                    {!loader? <div className=" absolute footerBottom">
+                    {!loader ? <div className=" absolute footerBottom">
                         <Footer />
-                    </div>:""}
+                    </div> : ""}
                 </div>
 
             </section>

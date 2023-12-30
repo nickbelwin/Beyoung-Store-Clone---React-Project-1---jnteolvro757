@@ -63,30 +63,58 @@ const ShowNavbarProducts = () => {
         navigate(`/product-details/${e.target.parentNode.id}`);
     }
 
-    // fovorite icon function------------
+    // fovorite icon function and Add Item to wishlist------------
 
     const addFavotiteItems = async (idx) => {
         console.log(token, "===", idx);
+        console.log(JSON.stringify({ "productId": idx }))
+        let obj = { "productId": idx }
         try {
-            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/`,
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
                 {
                     method: 'PATCH',
                     headers: {
                         'projectId': 'zx5u429ht9oj',
                         "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ "productId": idx })
+                    body: JSON.stringify({ ...obj })
 
                 }
             );
             let jsonData = await getData.json();
-            console.log("added");
-            // setFavoriteItems(jsonData.data.items);
+            console.log("added", jsonData);
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setWishlistProducts(cartItem);
         }
         catch (error) {
             console.log("ERROR", error);
         }
     }
+    const removeFavoriteItem= async(idx)=>{
+        try{
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/${idx}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }
+            );
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     const getCartProducts = async () => {
         try {
             setLoader(true);
@@ -129,6 +157,7 @@ const ShowNavbarProducts = () => {
             }
             else {
                 document.getElementById(idx).classList.remove("in-wishlist");
+                removeFavoriteItem(parentId);
                 console.log("removed")
             }
         } else {
@@ -148,7 +177,7 @@ const ShowNavbarProducts = () => {
 
 
     // Filter code -----------------------------------------------------------------------------
-    
+
     const getAllColor = () => {
         let color = product?.map((val) => {
             return val.color;
@@ -173,8 +202,8 @@ const ShowNavbarProducts = () => {
     }
     // close function for closing colors and size box
     const closeFunc = (e) => {
-        console.log("color:",e.target.parentNode.id);
-        if (e.target.parentNode.id === "color") { 
+        console.log("color:", e.target.parentNode.id);
+        if (e.target.parentNode.id === "color") {
             if (colorFlag) {
                 document.getElementById("allColors").style.display = "none";
                 document.getElementById("colorArrow").style.transform = "rotate(-90deg)";
@@ -313,7 +342,7 @@ const ShowNavbarProducts = () => {
     }, [product]);
     useEffect(() => {
         window.scrollTo(0, 0);
-      },[id,selectColor, selectSize]);
+    }, [id, selectColor, selectSize]);
 
     return (
         <>
@@ -326,9 +355,9 @@ const ShowNavbarProducts = () => {
                         return (
                             <div onClick={linkHandler} key={val._id}>
                                 <div className=" relative card" id={val._id}>
-                                    {/* <div class="absolute right-2 bottom-1 wrapper" id={val._id} >
-                                    {wishlistProducts.includes(val._id)? <div class="icon-wishlist in-wishlist" id={val._id+1} onClick={favoriteIconFunc} ></div>:<div class="icon-wishlist" id={val._id+1} onClick={favoriteIconFunc} ></div>}
-                                </div> */}
+                                    <div class="absolute right-2 bottom-1 wrapper" id={val._id} >
+                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div>}
+                                    </div>
                                     {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
                                     <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left cursor-pointer text-gray-400 text-sm">{val.subCategory}</span>
@@ -339,11 +368,11 @@ const ShowNavbarProducts = () => {
                     }) : <Loading />}
 
                 </div>
-                {!loader? <div className=" absolute footerBottom">
-                        <Footer />
-                    </div>:""}
+                {!loader ? <div className=" absolute footerBottom">
+                    <Footer />
+                </div> : ""}
             </section>
-            
+
         </>
 
     )

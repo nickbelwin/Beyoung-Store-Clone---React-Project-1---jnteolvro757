@@ -89,8 +89,18 @@ const CardDetails = (props) => {
         }
     }
     const buyNowHandler=()=>{
-        if(token){
-            navigate(`/address/${id}/${addToCartData.quantity}`)
+        if (token ) {
+            if(selectedQuantity && selectedSize){
+                setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
+                patchCart();
+                navigate("/cart");
+            }
+            else if(!selectedQuantity){
+                alert("please select quantity")
+            }
+            else if(!selectedSize){
+                alert("please select size")
+            }
         }else{
             openLogin();
         }

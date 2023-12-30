@@ -8,7 +8,7 @@ const Wishlist=()=>{
     const [loader, setLoader] = useState(true);
     const [favoriteItems, setFavoriteItems] = useState([]);
     const navigate=useNavigate();
-    const {token}=useContext(AppContext);
+    const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
 
     const getWishlistProducts= async()=>{
         try{
@@ -36,23 +36,89 @@ const Wishlist=()=>{
         e.stopPropagation();
         navigate(`/product-details/${e.target.parentNode.id}`);
     }
-
+    const getWishProducts = async () => {
+        try {
+            setLoader(true);
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                }
+            );
+            let jsonData = await getData.json();
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            setWishlistProducts(cartItem);
+        }
+        catch (error) {
+            console.log("ERROR", error);
+        }
+    }
     useEffect(()=>{
-        getWishlistProducts()
-    },[]);
+        getWishProducts();
+    },[token])
+    useEffect(()=>{
+        getWishlistProducts();
+    },[token,wishlistProducts]);
 
+    const favoriteIconFunc = (e) => {
+        e.stopPropagation();
+        let parentId = e.target.parentNode.id;
+        let idx = e.target.id;
+        console.log("parentId", parentId)
+        console.log("idx", idx);
+        if (token) {
+            if (!wishlistProducts.includes(parentId)) {
+                document.getElementById(idx).classList.add("in-wishlist");
+                
+                console.log("added")
+            }
+            else {
+                document.getElementById(idx).classList.remove("in-wishlist");
+                removeFavoriteItem(parentId)
+                console.log("removed")
+            }
+        } else {
+            openLogin();
+        }
+
+    }
+    const removeFavoriteItem= async(idx)=>{
+        try{
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/${idx}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }
+            );
+
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     return(<>
-            <h1 className=" text-left font-semibold ml-10 mt-5 wishlistTag">Wishlist</h1>
-            {!loader? <section className="flex justify-center wishlistMainBox">
+            
+            {!loader? <section className="wishlistMainBox">
+            <h1 className=" font-bold mb-5 p-3 text-lg wishlistTag">Wishlist</h1>
                 <div className="flex flex-wrap gap-5 wishlistItems">
-                {favoriteItems?.map((val)=>{
+                {token && favoriteItems?.map((val)=>{
                     return(
                         <div onClick={linkHandler} key={val.products._id} className=" cursor-pointer">
                             <div className=" relative card" id={val.products._id}>
-                                {/* <div class="absolute right-2 bottom-1 wrapper" id={val._id} >
-                                    {wishlistProducts.includes(val._id)? <div class="icon-wishlist in-wishlist" id={val._id+1} onClick={favoriteIconFunc} ></div>:<div class="icon-wishlist" id={val._id+1} onClick={favoriteIconFunc} ></div>}
-                                </div> */}
+                                <div class="absolute right-2 bottom-1 wrapper" id={val.products._id} >
+                                    {wishlistProducts.includes(val.products._id)? <div class="icon-wishlist in-wishlist" id={val.products._id+1} onClick={favoriteIconFunc} ></div>:<div class="icon-wishlist" id={val.products._id+1} onClick={favoriteIconFunc} ></div>}
+                                </div>
                                 {val.products.displayImage ? <img className="image rounded-md" src={val.products.displayImage} alt="" /> : <Loading/>}
                                 <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.products.name}</span>
                                 {/* <span className="text-left cursor-pointer text-gray-400 text-sm">rating {Math.floor(val.products.ratings)}</span> */}

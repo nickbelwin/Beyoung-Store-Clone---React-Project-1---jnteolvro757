@@ -109,6 +109,9 @@ const UserAddress = () => {
                 },
                 body: JSON.stringify({...user})
             })
+            let data = getData.json();
+            console.log("placeOrder", data);
+
         }catch(error){
             console.log(error)
         }
@@ -156,7 +159,7 @@ const UserAddress = () => {
                                         <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
                                     </div>
                                     <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                    <button className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                    <button  className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                                 </div>
                             )
                         })}

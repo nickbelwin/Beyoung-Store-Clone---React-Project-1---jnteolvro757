@@ -16,7 +16,7 @@
     display: none;
 }
 .allCardBox{
-    max-width: 55vw;
+    max-width: 57vw;
     flex-grow: 1;
     justify-content: center;
 }

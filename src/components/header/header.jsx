@@ -86,7 +86,7 @@ const Header = (props) => {
         console.log(words);
         let userSearch = words.split(" ");
         console.log(userSearch);
-        if (userSearch.includes("men" || "mens")) {
+        if (userSearch.includes("men")) {
             setSearchAll(false);
             setGender("Men");
             if (userSearch.includes("tshirt") || userSearch.includes("tshirts")) {
@@ -120,7 +120,7 @@ const Header = (props) => {
             } else if (userSearch.includes("hoodie")||userSearch.includes("hoodies")){
                 setSearchLink("hoodie");
             }
-        } else if (userSearch.includes("women" || "womens")) {
+        } else if (userSearch.includes("women")) {
             setSearchAll(false);
             setGender("Women");
             if (userSearch.includes("tshirt") || userSearch.includes("tshirts")) {
