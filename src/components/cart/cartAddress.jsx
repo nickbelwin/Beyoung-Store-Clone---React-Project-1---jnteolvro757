@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contextApi/AppContext";
@@ -8,8 +8,9 @@ const UserAddress = () => {
     const [cartProduct, setCartProduct] = useState([]);
     const [product, setProduct] = useState("");
     const [loader, setLoader] = useState(true);
-    const { token, setTotalCart } = useContext(AppContext);
+    const { token, setTotalCart,setUserAddresss } = useContext(AppContext);
     const {id,qty}=useParams();
+    const navigate=useNavigate();
 
     const getProduct = async () => {
         try {
@@ -35,45 +36,74 @@ const UserAddress = () => {
         getProduct();
     },[id]);
 
-    const [user, setUser] = useState({ productId:id, quantity: qty,  "addressType": "HOME", 
-    address: {
+    const [user, setUser] = useState({ productId:id, quantity: qty,  "addressType": "HOME",});
+      const [userAddress, setUserAddress]=useState({
         street: "",
         city: "",
         state: "",
         country: "",
         zipCode: '',
-      },});
+      })
+      const [userInfo, setUserInfo] = useState({
+          username: "",  
+          street: "",
+          city: "",
+          state: "",
+          country: "",
+          zipCode: '',
+        });
     
 
     const UserAddressHandler = (e) => {
         if (e.target.id === "street") {
-            let update = { ...user };
+            let update = { ...userAddress };
             update = { ...update, street: e.target.value }
-            setUser(update);
+            setUserAddress(update);
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, street: e.target.value };
+            setUserInfo(userUpdate);
+
         }
         else if (e.target.id === "city") {
-            let update = { ...user };
+            let update = { ...userAddress };
             update = { ...update, city: e.target.value }
-            setUser(update);
+            setUserAddress(update);
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, city: e.target.value };
+            setUserInfo(userUpdate)
         }
         else if (e.target.id === "state") {
-            let update = { ...user };
+            let update = { ...userAddress };
             update = { ...update, state: e.target.value }
-            setUser(update);
+            setUserAddress(update);
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, state: e.target.value };
+            setUserInfo(userUpdate)
         }
         else if (e.target.id === "country") {
-            let update = { ...user };
+            let update = { ...userAddress };
             update = { ...update, country: e.target.value }
-            setUser(update);
+            setUserAddress(update);
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, country: e.target.value };
+            setUserInfo(userUpdate)
         }
-        else if (e.target.id === "zipCode") {
-            let update = { ...user };
+        else if (e.target.id === "pinCode") {
+            let update = { ...userAddress };
             update = { ...update, zipCode: e.target.value }
-            setUser(update);
+            setUserAddress(update);
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, zipCode: e.target.value };
+            setUserInfo(userUpdate);
+        }else if (e.target.id === "username"){
+            let userUpdate= {...userInfo};
+            userUpdate = { ...userUpdate, username: e.target.value };
+            setUserInfo(userUpdate);
         }
     }
 
     console.log("user",user);
+
     const getCartproducts = async () => {
         console.log("getCart Token", token);
         try {
@@ -98,25 +128,34 @@ const UserAddress = () => {
         }
     }
 
-    const placeOrder=async()=>{
-        try{
-            let getData= await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
-            {
-                method: 'POST',
-                headers: {
-                    'projectID': 'zx5u429ht9oj',
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify({...user})
-            })
-            let data = getData.json();
-            console.log("placeOrder", data);
+    const placeOrder=()=>{
+        // let update= {...user, address:{...userAddress}}
+        // console.log("update",update);
+        // setUser(update);
+        setUserAddresss([userInfo,user]);
+        navigate(`/payment/:${id}/:${qty}`)
+        // try{
+        //     let getData= await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
+        //     {
+        //         method: 'POST',
+        //         headers: {
+        //             'projectID': 'zx5u429ht9oj',
+        //             "Authorization": `Bearer ${token}`,
+        //         },
+        //         body: JSON.stringify({...user})
+        //     })
+        //     let data = getData.json();
+        //     console.log("placeOrder", data);
 
-        }catch(error){
-            console.log(error)
-        }
+        // }catch(error){
+        //     console.log(error)
+        // }
     }
-
+    useEffect(()=>{
+        let update= {...user, address:{...userAddress}}
+        console.log("update",update);
+        setUser(update);
+    },[userAddress])
     useEffect(() => {
         getCartproducts();
     }, [])
@@ -124,8 +163,8 @@ const UserAddress = () => {
         <>
             <section className="addressMainbox">
                 <header className="headerBox">
-                    <div className="flex justify-between header">
-                        <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="./img/beyoungLogo.png" alt="" /></Link>
+                    <div className="flex justify-between addressHeader">
+                        <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                         <nav className="flex px-8 py-4 secureTag">
                             <div>
                                 <img className="w-8 cartSecureIcon" src="./img/cartSecureIcon.png" alt="" />
@@ -134,10 +173,10 @@ const UserAddress = () => {
                         </nav>
                     </div>
                 </header>
-                {!loader? <div className="flex flex-row justify-center mt-10 w-fit m-auto addressAllBox">
+                {!loader? <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
                     <div className=" mr-9 addressDiv">
                         <li className=" text-left mb-6 font-semibold">SHIPPING DETAILS</li>
-                        <form className=" flex flex-wrap gap-x-4 gap-y-5 addressFormBox">
+                        <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
                             <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" />
                             <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" />
                             <input onChange={UserAddressHandler} id="city" type="text" placeholder="City/District*" />
@@ -159,7 +198,7 @@ const UserAddress = () => {
                                         <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
                                     </div>
                                     <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                    <button  className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                    <button onClick={placeOrder} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                                 </div>
                             )
                         })}

@@ -91,6 +91,7 @@ const ShowNavbarProducts = () => {
             });
             console.log("cart", cartItem);
             setWishlistProducts(cartItem);
+
         }
         catch (error) {
             console.log("ERROR", error);

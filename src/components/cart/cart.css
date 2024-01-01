@@ -64,6 +64,11 @@
 .checkoutBtn{
     background-color: #51CBCC;
 }
+.addressHeader{
+    width: 80%;
+    align-items: center;
+    margin: auto;
+}
 .addressMainbox{
     margin: auto;
     width: 96%;
@@ -71,14 +76,15 @@
     background-color: #F4F4F6;
 }
 .addressDiv{
-    width: 40rem;
+    width: 40vw;
     gap: 1rem;
 }
 .addressFormBox{
     
 }
+
 .addressAllBox{
-    
+    height: auto;
 }
 .addressDiv input{
     border: 1px solid;
@@ -86,6 +92,39 @@
     padding: .5rem .5rem;
     width: 48%;
 }
+.paymentSections div{
+    display: flex;
+    align-items: center;
+    padding: 1.29rem 1rem;
+    margin: .2rem;
+    background-color: #F4F4F6;
+    cursor: pointer;
+    /* width: 100%; */
+}
+.paymentSections div img{
+    width: 2rem;
+    margin-right: .5rem;
+
+}
+.paymentMsg{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.51);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payCloseBtn:hover{
+    background-color: red;
+}
+.backToShopBtn{
+    background-color: black;
+
+}
+.backToShopBtn:hover{
+    color: rgb(204, 204, 208);
+}
+
 
 @media (max-width:1120px){
     .productDetailsBox{
@@ -122,6 +161,22 @@
         font-size: 1rem;
         width: 70vw;
     }
+    .addressFormBox{
+        justify-content: center;
+    }
+    .addressDiv{
+        width: 90vw;
+        gap: 1rem;
+    }
+    .mr-9 {
+        margin-right: 0rem !important;
+    }
+    .addressDiv input {
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 0.5rem 0.5rem;
+        width: 90%;
+    }
     /* .cartProductName{
         overflow: hidden;
         text-overflow: ellipsis;
@@ -156,5 +211,9 @@
         padding: 1rem 3rem;
         font-size: 1rem;
         width: 70vw;
+    }
+    .logo{
+        width: 7rem;
+        height: 2rem;
     }
 }

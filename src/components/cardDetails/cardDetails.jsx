@@ -46,13 +46,16 @@ const CardDetails = (props) => {
     const patchCart = async () => {
         console.log("patchCart Token",token, "id: ",id);
         setLoader2(true);
+        console.log(JSON.stringify({...addToCartData}))
         try {
             
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${id}`,
                 {
                     method: 'PATCH',
                     headers: { 'projectId': 'zx5u429ht9oj',
-                    "Authorization": `Bearer ${token}` },
+                    "Authorization": `Bearer ${token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' },
                     body: JSON.stringify({...addToCartData})
                 }
             );
@@ -60,14 +63,14 @@ const CardDetails = (props) => {
             let data = await getData.json();
             console.log("patch Data",data);
             alert("added to cart")
-            getCartproducts()
+            getCartproducts();
             setLoader2(false);
            }
            setLoader2(false);
         }
         catch (error) {
             console.log(error);
-            alert("faild to cart")
+            alert("faild to cart");
             setLoader2(false);
         }
     }
@@ -75,7 +78,7 @@ const CardDetails = (props) => {
     const addToCartHandler = () => {
         if (token ) {
             if(selectedQuantity && selectedSize){
-                setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
+                console.log(selectedQuantity,selectedSize);
                 patchCart();
             }
             else if(!selectedQuantity){
@@ -88,6 +91,9 @@ const CardDetails = (props) => {
             openLogin();
         }
     }
+    useEffect(()=>{
+        setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
+    },[selectedQuantity,selectedSize])
     const buyNowHandler=()=>{
         if (token ) {
             if(selectedQuantity && selectedSize){

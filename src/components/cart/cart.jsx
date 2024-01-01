@@ -120,7 +120,7 @@ const Cart = () => {
         <section className="cartMainbox">
             <header className="headerBox">
                 <div className="flex justify-between header">
-                    <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="./img/beyoungLogo.png" alt="" /></Link>
+                    <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                     <nav className="flex px-8 py-4 secureTag">
                         <div>
                             <img className="w-8 cartSecureIcon" src="./img/cartSecureIcon.png" alt="" />
@@ -183,7 +183,7 @@ const Cart = () => {
                                         </div>
                                         <div>
                                             <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                            <button  className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                            <button onClick={checkOutHandler} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                                         </div>
                                     </div>
                                 )
