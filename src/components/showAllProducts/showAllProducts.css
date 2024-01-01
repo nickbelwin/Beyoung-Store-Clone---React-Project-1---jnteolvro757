@@ -39,5 +39,6 @@
     .cardBox{
         max-width: 90vw;
         justify-content: center;
+        margin-bottom: 31rem;
     }
 }

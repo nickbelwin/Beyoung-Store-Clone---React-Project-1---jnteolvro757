@@ -6,3 +6,9 @@
 .loading img{
     width: 12vw;
 }
+
+@media (max-width:1120px){
+    .loading img{
+        width: 20vw;
+    }
+}

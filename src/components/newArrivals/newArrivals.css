@@ -3,6 +3,7 @@
 }
 .newArrivalBox{
     -ms-overflow-style: none;
+    gap:1rem;
 }
 .newArrivalBox::-webkit-scrollbar {
     display: none;

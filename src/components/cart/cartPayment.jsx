@@ -45,6 +45,7 @@ const CartPayment = () => {
     const placeOrder = async () => {
         if(paymentType && cartProduct){
             try {
+                setLoader(true);
                 let getData = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
                     {
                         method: 'POST',
@@ -60,10 +61,12 @@ const CartPayment = () => {
                     console.log("placeOrder", data);
                     setDoneMsg("flex");
                     setOrderDone(true);
+                    setLoader(false);
                 }
     
             } catch (error) {
                 console.log(error)
+                setLoader(false);
             }
         }else{
             setPayMsg("flex");

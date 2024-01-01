@@ -28,7 +28,7 @@
     height: 50%;
 }
 .productDiv{
-    height: 75vh;
+    max-height: 75vh;
     margin: auto;
     gap: 1rem;
 }
@@ -136,7 +136,13 @@
     }
     .productDiv{
         width: 90vw;
-        height: 50vh;
+        max-height: 40vh;
+        min-height: 30vh;
+
+    }
+    .py-8 {
+        padding-top: 0rem;
+        padding-bottom: 2rem;
     }
     .secureText{
         font-size: .7rem;

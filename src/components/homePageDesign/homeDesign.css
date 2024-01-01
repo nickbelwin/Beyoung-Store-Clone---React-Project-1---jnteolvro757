@@ -33,6 +33,7 @@
 @media (max-width:520px){
     .card {
         min-height: 12.7rem;
+        width: 10rem;
     }
 }
 
