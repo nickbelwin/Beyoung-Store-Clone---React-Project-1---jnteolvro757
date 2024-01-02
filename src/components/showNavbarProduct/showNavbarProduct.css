@@ -83,6 +83,9 @@
         max-width: 90vw;
         justify-content: center;
     }
+    .navCategoryBox{
+        margin-bottom: 35rem;
+    }
 }
 @media (max-width:520px){
     .card {

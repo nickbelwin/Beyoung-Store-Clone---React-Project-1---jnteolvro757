@@ -6,6 +6,7 @@ import NotFoundProduct from "../../notFound/notFound";
 import Loading from "../loading/loading";
 import Footer from "../footer/footer";
 import { AppContext } from "../../contextApi/AppContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ShowAllProducts = () => {
     const { id } = useParams();
@@ -48,10 +49,10 @@ const ShowAllProducts = () => {
     useEffect(() => {
         getProducts();
     }, [id]);
-    const linkHandler = (e) => {
-        e.stopPropagation();
-        console.log("product: ", e.target.parentNode.id);
-        navigate(`/product-details/${e.target.parentNode.id}`);
+    const linkHandler = (productid) => {
+        // e.stopPropagation();
+        // console.log("product: ", e.target.parentNode.id);
+        navigate(`/product-details/${productid}`);
     }
 
 
@@ -107,7 +108,7 @@ const ShowAllProducts = () => {
     }
     console.log(wishlistProducts);
 
-    const favoriteIconFunc = (e) => {
+    const favoriteIconFunc = (e,productid) => {
         e.stopPropagation();
         let parentId = e.target.parentNode.id;
         let idx = e.target.id;
@@ -116,7 +117,7 @@ const ShowAllProducts = () => {
         if (token) {
             if (!wishlistProducts.includes(parentId)) {
                 document.getElementById(idx).classList.add("in-wishlist");
-                addFavotiteItems(parentId);
+                addFavotiteItems(productid);
                 console.log("added")
             }
             else {
@@ -292,12 +293,13 @@ const ShowAllProducts = () => {
                 <div className="flex cardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
-                            <div onClick={linkHandler} key={val._id}>
-                                <div className=" relative card" id={val._id}>
-                                    <div class="absolute right-2 bottom-1 wrapper" id={val._id} >
-                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div>}
+                            <div className="flex flex-col justify-end" onClick={()=>{linkHandler(val._id)}} key={val._id}>
+                                <div className=" relative flex flex-col justify-end card" >
+                                    <div class="absolute right-2 bottom-1 wrapper" >
+                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
                                     </div>
-                                    {val.displayImage ? <img className="image rounded-md" src={val.displayImage} alt="" /> : <img src="https://www.beyoung.in/beyoung-loader.gif" />}
+                                    <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={<Loading/>} />
+                                    {/* <img className="image rounded-md" src={val.displayImage} alt="" /> */}
                                     <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
                                     <p className="text-left mt-2">₹{val.price}</p>

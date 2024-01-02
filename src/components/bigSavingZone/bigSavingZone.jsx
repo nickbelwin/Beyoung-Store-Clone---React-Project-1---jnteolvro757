@@ -23,7 +23,7 @@ const BigSavingZone = (props) => {
     //     setBigSavingProducts(bigSavingZone);
     //     console.log("activeSlideIndex", activeSlideIndex)
     // }, [activeSlideIndex]);
-    return (
+    return ( 
         <div className=" relative">
             <img onClick={prevImg} className="  absolute leftArrow" src="/img/previousBtn.png" alt="" />
             <img onClick={nextImg} className="  absolute rightArrow" src="/img/nextBtn.png" alt="" />

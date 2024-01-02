@@ -111,10 +111,10 @@ const Wishlist=()=>{
             
             {!loader? <section className="wishlistMainBox">
             <h1 className=" font-bold mb-5 p-3 text-lg wishlistTag">Wishlist</h1>
-                <div className="flex flex-wrap gap-5 wishlistItems">
+                <div className="flex flex-wrap justify-start gap-5 wishlistItems">
                 {token && favoriteItems?.map((val)=>{
                     return(
-                        <div onClick={linkHandler} key={val.products._id} className=" cursor-pointer">
+                        <div onClick={linkHandler} key={val.products._id} className=" cursor-pointer m-auto">
                             <div className=" relative card" id={val.products._id}>
                                 <div class="absolute right-2 bottom-1 wrapper" id={val.products._id} >
                                     {wishlistProducts.includes(val.products._id)? <div class="icon-wishlist in-wishlist" id={val.products._id+1} onClick={favoriteIconFunc} ></div>:<div class="icon-wishlist" id={val.products._id+1} onClick={favoriteIconFunc} ></div>}

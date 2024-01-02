@@ -41,4 +41,8 @@
         justify-content: center;
         margin-bottom: 31rem;
     }
+    .card{
+        max-width: 9rem;
+        min-width: 8rem;
+    }
 }
