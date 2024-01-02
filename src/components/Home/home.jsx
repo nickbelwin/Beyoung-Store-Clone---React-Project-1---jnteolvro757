@@ -17,6 +17,7 @@ import UserAddress from "../cart/cartAddress";
 // import Wishlist from "../wishlist/wishlist";
 import Loading from "../loading/loading";
 import CartPayment from "../cart/cartPayment";
+import OrderDetails from "../orders/orders";
 
 const ShowAllProducts= React.lazy(()=> import('../showAllProducts/showAllProducts'));
 const ShowNavbarProducts= React.lazy(()=> import('../showNavbarProduct/showNavbarProduct'));
@@ -89,6 +90,7 @@ const Home = () => {
                         <Route path="category/:id/:gender" element={<ShowNavbarProducts />} />
                         <Route path="allProducts/:id" element={<ShowAllProducts />} />
                         <Route path="wishlist" element={<Wishlist/>} />
+                        <Route path="orders" element={<OrderDetails/>} />
                         <Route path="login" element={<Login/>} />
                         <Route path="signup" element={<Signup/>} />
                         <Route path="*" element={<NotFoundProduct />} />
