@@ -6,15 +6,18 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const CartPayment = () => {
     const [cartProduct, setCartProduct] = useState([]);
+    const [allOrderProduct, setAllOrderProduct] = useState([]);
     const [paymentType, setPaymentType] = useState("");
     const [orderDone, setOrderDone] = useState(false);
     const [loader, setLoader] = useState(true);
     const { token, setTotalCart, userAddress } = useContext(AppContext);
-    const [payMsg, setPayMsg]=useState("none");
-    const [doneMsg, setDoneMsg]=useState("none");
+    const [payMsg, setPayMsg] = useState("none");
+    const [doneMsg, setDoneMsg] = useState("none");
     const { id, qty } = useParams();
     const navigate = useNavigate();
     console.log("payment", userAddress, id, qty);
+
+    // get all orders
     const getCartproducts = async () => {
         console.log("getCart Token", token);
         try {
@@ -38,12 +41,27 @@ const CartPayment = () => {
             setLoader(false);
         }
     }
+    // for update the product id and quantity for place orders
+    const allOrders = () => {
+        let update = { ...userAddress[1] };
+        console.log("1==", cartProduct[0]?.items);
+        let getData = cartProduct[0]?.items?.map((val) => {
+            return { ...update, productId: val.product._id, quantity: val.quantity };
+        });
+        setAllOrderProduct(getData);
+    }
+    console.log("allOrderProduct", allOrderProduct);
+
     useEffect(() => {
         getCartproducts();
     }, []);
 
-    const placeOrder = async () => {
-        if(paymentType && cartProduct){
+    useEffect(() => {
+        allOrders();
+    }, [cartProduct]);
+
+    // here orders are posting
+    const placeOrder = async (productObj) => {
             try {
                 setLoader(true);
                 let getData = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
@@ -54,26 +72,33 @@ const CartPayment = () => {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ ...userAddress[1] })
+                        body: JSON.stringify({ ...productObj })
                     })
-                if (getData.ok) {
+               
                     let data = await getData.json();
                     console.log("placeOrder", data);
-                    setDoneMsg("flex");
-                    setOrderDone(true);
-                    setLoader(false);
-                }
-    
+                
+
             } catch (error) {
                 console.log(error)
                 setLoader(false);
             }
-        }else{
+    }
+    // sending the body object for place orders
+    const sendOrders = () => {
+        if (paymentType && cartProduct) {
+            allOrderProduct?.forEach((val) => {
+                placeOrder(val);
+            });
+            setDoneMsg("flex");
+            setOrderDone(true);
+            setLoader(false);
+        } else {
             setPayMsg("flex");
         }
     }
+    // here removing product after order placed
     const removeFromCart = async (idx) => {
-      
         try {
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${idx}`,
                 {
@@ -92,6 +117,17 @@ const CartPayment = () => {
             setLoader(false);
         }
     }
+    // passing the product id for removing product from cart after order placed
+    const orderSuccess = () => {
+        allOrderProduct?.forEach((val)=>{
+            removeFromCart(val.productId);
+        })
+        setPaymentType("");
+        setDoneMsg("none");
+        setOrderDone(false);
+        navigate("/");
+    }
+    // selecting payment method
     const paymentIdArr = ["paytm", "debitCredit", "upi", "wallet", "netbanking", "cashOnDelivery"]
     const selectPaymentOption = (e) => {
         let payId = e.target.parentNode.id ? e.target.parentNode.id : e.target.id;
@@ -103,25 +139,19 @@ const CartPayment = () => {
         document.getElementById(payId).style.border = "1px solid black";
         setPaymentType(payId);
     }
-    const orderSuccess=()=>{
-        removeFromCart(userAddress[1].productId);
-        setPaymentType("");
-        setDoneMsg("none");
-        setOrderDone(false);
-        navigate("/");
-    }
+    
 
     return (<>
         <section className="addressMainbox">
             <header className=" sticky top-0 left-0 headerBox">
                 <div className=" w-4 h-4 fixed" >
-                    {!orderDone?
-                    <div style={{display: payMsg}} className=" flex-col paymentMsg">
-                    <div className="flex flex-col bg-white py-4 px-10 rounded">Please select Payment Method <button onClick={()=> setPayMsg("none")} className=" bg-red-600 text-white font-semibold py-1 mt-5 rounded payCloseBtn" >Close</button></div> 
-                </div>:
-                     <div style={{display: doneMsg}} className=" flex-col paymentMsg">
-                        <div className="flex flex-col bg-white text-green-500 font-extrabold py-4 px-10 rounded">Order Successfully Placed...<button onClick={orderSuccess} className=" text-white font-semibold py-1 mt-5 rounded backToShopBtn" >Continue Shopping</button></div>                  
-                    </div> }
+                    {!orderDone ?
+                        <div style={{ display: payMsg }} className=" flex-col paymentMsg">
+                            <div className="flex flex-col bg-white py-4 px-10 rounded">Please select Payment Method <button onClick={() => setPayMsg("none")} className=" bg-red-600 text-white font-semibold py-1 mt-5 rounded payCloseBtn" >Close</button></div>
+                        </div> :
+                        <div style={{ display: doneMsg }} className=" flex-col paymentMsg">
+                            <div className="flex flex-col bg-white text-green-500 font-extrabold py-4 px-10 rounded">Order Successfully Placed...<button onClick={orderSuccess} className=" text-white font-semibold py-1 mt-5 rounded backToShopBtn" >Continue Shopping</button></div>
+                        </div>}
                 </div>
                 <div className="flex justify-between header">
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
@@ -134,7 +164,7 @@ const CartPayment = () => {
                 </div>
             </header>
             <header className="headerBox">
-                
+
                 <div className="flex justify-between header">
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                     <nav className="flex px-8 py-4 secureTag">
@@ -157,7 +187,7 @@ const CartPayment = () => {
                             <div id="netbanking"><img src="https://cdn-icons-png.flaticon.com/512/4826/4826345.png" alt="" />Netbanking</div>
                             <div id="cashOnDelivery"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGUF_c53BOG-qECe5Z3hLDLGM9kQDlLXuYg&usqp=CAU" alt="" />Cash on Delivery</div>
                         </div>
-
+                        <div></div>
                     </div>
                 </div>
 
@@ -184,12 +214,12 @@ const CartPayment = () => {
                                     <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
                                 </div>
                                 <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                <button onClick={placeOrder} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                <button onClick={sendOrders} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                             </div>
                         )
                     })}
 
-                </div>   
+                </div>
             </div> : <Loading />}
         </section>
     </>)

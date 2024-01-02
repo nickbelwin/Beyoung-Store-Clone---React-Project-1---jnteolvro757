@@ -8,9 +8,11 @@ const UserAddress = () => {
     const [cartProduct, setCartProduct] = useState([]);
     const [product, setProduct] = useState("");
     const [loader, setLoader] = useState(true);
-    const { token, setTotalCart,setUserAddresss } = useContext(AppContext);
-    const {id,qty}=useParams();
-    const navigate=useNavigate();
+    const [allInfo, setAllInfo] = useState(false);
+    const [allInfoMsg, setAllInfoMsg]=useState("none");
+    const { token, setTotalCart, setUserAddresss } = useContext(AppContext);
+    const { id, qty } = useParams();
+    const navigate = useNavigate();
 
     const getProduct = async () => {
         try {
@@ -18,8 +20,10 @@ const UserAddress = () => {
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
                 {
                     method: 'GET',
-                    headers: { 'projectId': 'zx5u429ht9oj',
-                    "Authorization": `Bearer ${token}`, }
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    }
                 }
             );
             let jsonData = await getData.json();
@@ -31,35 +35,35 @@ const UserAddress = () => {
             setLoader(false);
         }
     }
-    console.log("product",product,id,qty)
-    useEffect(()=>{
+    console.log("product", product, id, qty)
+    useEffect(() => {
         getProduct();
-    },[id]);
+    }, [id]);
 
-    const [user, setUser] = useState({ productId:id, quantity: qty,  "addressType": "HOME",});
-      const [userAddress, setUserAddress]=useState({
+    const [user, setUser] = useState({ productId: id, quantity: qty, "addressType": "HOME", });
+    const [userAddress, setUserAddress] = useState({
         street: "",
         city: "",
         state: "",
         country: "",
         zipCode: '',
-      })
-      const [userInfo, setUserInfo] = useState({
-          username: "",  
-          street: "",
-          city: "",
-          state: "",
-          country: "",
-          zipCode: '',
-        });
-    
+    })
+    const [userInfo, setUserInfo] = useState({
+        username: "",
+        street: "",
+        city: "",
+        state: "",
+        country: "",
+        zipCode: '',
+    });
+
 
     const UserAddressHandler = (e) => {
         if (e.target.id === "street") {
             let update = { ...userAddress };
             update = { ...update, street: e.target.value }
             setUserAddress(update);
-            let userUpdate= {...userInfo};
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, street: e.target.value };
             setUserInfo(userUpdate);
 
@@ -68,7 +72,7 @@ const UserAddress = () => {
             let update = { ...userAddress };
             update = { ...update, city: e.target.value }
             setUserAddress(update);
-            let userUpdate= {...userInfo};
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, city: e.target.value };
             setUserInfo(userUpdate)
         }
@@ -76,7 +80,7 @@ const UserAddress = () => {
             let update = { ...userAddress };
             update = { ...update, state: e.target.value }
             setUserAddress(update);
-            let userUpdate= {...userInfo};
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, state: e.target.value };
             setUserInfo(userUpdate)
         }
@@ -84,7 +88,7 @@ const UserAddress = () => {
             let update = { ...userAddress };
             update = { ...update, country: e.target.value }
             setUserAddress(update);
-            let userUpdate= {...userInfo};
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, country: e.target.value };
             setUserInfo(userUpdate)
         }
@@ -92,17 +96,17 @@ const UserAddress = () => {
             let update = { ...userAddress };
             update = { ...update, zipCode: e.target.value }
             setUserAddress(update);
-            let userUpdate= {...userInfo};
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, zipCode: e.target.value };
             setUserInfo(userUpdate);
-        }else if (e.target.id === "username"){
-            let userUpdate= {...userInfo};
+        } else if (e.target.id === "username") {
+            let userUpdate = { ...userInfo };
             userUpdate = { ...userUpdate, username: e.target.value };
             setUserInfo(userUpdate);
         }
     }
 
-    console.log("user",user);
+    console.log("user", user);
 
     const getCartproducts = async () => {
         console.log("getCart Token", token);
@@ -128,12 +132,18 @@ const UserAddress = () => {
         }
     }
 
-    const placeOrder=()=>{
+    const placeOrder = () => {
         // let update= {...user, address:{...userAddress}}
         // console.log("update",update);
         // setUser(update);
-        setUserAddresss([userInfo,user]);
-        navigate(`/payment/:${id}/:${qty}`)
+        if (userInfo.username && userInfo.street && userInfo.state && userInfo.country && userInfo.city && userInfo.zipCode) {
+            setUserAddresss([userInfo, user]);
+            navigate(`/payment/:${id}/:${qty}`);
+        }
+        else {
+            setAllInfoMsg("flex");
+        }
+
         // try{
         //     let getData= await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
         //     {
@@ -151,38 +161,58 @@ const UserAddress = () => {
         //     console.log(error)
         // }
     }
-    useEffect(()=>{
-        let update= {...user, address:{...userAddress}}
-        console.log("update",update);
+    useEffect(() => {
+        let update = { ...user, address: { ...userAddress } }
+        console.log("update", update);
         setUser(update);
-    },[userAddress])
+    }, [userAddress])
     useEffect(() => {
         getCartproducts();
     }, [])
     return (
         <>
             <section className="addressMainbox">
-                <header className="headerBox">
-                    <div className="flex justify-between addressHeader">
+                <header className=" sticky top-0 left-0 headerBox">
+                    <div className=" w-4 h-4 fixed" >
+                        {!allInfo ?
+                            <div style={{ display: allInfoMsg }} className=" flex-col paymentMsg">
+                                <div className="flex flex-col bg-white py-4 px-10 rounded">Please Enter All Information!!! <button onClick={() => setAllInfoMsg("none")} className=" bg-red-600 text-white font-semibold py-1 mt-5 rounded payCloseBtn" >Close</button></div>
+                            </div> :
+                            <div style={{ display: doneMsg }} className=" flex-col paymentMsg">
+                                <div className="flex flex-col bg-white text-green-500 font-extrabold py-4 px-10 rounded">Order Successfully Placed...<button onClick={orderSuccess} className=" text-white font-semibold py-1 mt-5 rounded backToShopBtn" >Continue Shopping</button></div>
+                            </div>}
+                    </div>
+                    <div className="flex justify-between header">
                         <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                         <nav className="flex px-8 py-4 secureTag">
                             <div>
-                                <img className="w-8 cartSecureIcon" src="./img/cartSecureIcon.png" alt="" />
+                                <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
                             </div>
                             <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
                         </nav>
                     </div>
                 </header>
-                {!loader? <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
+                <header className="headerBox">
+                    <div className="flex justify-between header">
+                        <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
+                        <nav className="flex px-8 py-4 secureTag">
+                            <div>
+                                <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
+                            </div>
+                            <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
+                        </nav>
+                    </div>
+                </header>
+                {!loader ? <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
                     <div className=" mr-9 addressDiv">
                         <li className=" text-left mb-6 font-semibold">SHIPPING DETAILS</li>
                         <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
-                            <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" />
-                            <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" />
-                            <input onChange={UserAddressHandler} id="city" type="text" placeholder="City/District*" />
-                            <input onChange={UserAddressHandler} id="state" type="text" placeholder="State*" />
-                            <input onChange={UserAddressHandler} id="country" type="text" placeholder="Country*" />
-                            <input onChange={UserAddressHandler} id="pinCode" type="number" placeholder="Pin Code*" />
+                            <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" required />
+                            <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" required />
+                            <input onChange={UserAddressHandler} id="city" type="text" placeholder="City/District*" required />
+                            <input onChange={UserAddressHandler} id="state" type="text" placeholder="State*" required />
+                            <input onChange={UserAddressHandler} id="country" type="text" placeholder="Country*" required />
+                            <input onChange={UserAddressHandler} id="pinCode" type="number" placeholder="Pin Code*" required />
                         </form>
                     </div>
 
@@ -203,7 +233,7 @@ const UserAddress = () => {
                             )
                         })}
                     </div>
-                </div>: <Loading/>}
+                </div> : <Loading />}
             </section>
         </>
     )
