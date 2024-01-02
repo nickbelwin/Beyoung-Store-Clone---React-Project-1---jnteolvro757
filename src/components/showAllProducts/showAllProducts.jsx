@@ -298,7 +298,7 @@ const ShowAllProducts = () => {
                                     <div class="absolute right-2 bottom-1 wrapper" >
                                         {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
                                     </div>
-                                    <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={<Loading/>} />
+                                    <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                     {/* <img className="image rounded-md" src={val.displayImage} alt="" /> */}
                                     <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
