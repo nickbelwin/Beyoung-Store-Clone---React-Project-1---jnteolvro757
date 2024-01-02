@@ -84,7 +84,14 @@
         justify-content: center;
     }
     .navCategoryBox{
-        margin-bottom: 35rem;
+        margin-bottom: 50rem;
+    }
+    .footerBottom{
+        cursor: default;
+        background-color: black;
+        width: 100vw;
+        bottom: -50rem;
+        left: 0;
     }
 }
 @media (max-width:520px){
