@@ -36,7 +36,7 @@ const BigSavingZone = (props) => {
                 {bigSavingProducts?.map((val, idx) => {
                     return (
                         < >{idx >= activeSlideIndex ? !val.image2 ?
-                            <div className="mr-6 w-fit" key={val.id1}>
+                            <div className="mr-2 w-fit" key={val.id1}>
                                 <div className={`cursor-pointer ${val.class}`}>
                                     <img onClick={bigSavingZoneHandler} id={val.id1} src={val.image1} alt="" />
                                 </div>

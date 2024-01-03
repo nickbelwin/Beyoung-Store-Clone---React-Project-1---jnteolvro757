@@ -21,7 +21,7 @@
     .smallImg{
         display: flex;
         flex-direction: row;
-        width: 20rem;
+        width: 92vw;
         gap: 1rem;
     }
     .nameTagOfMenTshirt{

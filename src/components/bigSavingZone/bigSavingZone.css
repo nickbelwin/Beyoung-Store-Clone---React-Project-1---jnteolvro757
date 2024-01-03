@@ -47,6 +47,14 @@
 }
 @media (max-width:520px){
     .bigImg {
-        width: 14rem;
+        width: 44vw;
+    }
+    .savingDualBox1{
+        width: 98%;
+        margin-bottom: .27rem;
+    }
+    .savingDualBox2{
+        width: 98%;
+        margin-top: 0rem;
     }
 }
