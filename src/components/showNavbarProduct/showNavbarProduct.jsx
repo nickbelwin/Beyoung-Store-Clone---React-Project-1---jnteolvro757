@@ -55,7 +55,6 @@ const ShowNavbarProducts = () => {
     }
     useEffect(() => {
         getProducts();
-        console.log("id called")
     }, [id, token]);
 
     const linkHandler = (productid) => {
@@ -145,27 +144,24 @@ const ShowNavbarProducts = () => {
     }
     console.log(wishlistProducts);
 
-    const favoriteIconFunc = (e) => {
+    const favoriteIconFunc = (e,productid) => {
         e.stopPropagation();
-        let parentId = e.target.parentNode.id;
         let idx = e.target.id;
-        console.log("parentId", parentId)
         console.log("idx", idx);
         if (token) {
-            if (!wishlistProducts.includes(parentId)) {
+            if (!wishlistProducts.includes(productid)) {
                 document.getElementById(idx).classList.add("in-wishlist");
-                addFavotiteItems(parentId);
+                addFavotiteItems(productid);
                 console.log("added")
             }
             else {
                 document.getElementById(idx).classList.remove("in-wishlist");
-                removeFavoriteItem(parentId);
+                removeFavoriteItem(productid);
                 console.log("removed")
             }
         } else {
             openLogin();
         }
-
     }
 
     useEffect(() => {
@@ -355,18 +351,18 @@ const ShowNavbarProducts = () => {
                 <div id="allCardBoxId" className="flex flex-wrap gap-8 allCardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
-                            <div onClick={()=>{linkHandler(val._id)}} key={val._id}>
-                                <div className=" relative card">
-                                    <div class="absolute right-2 bottom-1 wrapper" >
-                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={favoriteIconFunc} ></div>}
-                                    </div>
+                          
+                                <div className="flex flex-col text-left justify-end card" onClick={()=>{linkHandler(val._id)}} key={val._id}>
+                                
                                     <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                     {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}
                                     <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left cursor-pointer text-gray-400 text-sm">{val.subCategory}</span>
-                                    <p className="text-left cursor-pointer pt-2">₹{val.price}</p>
+                                    <p className="text-left flex justify-between mt-2">₹{val.price} <div class=" mr-3 wrapper" >
+                                        {wishlistProducts?.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
+                                    </div></p>
                                 </div>
-                            </div>
+                            
                         )
                     }) : <Loading />}
                 </div>

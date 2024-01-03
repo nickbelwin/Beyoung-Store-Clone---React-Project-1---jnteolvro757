@@ -26,7 +26,7 @@ const Filter = (props) => {
     return (
         <>
             <section className=" filterBox">
-                <div id="filterSection" className="mt-5">
+                <div id="filterSection" className="mt-2">
                     <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
                     <div className=" ">
                         <div className="flex justify-between py-3 colorBox">

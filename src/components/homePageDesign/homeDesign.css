@@ -1,7 +1,7 @@
 
 .cardBox{
     display: flex;
-    /* justify-content: center; */
+  
     gap: 1.5rem;
     flex-wrap: wrap;
     
@@ -13,7 +13,7 @@
     width: 17rem; 
     min-height: 15.7rem;
     overflow: hidden;
-    /* border: 1px solid black; */
+   
 }
 .card p{
     cursor: pointer;

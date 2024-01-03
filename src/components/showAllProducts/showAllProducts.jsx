@@ -48,7 +48,7 @@ const ShowAllProducts = () => {
     }
     useEffect(() => {
         getProducts();
-    }, [id]);
+    }, [id,token]);
     const linkHandler = (productid) => {
         // e.stopPropagation();
         // console.log("product: ", e.target.parentNode.id);
@@ -107,21 +107,37 @@ const ShowAllProducts = () => {
         console.log(wishlistProducts);
     }
     console.log(wishlistProducts);
+    const removeFavoriteItem= async(idx)=>{
+        try{
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/${idx}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }
+            );
 
+        }catch(error){
+            console.log(error)
+        }
+    }
     const favoriteIconFunc = (e,productid) => {
         e.stopPropagation();
-        let parentId = e.target.parentNode.id;
         let idx = e.target.id;
-        console.log("parentId", parentId)
         console.log("idx", idx);
         if (token) {
-            if (!wishlistProducts.includes(parentId)) {
+            if (!wishlistProducts.includes(productid)) {
                 document.getElementById(idx).classList.add("in-wishlist");
                 addFavotiteItems(productid);
                 console.log("added")
             }
             else {
                 document.getElementById(idx).classList.remove("in-wishlist");
+                removeFavoriteItem(productid);
                 console.log("removed")
             }
         } else {
@@ -293,18 +309,17 @@ const ShowAllProducts = () => {
                 <div className="flex cardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
-                            <div className="flex flex-col justify-end" onClick={()=>{linkHandler(val._id)}} key={val._id}>
-                                <div className=" relative flex flex-col justify-end card" >
-                                    <div class="absolute right-2 bottom-1 wrapper" >
-                                        {wishlistProducts.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
-                                    </div>
+                           
+                                <div className=" flex flex-col text-left justify-end card" onClick={()=>{linkHandler(val._id)}} key={val._id} >
                                     <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                     {/* <img className="image rounded-md" src={val.displayImage} alt="" /> */}
                                     <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
                                     <span className="text-left text-gray-400 text-sm">{val.subCategory}</span>
-                                    <p className="text-left mt-2">₹{val.price}</p>
+                                    <p className="text-left flex justify-between mt-2">₹{val.price} <div class=" mr-3 wrapper" >
+                                        {wishlistProducts?.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
+                                    </div></p>
                                 </div>
-                            </div>
+                          
                         )
                     }) : <Loading />}
                     {!loader ? <div className=" absolute footerBottom">
