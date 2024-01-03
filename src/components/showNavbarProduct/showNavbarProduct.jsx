@@ -352,7 +352,7 @@ const ShowNavbarProducts = () => {
                     {!loader ? filterProducts?.map((val) => {
                         return (
                           
-                                <div className=" card" onClick={()=>{linkHandler(val._id)}} key={val._id}>
+                                <div className=" text-left card" onClick={()=>{linkHandler(val._id)}} key={val._id}>
                                 
                                     <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                     {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}
