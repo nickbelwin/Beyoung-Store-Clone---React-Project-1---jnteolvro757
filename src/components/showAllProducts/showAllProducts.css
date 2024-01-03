@@ -18,6 +18,7 @@
     min-width: 8rem;
 }
 
+
 .filterContainer{
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -66,12 +67,31 @@
         justify-content: center;
     }
     .cardBox{
-        max-width: 90vw;
+        max-width: 98vw;
         justify-content: center;
         margin-bottom: 31rem;
     }
     .card{
-        max-width: 9rem;
+        max-width: 12rem;
         min-width: 8rem;
+    }
+}
+@media (max-width:520px){
+    .card {
+        min-height: 12.7rem;
+        max-width: 11rem;
+        min-width: 8rem;
+    }
+    .gap-8 {
+        gap: .6rem;
+    }
+}
+@media (max-width:359px){
+    .card {
+        max-width: 9rem;
+        min-width: 8rem; 
+    }
+    .footerBottom {
+        bottom: -68rem;
     }
 }
