@@ -310,7 +310,7 @@ const ShowAllProducts = () => {
                     {!loader ? filterProducts?.map((val) => {
                         return (
                            
-                                <div className=" flex flex-col text-left justify-end card" onClick={()=>{linkHandler(val._id)}} key={val._id} >
+                                <div className=" card" onClick={()=>{linkHandler(val._id)}} key={val._id} >
                                     <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                     {/* <img className="image rounded-md" src={val.displayImage} alt="" /> */}
                                     <span className="cardName  text-slate-700 font-semibold">{val.name}</span>
