@@ -102,6 +102,9 @@
     .footerBottom {
         bottom: -68rem;
     }
+    .gap-8 {
+        gap: .7rem;
+    }
 }
 
 @media (max-width:359px){

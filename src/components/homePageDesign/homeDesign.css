@@ -37,7 +37,7 @@
         grid-area: 1rem;
     }
     .cardBox{
-        gap: .5rem;
+        gap: .7rem;
     }
 }
 @media (max-width:359px){
