@@ -96,7 +96,8 @@
 }
 @media (max-width:520px){
     .card {
-        max-width: 11rem;
+        min-height: 12.7rem;
+        max-width: 45vw;
         min-width: 8rem; 
     }
     .footerBottom {
@@ -107,12 +108,3 @@
     }
 }
 
-@media (max-width:359px){
-    .card {
-        max-width: 9rem;
-        min-width: 8rem; 
-    }
-    .footerBottom {
-        bottom: -68rem;
-    }
-}

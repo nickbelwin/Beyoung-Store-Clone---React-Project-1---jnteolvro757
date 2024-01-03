@@ -79,19 +79,10 @@
 @media (max-width:520px){
     .card {
         min-height: 12.7rem;
-        max-width: 11rem;
+        max-width: 45vw;
         min-width: 8rem;
     }
     .gap-8 {
         gap: .7rem;
-    }
-}
-@media (max-width:359px){
-    .card {
-        max-width: 9rem;
-        min-width: 8rem; 
-    }
-    .footerBottom {
-        bottom: -68rem;
     }
 }
