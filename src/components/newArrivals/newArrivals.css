@@ -29,10 +29,13 @@
 @media (max-width:520px){
     .newArrivalName {
         font-weight: 500;
-        bottom: 0.4rem;
+        font-size: .8rem;
+        bottom: 2%;
+        left: 4%;
     }
     .newArrivalBoxImg {
-        width: 57vw;
+        width: 38vw;
+        margin-right: 1rem;
     }
     .mr-9 {
         margin-right: 1.25rem;

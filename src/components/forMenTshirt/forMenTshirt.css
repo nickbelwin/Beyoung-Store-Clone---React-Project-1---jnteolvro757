@@ -49,14 +49,14 @@
     .smallImg{
         display: flex;
         flex-direction: row;
-        width: 115vw;
+        width: 77vw;
         gap: 1rem;
     }
     .nameTagOfMenTshirt{
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 500;
         border-left: 2px solid yellow;
         left: 4%;
-        bottom: 10%;
+        bottom: 13%;
     }
 }
