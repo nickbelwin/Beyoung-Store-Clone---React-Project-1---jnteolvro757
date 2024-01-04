@@ -31,13 +31,10 @@
     }
     .wishlistCard {
         margin-bottom: .5rem;
+        width: 23vw;
     }
     .gap-5 {
         gap: 0.5rem;
-    }
-
-    .wishlistItems div {
-        width: 23vw;
     }
 
 }
@@ -51,8 +48,8 @@
     .gap-5 {
         gap: 0.5rem;
     }
-
-    .wishlistItems div {
+    .wishlistCard {
+        margin-bottom: .5rem;
         width: 47vw;
     }
 
