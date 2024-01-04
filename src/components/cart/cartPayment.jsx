@@ -62,27 +62,27 @@ const CartPayment = () => {
 
     // here orders are posting
     const placeOrder = async (productObj) => {
-            try {
-                setLoader(true);
-                let getData = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
-                    {
-                        method: 'POST',
-                        headers: {
-                            'projectID': 'zx5u429ht9oj',
-                            "Authorization": `Bearer ${token}`,
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ ...productObj })
-                    })
-               
-                    let data = await getData.json();
-                    console.log("placeOrder", data);
-                
+        try {
+            setLoader(true);
+            let getData = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
+                {
+                    method: 'POST',
+                    headers: {
+                        'projectID': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ ...productObj })
+                })
 
-            } catch (error) {
-                console.log(error)
-                setLoader(false);
-            }
+            let data = await getData.json();
+            console.log("placeOrder", data);
+
+
+        } catch (error) {
+            console.log(error)
+            setLoader(false);
+        }
     }
     // sending the body object for place orders
     const sendOrders = () => {
@@ -98,9 +98,10 @@ const CartPayment = () => {
         }
     }
     // here removing product after order placed
-    const removeFromCart = async (idx) => {
+    const removeFromCart = async () => {
+
         try {
-            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${idx}`,
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -119,9 +120,7 @@ const CartPayment = () => {
     }
     // passing the product id for removing product from cart after order placed
     const orderSuccess = () => {
-        allOrderProduct?.forEach((val)=>{
-            removeFromCart(val.productId);
-        })
+        removeFromCart();
         setPaymentType("");
         setDoneMsg("none");
         setOrderDone(false);
@@ -139,7 +138,7 @@ const CartPayment = () => {
         document.getElementById(payId).style.border = "1px solid black";
         setPaymentType(payId);
     }
-    
+
 
     return (<>
         <section className="addressMainbox">

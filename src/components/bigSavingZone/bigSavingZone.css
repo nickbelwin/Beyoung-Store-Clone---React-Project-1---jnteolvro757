@@ -7,7 +7,7 @@
     -ms-overflow-style: none;
 } 
 .bigImg{
-    width: 31rem;
+    width: 24.2vw;
     margin: 0 .5rem 0 0;
     scrollbar-width: none;
 }
@@ -45,9 +45,14 @@
     background-color: rgba(0, 0, 0, 0.308);
     border-radius: 50%;
 }
+@media (max-width:1280px){
+    .bigImg {
+        width: 29vw;
+    }
+}
 @media (max-width:520px){
     .bigImg {
-        width: 44vw;
+        width: 60vw;
     }
     .savingDualBox1{
         width: 98%;
@@ -56,5 +61,11 @@
     .savingDualBox2{
         width: 98%;
         margin-top: 0rem;
+    }
+    .leftArrow{
+        display: none;
+    }
+    .rightArrow{
+        display: none;
     }
 }

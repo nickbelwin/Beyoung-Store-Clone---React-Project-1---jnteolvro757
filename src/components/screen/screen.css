@@ -3,6 +3,23 @@
     max-width: 75vw;
     margin-bottom: 3.5rem;
 }
+.mainBannerImage{
+    width: 100vw;
+}
+.showOnMob{
+    -ms-overflow-style: none;
+    display: none;
+}
+.showOnMob::-webkit-scrollbar {
+    display: none;
+}
+.mobileCatImg{
+    width: 27.6vw;
+}
+.mobileBannerImg{
+    width: 49vw;
+  
+}
 .mainBanner{
     /* min-height: 80vh; */
     margin: auto;
@@ -20,11 +37,11 @@
     display: none;
 }
 .offerImg{
-    width: 63vw;
+    width: 30vw;
     margin-right: 2rem;
 }
 .container1{
-    width: 49%;
+    width: 37vw;
     border-radius: 15px;
 }
 .block1{
@@ -61,16 +78,57 @@
 .bestSellingName{
     border-left: 4px solid yellow;
 }
-
+@media (max-width:1280px){
+    .mainBox {   
+        max-width: 90vw;
+    }
+    .container1{
+        margin-right: 0.8rem;
+        width: 44vw;
+        
+    }
+}
+@media (max-width:600px){
+    .forStrips{
+        transform: scale(2);
+        margin: 1rem 0;
+    }
+    .offerImgBox{
+        margin: 1rem 0;
+    }
+    .offerImg{
+        width: 63vw;
+        margin-right: 2rem;
+    }
+    .showOnMob{
+        display: flex;
+    }
+    .mainBannerImageBox{
+        display: none;
+    }
+    
+    .mainBox {   
+        max-width: 90vw;
+    }
+    .container1Box{
+        margin: 0rem 0;
+        overflow-x: scroll;
+    }
+    .container1{
+        margin-right: .8rem;
+        width: 70vw;
+    }
+}
 @media (max-width:520px){
     .mainBanner{
         margin-bottom: 1rem;
     }
+    
     /* .mainBannerImage{
         transform: scale(1.5);
     } */
     .offerImgBox{
-        margin-top: 0rem;
+        margin-top: 1rem;
     }
     .offerImg {
         width: 19rem;

@@ -3,7 +3,7 @@ import Header from "../header/header";
 import HomeDesign from "../homePageDesign/homeDesign";
 import "./screen.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { bigSavingZone, offerZone } from "../contants/constants";
+import { bigSavingZone, mobileBannerCategory, mobileCategory, offerZone } from "../contants/constants";
 // import BigSavingZone from "../bigSavingZone/bigSavingZone";
 // import NewArrivals from "../newArrivals/newArrivals";
 // import ForMenTshirt from "../forMenTshirt/forMenTshirt";
@@ -12,6 +12,7 @@ import Footer from "../footer/footer";
 import ForWomen from "../forWomen/forWomen";
 import React from "react";
 import Loading from "../loading/loading";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const BigSavingZone = React.lazy(() => import('../bigSavingZone/bigSavingZone'));
 const NewArrivals = React.lazy(() => import('../newArrivals/newArrivals'));
@@ -24,17 +25,31 @@ const Screen = () => {
         e.stopPropagation();
         navigate(`/category/${e.target.id}/Men`);
     }
-
     return (
         <div>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<Loading />}>
                 <div>
+                    <div className="flex justify-between overflow-x-scroll showOnMob">
+                        {mobileCategory?.map((val) => {
+                            return <Link to={`/category/${val.link}/Men`}><div className="mobileCatImg p-2"><LazyLoadImage className="" src={val.img} placeholderSrc="https://www.beyoung.in/beyoung-loader.gif" /></div></Link>
+                        })}
+                    </div>
                     <div className="mainBanner">
-                        <div className="overflow-hidden w-fit relative ">
+                        <div className=" relative showOnMob">
+                            <Link to="/category/Oversized T-shirt/Men"><img src="https://www.beyoung.in/api/catalog/new-year/home/new-year-sale-banner-mobile-view.jpg" alt="" /></Link>
+                            <div className=" absolute bottom-0 ml-1 overflow-x-scroll ">
+                                <div className="flex justify-between ">
+                                {mobileBannerCategory?.map((val) => {
+                                    return <Link to={`/category/${val.link}/Men`}><div className="mobileBannerImg p-2"><LazyLoadImage className=" rounded-md" src={val.img} placeholderSrc="https://www.beyoung.in/beyoung-loader.gif" /></div></Link>
+                                })}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="overflow-hidden w-fit relative mainBannerImageBox">
                             <img className="mainBannerImage" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/SHIRT-BANNER-DESKTOP-VIEW.jpg" alt="" />
                             <Link to={`allProducts/${"shirt"}`}><div className="block1"></div></Link>
-                            <Link to={`allProducts/${"shirt"}`}><div className="block2"></div></Link>
-                            <Link to={`allProducts/${"T-shirt"}`}><div className="block3"></div></Link>
+                            <Link to={`allProducts/${"Plain shirt"}`}><div className="block2"></div></Link>
+                            <Link to={`allProducts/${"shirt"}`}><div className="block3"></div></Link>
                             <Link to={`allProducts/${"Printed Shirt"}`}><div className="block4"></div></Link>
                         </div>
                     </div>
@@ -44,9 +59,9 @@ const Screen = () => {
                                 return <img className={val.class} src={val.image} alt="offer Image" />
                             })}
                         </div>
-                        <div className="flex justify-between w-full">
-                            <Link to={`/category/${"T-shirt"}/Men`} className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/combo-home-page-banner-desktop-view-25-11.jpg" alt="" /></Link>
-                            <Link to={`/category/${"Full Sleeve T-shirt"}/Men`} className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/home-page-banner-full-sleeve-desktop-view.jpg" alt="" /></Link>
+                        <div className="flex justify-between w-full container1Box">
+                            <Link to={`/category/${"T-shirt"}/Men`} ><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/combo-home-page-banner-desktop-view-25-11.jpg" alt="" /></div></Link>
+                            <Link to={`/category/${"Full Sleeve T-shirt"}/Men`} className="container1"><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/home-page-banner-full-sleeve-desktop-view.jpg" alt="" /></div></Link>
 
                         </div>
                         <div>

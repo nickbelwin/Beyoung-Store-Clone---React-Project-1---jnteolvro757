@@ -38,15 +38,18 @@ const Signup = (props) => {
                         body: JSON.stringify({ ...user }),
     
                     });
-                if (postData.ok) {
                     let jsonData = await postData.json();
                     console.log("jsonData.tokan", jsonData.token);
                     setToken(jsonData.token);
                     closeHandler();
-                }
             } catch (error) {
                 console.log("Error:",error)
             }
+        }else if(!user.name.length >= 1){
+            alert("Enter Name");
+            
+        }else{
+            alert("minimum 4 character required for password");
         }
     }
     // const openSignup=()=>{

@@ -15,7 +15,7 @@ const ForWomen=()=>{
 
     }
     const nextImg = () => {
-        if (activeSlideIndex < newArrivalsProducts.length - 3) {
+        if (activeSlideIndex < newArrivalsProducts.length - 4) {
             setActiveSlideIndex(activeSlideIndex + 1);
         }
     }
@@ -35,7 +35,7 @@ const ForWomen=()=>{
                 {newArrivalsProducts?.map((val,idx) => {
                     return (
                         <>{idx >= activeSlideIndex ? <div key={val.name} className="mr-9">
-                        <div className="w-64 relative cursor-pointer newArrivalBox" onClick={newArrivalsHandler} id={val.id}>
+                        <div className=" relative cursor-pointer newArrivalBoxImg" onClick={newArrivalsHandler} id={val.id}>
                             <img className="rounded-lg" src={val.image} alt="" />
                             <p className="forWomenName">{val.name}</p>
                         </div>

@@ -22,6 +22,7 @@ const ShowAllProducts = () => {
     const [prevSize, setPrevSize] = useState("");
     const [colorFlag, setColorFlag] = useState(true);
     const [sizeFlag, setSizeFlag] = useState(true);
+    const [grow, setGrow] = useState("0");
     const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
     console.log(id);
 
@@ -299,6 +300,13 @@ const ShowAllProducts = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+    useEffect(()=>{
+        if(product){
+            setGrow("1")
+        }else{
+            setGrow("0")
+        }
+    },[product])
 
     return (
         <>
@@ -306,7 +314,7 @@ const ShowAllProducts = () => {
                 {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
                     <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
                 </div> : <NotFoundProduct /> : ""}
-                <div className="flex cardBox">
+                <div style={{flexGrow: grow}} className="flex cardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
                            

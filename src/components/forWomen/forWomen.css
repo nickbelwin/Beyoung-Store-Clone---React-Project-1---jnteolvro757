@@ -1,18 +1,18 @@
 .forWomenName{
     position: absolute;
-    bottom: .3rem;
-    left: .5rem;
+    bottom: 2%;
+    left: 10%;
     border-left: 4px solid yellow;
-    padding-left: .7rem;
-    font-weight: 400;
-    font-size: 1rem;
+    padding-left: 0.7rem;
+    font-weight: 500;
+    font-size: .7rem;
     
 }
 @media (max-width:520px){
     .forWomenName{
-        font-size: .7rem;
+        font-weight: 500;
     }
-    .newArrivalTag{
+    /* .newArrivalTag{
         font-size: 1rem;
-    }
+    } */
 }

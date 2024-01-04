@@ -1,9 +1,25 @@
 
+export const mobileCategory=[
+    { link:"Jogger", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/jogger.png"},
+    { link:"Sweater", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/winter.png"},
+    { link:"shirt", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/shirts.png"},
+    { link:"T-shirt", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/t-shirts.png"},
+    { link:"Pyjamas", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/pyajams.png"},
+    { link:"Chino", img:"https://www.beyoung.in/api/catalog/homepage-5-dec/icons/chinos.png"},
+]
+export const mobileBannerCategory=[
+    { link:"tracksuit", img:"https://www.beyoung.in/api/catalog/new-year/home/cards.jpg"},
+    { link:"shirt", img:"https://www.beyoung.in/api/catalog/new-year/home/cards2.jpg"},
+    { link:"Oversized T-Shirt", img:"https://www.beyoung.in/api/catalog/new-year/home/cards4.jpg"},
+    { link:"Full Sleeve T-Shirt", img:"https://www.beyoung.in/api/catalog/new-year/home/cards5.jpg"},
+    
+]
+
 export const mensCatagory=[
     {classname:"box", heading1:"Topwear",gender:"Men",list1:[{id:"Printed T-Shirt", name:"Printed T-Shirts"},{id:"Oversized T-Shirt", name:"Oversize T-Shirts"},{id:"Full Sleeve T-Shirt", name:"Full Sleeve T-Shirts"},{id:"shirt", name:"Shirts"},{id:"Plus Size Shirt", name:"Plus Size Shirts"},{id:"Polo", name:"Polo T-Shirts"},{id:"Half Sleeve T-Shirt", name:"Half Sleeve T-Shirts"},
      ],heading2:"Bottomwear",list2:[{id:"Jogger", name:"Joggers"},{id:"Chino", name:"Chino Shorts"},{id:"Shorts", name:"Boxers"},{id:"Shorts", name:"Shorts"},{id:"Cargo Pants", name:"Cargo Pants"},{id:"Pyjamas", name:"Pyjamas"},{id:"Jeans", name:"Jeans"},
      ]},
-     {classname:"box", heading1:"Theme",gender:"Men",list1:[{id:"shirt", name:"Travel"},{id:"tracksuit", name:"Gym"},{id:"Oversized T-Shirts", name:"Cartoon"},{id:"tracksuit", name:"Sports"},{id:"Oversized T-Shirts", name:"Funcky"}],heading2:"Shirts",list2:[{id:"Regular", name:"Regular Track"},{id:"hoodie", name:"Limited Edition"},],
+     {classname:"box", heading1:"Theme",gender:"Men",list1:[{id:"shirt", name:"Travel"},{id:"tracksuit", name:"Gym"},{id:"Oversized T-Shirt", name:"Cartoon"},{id:"tracksuit", name:"Sports"},{id:"Oversized T-Shirts", name:"Funcky"}],heading2:"Shirts",list2:[{id:"Regular", name:"Regular Track"},{id:"hoodie", name:"Limited Edition"},],
      },
      {classname:"box",
      heading1:"Winter Wears",gender:"Men",list1:[{id:"sweater", name:"Sweatshirts"},{id:"hoodie", name:"Hoodies"},],
@@ -23,13 +39,13 @@ export const mensCatagory=[
  ];
 
 export const offerZone=[
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/1-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/2-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/3-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/4-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/5-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/6-new.png"},
-    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-3-10/Offers-strip/desktop/7-new.png"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip6.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip3.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip4.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip9.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip2.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip7111.jpg"},
+    {class:"offerImg", image:"https://www.beyoung.in/api/catalog/homepage-5-dec/strip/eos-offer-strip8.jpg"},
 ]   
 
 export const bigSavingZone=[

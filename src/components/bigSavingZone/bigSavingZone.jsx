@@ -14,7 +14,7 @@ const BigSavingZone = (props) => {
 
     }
     const nextImg = () => {
-        if (activeSlideIndex < bigSavingZone.length - 1) {
+        if (activeSlideIndex < bigSavingZone.length - 3) {
             setActiveSlideIndex(activeSlideIndex + 1);
         }
     }

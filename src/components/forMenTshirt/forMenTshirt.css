@@ -1,8 +1,14 @@
 .bigImgMenTshirt{
-    width: 30rem;
+    width: 29vw;
 }
-.smallImg{
-    width: 15rem;
+.smallImg {
+    width: 13.8vw;
+}
+.forMenScroll{
+    -ms-overflow-style: none;
+}
+.forMenScroll::-webkit-scrollbar {
+    display: none;
 }
 .menTshirt1{
     border-radius: 7px;
@@ -11,8 +17,30 @@
     border-radius: 7px;
 }
 .nameTagOfMenTshirt{
+    font-size: 1rem;
     border-left: 2px solid yellow;
     left: -6.25rem;
+}
+@media (max-width:1280px){
+    .bigImgMenTshirt {
+        display: none;
+    }
+    .smallImg {
+        display: flex;
+        gap: 1.2rem;
+        width: 44.2vw;
+        
+    }
+    .mr-6 {
+        margin-right: 0rem;
+    }
+
+    .nameTagOfMenTshirt{
+        font-size: 2.3vw;
+        border-left: 2px solid yellow;
+        left: 7.75%;
+        bottom: 9.9%;
+    }
 }
 @media (max-width:520px){
     .bigImgMenTshirt {
@@ -21,12 +49,14 @@
     .smallImg{
         display: flex;
         flex-direction: row;
-        width: 92vw;
+        width: 115vw;
         gap: 1rem;
     }
     .nameTagOfMenTshirt{
+        font-size: 1rem;
+        font-weight: 500;
         border-left: 2px solid yellow;
-        left: 1rem;
-        bottom: 1rem;
+        left: 4%;
+        bottom: 10%;
     }
 }

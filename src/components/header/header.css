@@ -16,6 +16,7 @@
 .hamShow{
     display: none;
 }
+
 .visuallyHidden {
     position: absolute; 
     overflow: hidden; 
@@ -132,7 +133,18 @@
 }
 
 @media (max-width:1280px){
-    
+    .catMen,.catWomen,.catWinter,.catNew{
+        padding: 0vh 1vw;
+        font-size: 1rem;
+    }
+    .logo{
+        margin: 0;
+    }
+    .navBox3{
+        width: 92%;
+    }
+}
+@media (max-width:768px){
     .navNameList{
         display: none;
     }

@@ -7,8 +7,7 @@
 }
 .cardBox{
     max-width: 57vw;
-    flex-grow: 1; 
-    justify-content: center;
+    justify-content: start;
 }
 .cardName{
     text-overflow: ellipsis;

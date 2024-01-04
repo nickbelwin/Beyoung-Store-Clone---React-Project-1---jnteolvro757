@@ -5,11 +5,12 @@
     width: 28rem;
     border: 1px solid black;
 }
-@media (max-width:520px){
+@media (max-width:620px){
     .searchBox{
-        right: -4rem;
+        top: 2.1rem;
+        right: -5.2rem;
         z-index: 2;
-        width: 90vw;
+        width: 97.5vw;
         padding: .7rem;
     }
 }

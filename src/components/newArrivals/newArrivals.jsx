@@ -15,7 +15,7 @@ const NewArrivals = () => {
 
     }
     const nextImg = () => {
-        if (activeSlideIndex < newArrivalsProducts.length - 3) {
+        if (activeSlideIndex < newArrivalsProducts.length - 4) {
             setActiveSlideIndex(activeSlideIndex + 1);
         }
     }
@@ -34,11 +34,11 @@ const NewArrivals = () => {
             <div className="mb-7">
                 <p className="w-fit pl-3 font-semibold text-xl newArrivalTag">NEW ARRIVALS</p>
             </div>
-            <div className="flex overflow-x-auto h-auto newArrivalBox">
+            <div className="flex overflow-x-auto justify-between newArrivalBox">
                 {newArrivalsProducts?.map((val,idx) => {
                     return (
                         <>{idx >= activeSlideIndex ? <div key={val.name} className="mr-9">
-                        <div className="w-64 relative cursor-pointer newArrivalBox" onClick={newArrivalsHandler} id={val.id}>
+                        <div className="relative cursor-pointer newArrivalBoxImg" onClick={newArrivalsHandler} id={val.id}>
                             <img className="rounded-lg" src={val.image} alt="" />
                             <p className="newArrivalName">{val.name}</p>
                         </div>

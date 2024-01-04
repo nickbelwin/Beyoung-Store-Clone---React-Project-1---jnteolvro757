@@ -62,7 +62,6 @@ const CardDetails = (props) => {
            if(getData.ok){
             let data = await getData.json();
             console.log("patch Data",data);
-            alert("added to cart")
             getCartproducts();
             setLoader2(false);
            }
@@ -238,7 +237,7 @@ const CardDetails = (props) => {
                                     </select>
                                 </div>
                                 <div className="flex flex-wrap gap-5 ">
-                                    <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />:<img className=" w-1/4 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
+                                    <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? "":<img className=" absolute left-12 w-10 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}<img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
                                     <button onClick={buyNowHandler} className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>

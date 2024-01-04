@@ -3,26 +3,36 @@
 }
 .newArrivalBox{
     -ms-overflow-style: none;
-    gap:1rem;
+    gap:.2rem;
+    
 }
 .newArrivalBox::-webkit-scrollbar {
     display: none;
 }
 .newArrivalName{
     position: absolute;
-    bottom: 1rem;
-    left: .5rem;
+    bottom: 2%;
+    left: 10%;
     border-left: 4px solid yellow;
-    padding-left: .7rem;
-    font-weight: 400;
+    padding-left: 0.7rem;
+    font-weight: 500;
     
+}
+.newArrivalBoxImg {
+    width: 16.8vw;
+}
+@media (max-width:1280px){
+    .newArrivalBoxImg {
+        width: 20vw;
+    }
 }
 @media (max-width:520px){
     .newArrivalName {
+        font-weight: 500;
         bottom: 0.4rem;
     }
-    .w-64 {
-        width: 44vw;
+    .newArrivalBoxImg {
+        width: 57vw;
     }
     .mr-9 {
         margin-right: 1.25rem;
