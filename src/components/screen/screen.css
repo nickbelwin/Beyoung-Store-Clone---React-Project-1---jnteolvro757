@@ -149,7 +149,7 @@
     .mainBox{
         gap: 1rem;
         max-width: 100vw;
-        padding: 0 1rem;
+        padding: 0 .3rem;
     }
     .bestSelling {
        display: none;
