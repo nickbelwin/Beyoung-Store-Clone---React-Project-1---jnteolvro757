@@ -18,7 +18,8 @@ const CardDetails = (props) => {
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [totalReviews, setTotalReviews] = useState("");
-    const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""})
+    const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""});
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const { openLogin, token,setTotalCart } = useContext(AppContext);
     const navigate=useNavigate();
     const getProduct = async () => {
@@ -155,8 +156,30 @@ const CardDetails = (props) => {
     }
 
     const showImg = (e) => {
+        setActiveSlideIndex(parseInt(e.target.id));
         setDisplayImg(product[0].images[e.target.id]);
     }
+    const showNextPrevImg = () => {
+        console.log("activeSlideIndex",activeSlideIndex);
+        setDisplayImg(product[0].images[activeSlideIndex]);
+    }
+    const nextImg=()=>{
+        console.log("activeSlideIndex",activeSlideIndex);
+        if( activeSlideIndex < product[0].images.length-1){
+            setActiveSlideIndex(activeSlideIndex+1);
+            setDisplayImg(product[0].images[activeSlideIndex+1]);
+           
+        }
+    }
+    const prevImg=()=>{
+        if( activeSlideIndex > 0){
+            setActiveSlideIndex(activeSlideIndex-1);
+            setDisplayImg(product[0].images[activeSlideIndex-1]);
+        }
+    }
+    // useEffect(()=>{
+    //     showNextPrevImg();
+    // },[activeSlideIndex]);
     const checkSize = (e) => {
         let id = e.target.id;
         console.log(product);
@@ -181,7 +204,7 @@ const CardDetails = (props) => {
                     <div id={val._id} key={val._id} className="singleCard">
                         <div className=" justify-center cardImage">
                             {/* Display Images */}
-                            <div className="flex w-fit gap-x-2 justify-center flex-row p-4 ">
+                            <div className="flex w-fit gap-x-2 justify-center flex-row p-4 displayImage">
                                 <div className="flex flex-col overflow-y-scroll overflow-hidden gap-y-1 scrollImg" >
                                     {val.images?.map((val, index) => {
                                         return (
@@ -189,7 +212,11 @@ const CardDetails = (props) => {
                                         )
                                     })}
                                 </div>
-                                <img className="displayImage" src={displayImg} alt="" />
+                                
+                                    <img className="" src={displayImg} alt="" />
+                                    <div onClick={prevImg} className=" absolute w-5  cardImgArrowL"><img src="/img/leftSide.png" alt="" /></div>
+                                    <div onClick={nextImg} className=" absolute w-5  cardImgArrowR"><img src="/img/rightSide.png" alt="" /></div>
+                               
                             </div>
                             {/* Product Details Box */}
                             <div className="w-2/5 p-4 flex flex-col gap-3 productDetailBox">
