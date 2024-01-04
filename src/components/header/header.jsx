@@ -276,16 +276,8 @@ const Header = (props) => {
                                 <nav className="flex relative">
                                     {/* hamburgerBox */}
                                     <section className="flex hamburgerBox">
-                                        <div onClick={openCategory} className="mr-3  hamShow">
-                                            <input type="checkbox" id="checkbox1" class=" checkbox1 visuallyHidden" />
-                                            <label for="checkbox1">
-                                                <div class="hamburger hamburger1">
-                                                    <span class="bar bar1"></span>
-                                                    <span class="bar bar2"></span>
-                                                    <span class="bar bar3"></span>
-                                                    <span class="bar bar4"></span>
-                                                </div>
-                                            </label>
+                                        <div onClick={openCategory} className=" mr-2  hamShow">
+                                            <img className=" w-full" src="/img/hamburger-button.png" alt="" />
                                         </div>
                                         <Link to="/">
                                             <img onClick={goToHomeHandler} className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 mr-5 logo" src="/img/beyoungLogo.png" alt="" />

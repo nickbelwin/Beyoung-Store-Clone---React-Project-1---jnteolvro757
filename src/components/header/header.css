@@ -150,13 +150,17 @@
     }
     .hamShow{
         display: block;
+        width: 1.5rem;
     }
     .navBox3{
         width: 92%;
     }
 }
 @media (max-width:520px){
-    
+    .hamShow {
+        display: block;
+        width: 1.1rem;
+    }
     .navBox1 p{
         font-size: .6rem;
     }
