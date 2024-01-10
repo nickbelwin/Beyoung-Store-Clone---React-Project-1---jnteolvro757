@@ -306,7 +306,7 @@ const ShowAllProducts = () => {
         }else{
             setGrow("0")
         }
-    },[product])
+    },[product]);
 
     return (
         <>

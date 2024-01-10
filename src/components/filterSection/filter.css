@@ -19,6 +19,7 @@
     width: 14rem;
     top: 3rem;
 }
+
 .colorBox{
     align-items: center;
 }
@@ -52,7 +53,10 @@
     .mobileFilterBox{
         display: block;
     }
-    #mobileFilter{
+    #mobileFilterCover{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.564);
         transform: translateX(-100rem);
         transition: .7s;
     }
@@ -61,23 +65,39 @@
         top: 8.2rem;
         box-shadow: 0px 0px 8px -2px rgba(0,0,0,0.75);
     }
-    .filter{
+    .colorArrow{
+        transform: rotate(90deg);
+    }
+    .stickyMobileFilter{
         position: fixed;
+        top: 10%;
+    }
+    .allFiltersMobile{
+        height: 83vh;
+    }
+    .allFiltersMobile{
+        -ms-overflow-style: none;
+    }
+    .allFiltersMobile::-webkit-scrollbar {
+        display: none;
+    }
+    .filter{
+        /* position: fixed; */
         width: 80vw;
         height: 100vh;
         background-color: rgb(255, 255, 255);
         padding-top: 2rem;
-        top: -1.5rem;
+        /* top: 0%;
         z-index: 22;
-        left: 0;
+        left: 0; */
         border-right: 1px solid black;
         
     }
 }
-@media (max-width:1280px){
+/* @media (max-width:1280px){
     .mobileFilterBtn{
         display: block;
         top: 7.7rem;
         box-shadow: 0px 0px 8px -2px rgba(0,0,0,0.75);
     }
-}
+} */

@@ -145,6 +145,9 @@
     }
 }
 @media (max-width:768px){
+    .headerContainer{
+        padding: .6rem 0;
+    }
     .navNameList{
         display: none;
     }

@@ -2,18 +2,21 @@ import { useEffect } from "react";
 import "./filter.css";
 
 const Filter = (props) => {
-    const { productInfo, allColors, allSizes, closeFuncHandler, selectedColor, selectedSize } = props;
+    const { productInfo, allColors, allSizes, closeFuncHandler, checkboxHandler, selectedColor, selectedSize } = props;
 
     const openFilter = () => {
-        document.getElementById("mobileFilter").style.transform = "translateX(0rem)";
+        document.getElementById("mobileFilterCover").style.transform = "translateX(0rem)";
     }
-    const closeFilter = () => {
-        document.getElementById("mobileFilter").style.transform = "translateX(-100rem)";
+    const closeFilter = (e) => {
+        e.stopPropagation();
+        document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
     }
     const isSticky = (e) => {
         const filter = document.getElementById('filterSection');
+        const mobileFilter = document.getElementById("filterBtn");
         const scrollTop = window.scrollY;
         scrollTop >= 80 ? filter.classList.add('stickyFilter') : filter.classList.remove('stickyFilter');
+        scrollTop >= 80 ? mobileFilter.classList.add('stickyMobileFilter') : mobileFilter.classList.remove('stickyMobileFilter');
         const sticky = document.querySelector('.stickyFilter');
     };
     useEffect(() => {
@@ -22,6 +25,20 @@ const Filter = (props) => {
             window.removeEventListener('scroll', isSticky);
         };
     });
+    // let prevId="";
+    // const checkboxHandler=(idx)=>{
+    //     // let check= e.target.checked;
+    //     document.getElementById("lth").checked=false;
+    //     document.getElementById("htl").checked=false;
+    //     if(idx != prevId){
+    //         prevId=idx;
+    //         document.getElementById(idx).checked=true;
+    //     }
+    //     else{
+    //         prevId="";
+    //         document.getElementById(idx).checked=false;
+    //     }
+    // }
 
     return (
         <>
@@ -55,41 +72,61 @@ const Filter = (props) => {
                             })}
                         </div>
                     </div>
+                    <div>
+                        <div className="  text-left">
+                            <input className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" />
+                            <span className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }}>Low to high</span><br />
+                            <input className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" />
+                            <span className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }}>High to low</span>
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section className="mobileFilterBox">
-                <p onClick={openFilter} className=" fixed z-10 left-5 bg-white text-xl font-semibold rounded-md px-2 cursor-pointer mobileFilterBtn">Filter</p>
-                <div id="mobileFilter" className="bg-white mt-5 px-5 filter">
-                    <p onClick={closeFilter} className="flex mb-10 text-lg cursor-pointer font-semibold">Close</p>
-                    <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
-                    <div className=" ">
-                        <div className="flex justify-between py-3 colorBox">
-                            <span>COLOR</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
-                        </div>
-                        <div id="allColors" className="flex flex-wrap gap-2 pb-4 bottomDotted">
-                            {allColors?.map((val) => {
-                                return (
-                                    <div onClick={selectedColor} id={val} key={val} className="colorContainer">
-                                        <div onClick={closeFilter} id={val} style={{ background: val }} className="color"></div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div>
-                        <div className="flex justify-between  py-3 colorBox ">
-                            <span>SIZE</span><span id="size" onClick={closeFuncHandler}><img className="w-4 sizeArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
-                        </div>
-                        <div id="allSizes" onClick={closeFilter} className="flex flex-col gap-2 pb-4 bottomDotted">
-                            {allSizes?.map((val) => {
-                                return (
-                                    <div className="w-full p-1 text-left cursor-pointer sizeContainer" id={val} onClick={selectedSize}>{val}</div>
+            <section className="mobileFilterBox relative">
+                <p onClick={openFilter} id="filterBtn" className=" fixed z-10 left-5 bg-white text-xl font-semibold rounded-md px-2 cursor-pointer mobileFilterBtn">Filter</p>
+                <div onClick={closeFilter} id="mobileFilterCover" className=" fixed top-0 left-0 z-20">
+                    <div id="mobileFilter" className="bg-white px-5 filter">
+                        <p onClick={closeFilter} className="flex mb-1 text-lg cursor-pointer font-semibold">Close</p>
+                        <div className=" overflow-y-scroll allFiltersMobile">
+                            <p className=" text-left font-semibold text-lg ">FILTER</p>
+                            <div className=" ">
+                                <div className="flex justify-between py-1 mb-2 colorBox">
+                                    <span>COLOR</span><span id="color" onClick={closeFuncHandler}><img className="w-4 cursor-pointer colorArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
+                                </div>
+                                <div id="allColors" className="flex flex-wrap gap-2 pb-4 ">
+                                    {allColors?.map((val) => {
+                                        return (
+                                            <div onClick={selectedColor} id={val} key={val} className="colorContainer">
+                                                <div onClick={closeFilter} id={val} style={{ background: val }} className="color"></div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div>
+                                <div className="flex justify-between mt-1 py-1 colorBox ">
+                                    <span>SIZE</span><span id="size" onClick={closeFuncHandler}><img className="w-4 sizeArrow" src="https://www.beyoung.in/desktop/images/category/arrow.svg" alt="" /></span>
+                                </div>
+                                <div id="allSizes" onClick={closeFilter} className="flex flex-col gap-2 pb-4 bottomDotted">
+                                    {allSizes?.map((val) => {
+                                        return (
+                                            <div className="w-full p-1 text-left cursor-pointer sizeContainer" id={val} onClick={selectedSize}>{val}</div>
 
-                                )
-                            })}
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            <div>
+                                <div className=" mb-10  text-left">
+                                    <span onClick={closeFilter} ><input className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" /></span>
+                                    <span className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }}>Low to high</span><br />
+                                    <span onClick={closeFilter} ><input className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" /></span>
+                                    <span className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }}>High to low</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </section>
 

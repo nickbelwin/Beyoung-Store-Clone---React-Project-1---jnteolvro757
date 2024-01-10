@@ -47,10 +47,10 @@ const Screen = () => {
                         </div>
                         <div className="overflow-hidden w-fit relative mainBannerImageBox">
                             <img className="mainBannerImage" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/SHIRT-BANNER-DESKTOP-VIEW.jpg" alt="" />
-                            <Link to={`allProducts/${"shirt"}`}><div className="block1"></div></Link>
-                            <Link to={`allProducts/${"Plain shirt"}`}><div className="block2"></div></Link>
-                            <Link to={`allProducts/${"shirt"}`}><div className="block3"></div></Link>
-                            <Link to={`allProducts/${"Printed Shirt"}`}><div className="block4"></div></Link>
+                            <Link to={`/category/Oversized shirt/Men`}><div className="block1"></div></Link>
+                            <Link to={`/category/Printed shirt/Men`}><div className="block2"></div></Link>
+                            <Link to={`/category/shirt/Men`}><div className="block3"></div></Link>
+                            <Link to={`/category/Printed T-shirt/Men`}><div className="block4"></div></Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-8 mb-20  mainBox">

@@ -20,12 +20,15 @@ const ShowNavbarProducts = () => {
     const [allSizes, setAllSizes] = useState([]);
     const [selectColor, setSelectColor] = useState("");
     const [selectSize, setSelectSize] = useState("");
+    const [selectCheckbox, setSelectCheckbox] = useState("");
     const [prevColor, setPrevColor] = useState("");
     const [prevSize, setPrevSize] = useState("");
+    const [prevCheckbox, setPrevCheckbox] = useState("");
     const [colorFlag, setColorFlag] = useState(true);
     const [sizeFlag, setSizeFlag] = useState(true);
     const [favoriteItems, setFavoriteItems] = useState([]);
     const [active, setActive] = useState(false);
+    const [grow, setGrow] = useState("0");
 
     const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
 
@@ -41,7 +44,7 @@ const ShowNavbarProducts = () => {
                 }
             );
             let data = await getData.json();
-            // console.log("data: ", data);
+            console.log("data: ", data);
             setProduct(data.data);
             setFilterProducts(data.data);
             setLoader(false);
@@ -97,8 +100,8 @@ const ShowNavbarProducts = () => {
             console.log("ERROR", error);
         }
     }
-    const removeFavoriteItem= async(idx)=>{
-        try{
+    const removeFavoriteItem = async (idx) => {
+        try {
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/${idx}`,
                 {
                     method: 'DELETE',
@@ -111,7 +114,7 @@ const ShowNavbarProducts = () => {
                 }
             );
 
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -144,7 +147,7 @@ const ShowNavbarProducts = () => {
     }
     console.log(wishlistProducts);
 
-    const favoriteIconFunc = (e,productid) => {
+    const favoriteIconFunc = (e, productid) => {
         e.stopPropagation();
         let idx = e.target.id;
         console.log("idx", idx);
@@ -235,9 +238,7 @@ const ShowNavbarProducts = () => {
             allColors?.forEach((val) => {
                 document.getElementById(val).style.border = "1px solid rgb(203, 203, 203)";
             });
-
             document.getElementById(id).style.border = "1px solid blue";
-            setFilterProducts(product);
             setSelectColor(id);
             setPrevColor(id);
         }
@@ -246,7 +247,6 @@ const ShowNavbarProducts = () => {
                 document.getElementById(val).style.border = "none";
             });
             setFilterProducts(product);
-
             setSelectColor("");
             setPrevColor("");
 
@@ -291,23 +291,54 @@ const ShowNavbarProducts = () => {
             allSizes?.forEach((val) => {
                 document.getElementById(val).style.color = "";
             })
+            setFilterProducts(product);
             setPrevSize("");
             setSelectSize("");
-
-
         }
 
 
     }
+    // function for low to high and high to low checkbox
+
+    const checkboxHandler = (idx) => {
+        if (idx != prevCheckbox) {
+            document.getElementById("lth").checked = false;
+            document.getElementById("htl").checked = false;
+            setPrevCheckbox(idx)
+            document.getElementById(idx).checked = true;
+            setSelectCheckbox(idx);
+            if(idx==="lth"){
+                let data= filterProducts.sort((a,b)=>{
+                    return a.price - b.price;
+                })
+                setFilterProducts(data);
+            }
+            else if(idx==="htl"){
+                let data= filterProducts.sort((a,b)=>{
+                    return  b.price - a.price;
+                })
+                setFilterProducts(data);
+            }
+        }
+        else {
+            document.getElementById(idx).checked = false;
+            if(!selectSize && !selectColor){
+                getProducts();
+            }
+            filterColor();
+            setSelectCheckbox("");
+            setPrevCheckbox("");
+        }
+    }
     // function for get the product by selected color and size
     const filterColor = () => {
         if (selectColor && selectSize) {
-            let selectedBoth = product?.filter((val) => {
+            let selectedAllFilter = product?.filter((val) => {
                 if (selectColor === val.color && val.size.includes(selectSize)) {
                     return val;
                 }
             });
-            setFilterProducts(selectedBoth);
+            setFilterProducts(selectedAllFilter);
         }
         else if (selectColor) {
 
@@ -329,6 +360,7 @@ const ShowNavbarProducts = () => {
         }
         console.log("filterProducts", filterProducts);
     }
+
     useEffect(() => {
         filterColor()
     }, [selectColor, selectSize]);
@@ -340,29 +372,37 @@ const ShowNavbarProducts = () => {
     }, [product]);
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [id, selectColor, selectSize]);
+    }, [id, selectColor, selectSize, filterProducts]);
+
+    useEffect(()=>{
+        if(product){
+            setGrow("1")
+        }else{
+            setGrow("0")
+        }
+    },[product]);
 
     return (
         <>
             <section className="flex pb-10 relative justify-start pt-8 mt-10 navCategoryBox">
                 {!loader ? product ? <div className=" overflow-y-scroll filterSide">
-                    <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedColorMobile={selectedColorMobile} selectedSize={checkSize} />
+                    <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedColorMobile={selectedColorMobile} selectedSize={checkSize} />
                 </div> : <NotFoundProduct /> : ""}
-                <div id="allCardBoxId" className="flex flex-wrap gap-8 allCardBox">
+                <div style={{flexGrow: grow}} id="allCardBoxId" className="flex flex-wrap gap-8 allCardBox">
                     {!loader ? filterProducts?.map((val) => {
                         return (
-                          
-                                <div className=" text-left card" onClick={()=>{linkHandler(val._id)}} key={val._id}>
-                                
-                                    <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
-                                    {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}
-                                    <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.name}</span>
-                                    <span className="text-left cursor-pointer text-gray-400 text-sm">{val.subCategory}</span>
-                                    <p className="text-left flex justify-between mt-2">₹{val.price} <div class=" mr-3 wrapper" >
-                                        {wishlistProducts?.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e)=>{favoriteIconFunc(e,val._id)}}></div>}
-                                    </div></p>
-                                </div>
-                            
+
+                            <div className=" text-left card" onClick={() => { linkHandler(val._id) }} key={val._id}>
+
+                                <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
+                                {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}
+                                <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.name}</span>
+                                <span className="text-left cursor-pointer text-gray-400 text-sm">{val.subCategory}</span>
+                                <p className="text-left flex justify-between mt-2">₹{val.price} <div class=" mr-3 wrapper" >
+                                    {wishlistProducts?.includes(val._id) ? <div class="icon-wishlist in-wishlist" id={val._id + 1} onClick={(e) => { favoriteIconFunc(e, val._id) }} ></div> : <div class="icon-wishlist" id={val._id + 1} onClick={(e) => { favoriteIconFunc(e, val._id) }}></div>}
+                                </div></p>
+                            </div>
+
                         )
                     }) : <Loading />}
                 </div>

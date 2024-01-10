@@ -259,7 +259,7 @@ const Header = (props) => {
                     {/* header 2 */}
                     <section className=" bg-black z-20">
                         <header className="navBox2 flex items-center bg-black text-white justify-between py-2">
-                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-5 mr-2" src="/img/locationLogo.png" alt="" /><span className="fit-content">YOUR ORDER</span></nav>
+                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-5 mr-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0iaH7H_gERqAbi6PJ-Hpij_YJAVizDGB1ZyFULhxu6ju2TTc9xxumITsIDXuErTD_QI&usqp=CAU" alt="" /><span className="fit-content">YOUR ORDER</span></nav>
                             <nav className="flex items-center" >
                                 {!token ? <>
                                     <p onClick={() => openLogin()} className="fit-content cursor-pointer mr-4">LOG IN</p><span>|</span><p onClick={() => openSignup()} className="fit-content cursor-pointer ml-4">SIGNUP</p>
@@ -286,10 +286,10 @@ const Header = (props) => {
                                     <nav className="flex text-sm font-semibold cursor-pointer navNameList">
                                         <p id="men" className=" relative hover-bg-yellow px-6 py-2 flex items-center catMen" onMouseLeave={menOnMouseLeave} onMouseOver={menOnMouseOver} >MEN <MenCatagory status={stat} clickHandler={() => { onClickHandler() }} /></p>
                                         <p className="relative hover-bg-yellow px-6 py-2 flex  items-center catWomen" onMouseLeave={womenOnMouseLeave} onMouseOver={womenOnMouseOver}>WOMEN <WomenCatagory status2={stat2} clickHandler={() => { onClickHandler() }} /></p>
-                                        <p className="hover-bg-yellow relative px-6 py-2 flex items-center catWinter" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver} >WINTER WEARS <div style={{ display: winterDisplay }} onClick={() => { onClickHandler() }} className=" absolute flex flex-col top-10 pt-3 bg-white winterCategory"><Link to={`allProducts/sweater`}><p onClick={closeCategory} id="sweater" className=" text-sm p-2 font-medium text-left hover-text-yellow">Sweater</p></Link>
-                                            <Link to={`allProducts/hoodie`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">Hoodies</p></Link></div> </p>
+                                        <p className="hover-bg-yellow relative px-6 py-2 flex items-center catWinter" onMouseLeave={winterOnMouseLeave} onMouseOver={winterOnMouseOver} >WINTER WEARS <div style={{ display: winterDisplay }} onClick={() => { onClickHandler() }} className=" absolute flex flex-col top-10 pt-3 bg-white winterCategory"><Link to={`/category/sweater/Men`}><p onClick={closeCategory} id="sweater" className=" text-sm p-2 font-medium text-left hover-text-yellow">Sweater</p></Link>
+                                            <Link to={`/category/hoodie/Men`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">Hoodies</p></Link></div> </p>
                                         <p className="hover-bg-yellow relative px-6 py-2 flex items-center catNew" onMouseLeave={newOnMouseLeave} onMouseOver={newOnMouseOver}>NEW ARRIVALS <div style={{ display: newDisplay }} onClick={() => { onClickHandler() }} className=" absolute flex flex-col top-10 pt-3 pb-1 bg-white newCategory">
-                                            <Link to={`allProducts/t-shirt`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">New Arrivals</p></Link></div></p>
+                                            <Link to={`/category/shirt/Men`}><p onClick={closeCategory} id="hoodie" className=" text-sm p-2 text-left font-medium hover-text-yellow">New Arrivals</p></Link></div></p>
                                     </nav>
                                 </nav>
                                 <nav className="flex items-center">
