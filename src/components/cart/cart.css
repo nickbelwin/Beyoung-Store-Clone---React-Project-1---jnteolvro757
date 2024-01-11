@@ -124,6 +124,9 @@
 .backToShopBtn:hover{
     color: rgb(204, 204, 208);
 }
+.cartContinueBtn:hover{
+    transform: scale(1.05);
+}
 
 
 @media (max-width:1120px){
@@ -165,8 +168,9 @@
     .cartContinueBtn{
         padding: 1rem 3rem;
         font-size: 1rem;
-        width: 70vw;
+        width: 40vw;
     }
+    
     .addressFormBox{
         justify-content: center;
     }
@@ -189,13 +193,15 @@
         height: 1.5rem;
     } */
 }
-@media (max-width:520px){
-    .cartImgBox{
-        
-
+@media (max-width:720px){
+    .cartContinueBtn{
+        width: 70vw;
     }
+}
+@media (max-width:520px){
     .products{
         padding: .4rem;
+        
     }
     .cartProductName{
         font-size: .8rem;
@@ -214,9 +220,8 @@
         width: 70vw;
     }
     .cartContinueBtn{
-        padding: 1rem 3rem;
-        font-size: 1rem;
-        width: 70vw;
+        padding: 1rem;
+        font-size: .8rem;
     }
     .logo{
         width: 7rem;

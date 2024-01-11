@@ -4,20 +4,19 @@ import "./searchBar.css";
 const SearchBar=(props)=>{
     const {searchHandler,searchButtonHandler,displaySearch,searchInput}=props;
     const [searchIn, setSearchIn]=useState(searchInput);
-    const [searchData, setSearchData]=useState(
-        {brand: "shirt",
-        subCategory: "shirt",
-        name: "Men's Cream Shirt",
-        category: "clothes",
-        sellerTag: "trending",
-        gender: "Men",});
+    // const [searchData, setSearchData]=useState(
+    //     {brand: "shirt",
+    //     subCategory: "shirt",
+    //     name: "Men's Cream Shirt",
+    //     category: "clothes",
+    //     sellerTag: "trending",
+    //     gender: "Men",});
 
-        const searching=()=>{
-            let data= searchIn.split(" ");
-            data?.forEach((val)=>{
-                
-            })
-        }
+    //     const searching=()=>{
+    //         let data= searchIn.split(" ");
+    //         data?.forEach((val)=>{
+    //         })
+    //     }
 
     return(
         <div>

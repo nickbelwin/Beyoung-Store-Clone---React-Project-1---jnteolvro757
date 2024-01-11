@@ -3,6 +3,9 @@ import "./orders.css";
 import { AppContext } from "../../contextApi/AppContext";
 import NotFoundProduct from "../../notFound/notFound";
 import { Link } from "react-router-dom";
+import { Suspense } from "react";
+import Loading from "../loading/loading";
+
 
 const OrderDetails = () => {
     const [allOrder, setAllOrder] = useState([]);
@@ -21,9 +24,13 @@ const OrderDetails = () => {
             let data = await getData.json();
             setAllOrder(data.data)
             console.log("order", data);
+            if(data.status==="fail"){
+                setAllOrder([]);
+            }
         }
         catch (error) {
             console.log("Error", error);
+            
         }
     }
 
@@ -32,8 +39,16 @@ const OrderDetails = () => {
     }, []);
 
     return (
-        <div>
-            {token ? <>
+        <Suspense fallback={<Loading/>}>
+            <div>
+                {allOrder.length <1 ? <div className=" flex justify-center flex-col noOrderProductBox">
+                    <img className="noOrderProductImg" src="https://www.beyoung.in/images/common/empty.gif" alt="" />
+                <h1 className=" text-4xl mb-2 font-semibold underline">Haven't ordered yet?</h1>
+                <p className=" text-sm mb-3">Explore and shop the coolest fashion now!</p>
+                <Link to="/">
+                    <button className="py-3 px-40 rounded-lg bg-yellow-400  font-bold text-xl cartContinueBtn">Continue Shopping</button>
+                </Link>
+            </div>: token ? <>
                 <p className=" text-2xl font-bold p-4 bg-gray-300 mb-3">Orders</p>
                 <div className="">
                     <div className="  m-auto gap-y-4 justify-start
@@ -54,7 +69,9 @@ const OrderDetails = () => {
                     </div>
                 </div>
             </> : <NotFoundProduct />}
+            
         </div>
+        </Suspense>
     )
 }
 

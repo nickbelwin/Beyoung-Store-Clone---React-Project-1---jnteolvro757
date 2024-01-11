@@ -6,6 +6,11 @@
     /* width: 80vw; */
     /* background-color: aqua; */
 }
+.productCategory{
+    top: -1.2rem;
+    text-transform: uppercase;
+    
+}
 /* .filterSide{
     width: 48vw;
 } */
@@ -16,13 +21,16 @@
     display: none;
 }
 .allCardBox{
-    max-width: 57vw;
+    max-width: 58vw;
     flex-grow: 1;
     justify-content: center;
 }
 .card{
-    max-width: 14rem;
-    min-width: 8rem;
+    display: flex;
+    flex-direction: column;
+    width: 17rem; 
+    min-height: 15.7rem;
+    overflow: hidden;
 }
 .cardName{
     text-align: left;
@@ -74,17 +82,43 @@
       50%  {transform: scale(1.2);}
       100% {transform: scale(1);}
   }
+  @media (max-width:1920px){
+    .allCardBox{
+        display: grid;
+        max-width: 54vw;
+        grid-template-columns: repeat(3,1fr);
+    }
+    .card{
+        width: auto;
+    }
+  }
 @media (max-width:1280px){
-    .allCardBox{
-        max-width: 100%;
+    .card{
+        max-width: 15rem;
+    } 
+    .productCategory{
+        top: -2.8rem;
+        text-transform: uppercase;
+    }
+    .productCategoryInfo {
+        /* top: 1.4rem; */
+        width: 95vw;
+        position: static;
+        font-size: .8rem;
     }
     .allCardBox{
-        justify-content: center;
-    }
-    .allCardBox{
+        display: flex;
         max-width: 98vw;
         justify-content: center;
+        padding-top: 1rem;
     }
+    .productCategory{
+        /* max-width: 95vw; */
+        padding-left: .5rem;
+        margin-top: 2rem;
+        margin-bottom: .5rem;
+        padding-bottom: 0rem;
+     }
     .navCategoryBox{
         margin-bottom: 68rem;
     }
@@ -96,11 +130,19 @@
         left: 0;
     }
 }
+@media (max-width:800px){
+    .card {
+        min-height: 12.7rem;
+        max-width: 28vw;
+        min-width: 8rem; 
+        font-size: .8rem;
+    }
+}
 @media (max-width:520px){
     .card {
         min-height: 12.7rem;
         max-width: 45vw;
-        min-width: 8rem; 
+        min-width: 5rem; 
     }
     .footerBottom {
         bottom: -68rem;

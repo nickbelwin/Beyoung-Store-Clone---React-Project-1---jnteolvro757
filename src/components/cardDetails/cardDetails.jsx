@@ -4,6 +4,7 @@ import { Markup } from "interweave";
 import "./cardDetails.css"
 import { AppContext } from "../../contextApi/AppContext";
 import Loading from "../loading/loading";
+import { firstnameReview, lastnameReview, reviewNameList } from "../contants/constants";
 
 const CardDetails = (props) => {
     // const { addToCartHandler } = props;
@@ -291,6 +292,7 @@ const CardDetails = (props) => {
                                         return (
                                             <>
                                                 {idx < 5 ? <div className="mx-8 mb-10 customerReview">
+                                                    <p className=" text-left font-medium">{firstnameReview[Math.floor(Math.random() * firstnameReview.length)]} {lastnameReview[Math.floor(Math.random() * lastnameReview.length)]}</p>
                                                     <div className="flex w-6">
                                                         {[...Array(val.ratings)].map((val) => {
                                                             console.log("img");

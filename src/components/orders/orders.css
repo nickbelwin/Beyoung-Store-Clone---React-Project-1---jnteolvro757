@@ -4,8 +4,23 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
 }
-
+.noOrderProductImg{
+    width: 25%;
+    margin: auto;
+}
+@media (max-width:1280px){
+    .noOrderProductImg{
+        width: 40%;
+    }
+}
 @media (max-width:520px){
+    .text-4xl {
+        font-size: 1.8rem;
+        line-height: 1.5rem;
+    }
+    .noOrderProductImg{
+        width: 70%;
+    }
     .orderBox{
         max-width: fit-content;
         display: grid;

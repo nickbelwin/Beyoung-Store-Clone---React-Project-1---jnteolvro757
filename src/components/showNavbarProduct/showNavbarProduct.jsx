@@ -231,8 +231,14 @@ const ShowNavbarProducts = () => {
 
         }
     }
+    // to close mobile site filter section
+    const closeFilter = (e) => {
+        e.stopPropagation();
+        document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
+    }
     // function for check which color is selected
     const checkColor = (e) => {
+        closeFilter(e);
         let id = e.target.id;
         if (prevColor != id) {
             allColors?.forEach((val) => {
@@ -240,7 +246,7 @@ const ShowNavbarProducts = () => {
             });
             document.getElementById(id).style.border = "1px solid blue";
             setSelectColor(id);
-            setPrevColor(id);
+            setPrevColor(id); 
         }
         else {
             allColors?.forEach((val) => {
@@ -253,10 +259,11 @@ const ShowNavbarProducts = () => {
         }
     }
     const selectedColorMobile = (e) => {
+        closeFilter(e);
         let id = e.target.id;
         if (prevColor != id) {
             allColors?.forEach((val) => {
-                document.getElementById(val).style.border = "1px solid rgb(203, 203, 203)";
+                document.getElementById(val).style.border = "1px solid gray";
             });
 
             document.getElementById(id).style.border = "1px solid blue";
@@ -277,12 +284,15 @@ const ShowNavbarProducts = () => {
     }
     // function for check which size is selected
     const checkSize = (e) => {
+        closeFilter(e);
         let id = e.target.id;
         if (prevSize != id) {
             allSizes?.forEach((val) => {
                 document.getElementById(val).style.color = "";
+                document.getElementById(id).style.fontWeight = "400";
             })
             document.getElementById(id).style.color = "blue";
+            document.getElementById(id).style.fontWeight = "700";
             setSelectSize(id);
             setPrevSize(id);
 
@@ -290,6 +300,7 @@ const ShowNavbarProducts = () => {
         else {
             allSizes?.forEach((val) => {
                 document.getElementById(val).style.color = "";
+                document.getElementById(id).style.fontWeight = "400";
             })
             setFilterProducts(product);
             setPrevSize("");
@@ -299,7 +310,6 @@ const ShowNavbarProducts = () => {
 
     }
     // function for low to high and high to low checkbox
-
     const checkboxHandler = (idx) => {
         if (idx != prevCheckbox) {
             document.getElementById("lth").checked = false;
@@ -384,11 +394,15 @@ const ShowNavbarProducts = () => {
 
     return (
         <>
-            <section className="flex pb-10 relative justify-start pt-8 mt-10 navCategoryBox">
+            
+            <section className="flex pb-10 relative justify-start pt-7 mt-10 navCategoryBox">
+            
                 {!loader ? product ? <div className=" overflow-y-scroll filterSide">
-                    <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedColorMobile={selectedColorMobile} selectedSize={checkSize} />
+                    <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} closeFilter={closeFilter} />
                 </div> : <NotFoundProduct /> : ""}
-                <div style={{flexGrow: grow}} id="allCardBoxId" className="flex flex-wrap gap-8 allCardBox">
+                <div style={{flexGrow: grow}} id="allCardBoxId" className="flex relative mt-7 flex-wrap  gap-8 pt-24 allCardBox">
+                <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id}'s ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
+                <p className=" absolute text-left top-2 font-light text-base productCategoryInfo" > <span className=" font-semibold">{id[0].toLocaleUpperCase()}{id.slice(1,id.length)} for {gender}</span> - Buy trending <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} online in India at Beyoung. We offer a collection of {product.length-1}+ {gender.toLocaleLowerCase()}s <span className=" font-medium">{id.toLocaleLowerCase()}s</span> online. You can get ₹100 OFF on all best <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} when you spend more than ₹999, use the coupon code "BEYOUNG100". Free Shipping. COD Available.</p>
                     {!loader ? filterProducts?.map((val) => {
                         return (
 

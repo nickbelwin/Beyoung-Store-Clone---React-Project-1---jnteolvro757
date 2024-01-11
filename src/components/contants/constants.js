@@ -644,3 +644,5 @@ export const forMenTshirt=[
     }
 ]
 
+  export const firstnameReview = ["Shantabai", "Vipul", "Sahil", "Nagendra", "Atharva", "Vaibhav", "Kunal", "Yashvant", "Riya", "Sneha"];
+  export const lastnameReview= ["Satarkar", "Raut", "Rokade", "Goyal", "Manjarekar", "Tatugade", "Khanna", "Varma", "Mathur", "Tilagulkar"];

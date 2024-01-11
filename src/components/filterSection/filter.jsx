@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import "./filter.css";
 
 const Filter = (props) => {
-    const { productInfo, allColors, allSizes, closeFuncHandler, checkboxHandler, selectedColor, selectedSize } = props;
+    const { productInfo, allColors, allSizes, closeFuncHandler, checkboxHandler, selectedColor, selectedSize, closeFilter } = props;
 
     const openFilter = () => {
         document.getElementById("mobileFilterCover").style.transform = "translateX(0rem)";
     }
-    const closeFilter = (e) => {
-        e.stopPropagation();
-        document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
-    }
+    // const closeFilter = (e) => {
+    //     e.stopPropagation();
+    //     document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
+    // }
     const isSticky = (e) => {
         const filter = document.getElementById('filterSection');
         const mobileFilter = document.getElementById("filterBtn");
@@ -42,8 +42,8 @@ const Filter = (props) => {
 
     return (
         <>
-            <section className=" filterBox">
-                <div id="filterSection" className="mt-2">
+            <section className=" pr-5 mt-2 filterBox">
+                <div id="filterSection" className=" pr-3">
                     <p className=" text-left font-semibold text-lg bottomDotted">FILTER</p>
                     <div className=" ">
                         <div className="flex justify-between py-3 colorBox">
@@ -73,10 +73,13 @@ const Filter = (props) => {
                         </div>
                     </div>
                     <div>
-                        <div className="  text-left">
-                            <input className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" />
+                        <div className="flex justify-between  py-3 colorBox ">
+                            <span className=" font-semibold">SORTING</span>
+                        </div>
+                        <div className="  text-left pb-3 bottomDotted">
+                            <input className=" cursor-pointer mr-2" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" />
                             <span className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }}>Low to high</span><br />
-                            <input className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" />
+                            <input className=" cursor-pointer mr-2" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" />
                             <span className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }}>High to low</span>
                         </div>
                     </div>
@@ -97,7 +100,7 @@ const Filter = (props) => {
                                     {allColors?.map((val) => {
                                         return (
                                             <div onClick={selectedColor} id={val} key={val} className="colorContainer">
-                                                <div onClick={closeFilter} id={val} style={{ background: val }} className="color"></div>
+                                                <div id={val} style={{ background: val }} className="color"></div>
                                             </div>
                                         )
                                     })}
@@ -117,10 +120,13 @@ const Filter = (props) => {
                                 </div>
                             </div>
                             <div>
+                                <div className="flex justify-between  py-3 colorBox ">
+                                    <span className=" font-semibold">SORTING</span>
+                                </div>
                                 <div className=" mb-10  text-left">
-                                    <span onClick={closeFilter} ><input className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" /></span>
+                                    <input className=" cursor-pointer mr-2" onClick={() => { checkboxHandler("lth") }} id="lth" type="checkbox" />
                                     <span className=" cursor-pointer" onClick={() => { checkboxHandler("lth") }}>Low to high</span><br />
-                                    <span onClick={closeFilter} ><input className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" /></span>
+                                    <input className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }} id="htl" type="checkbox" />
                                     <span className=" cursor-pointer" onClick={() => { checkboxHandler("htl") }}>High to low</span>
                                 </div>
                             </div>

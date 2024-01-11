@@ -1,6 +1,6 @@
 .filterBox{
     /* position: absolute; */
-    width: 14rem;
+    width: 16rem;
     background-color: white;
     display: block;
     
@@ -16,8 +16,9 @@
 }
 .stickyFilter{
     position: fixed;
-    width: 14rem;
-    top: 3rem;
+    padding-right: 2rem;
+    width: 16rem;
+    top: 3.7rem;
 }
 
 .colorBox{

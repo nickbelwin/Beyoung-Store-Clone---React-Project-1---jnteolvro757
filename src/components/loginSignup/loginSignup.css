@@ -21,6 +21,11 @@
 .loginButton{
     background-color: rgb(0, 157, 255);
 }
+.alreadyExistsBox{
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.465);
+}
 
 @media (max-width:1280px){
     .loginFormInsideBox{

@@ -17,6 +17,7 @@ const AppContextProvider = ({children})=>{
     
     // for logout
     const logout=()=>{     
+        localStorage.removeItem("token");
         setToken("");
     }
     // for display login modal
@@ -34,7 +35,9 @@ const AppContextProvider = ({children})=>{
         setSignupStatus("none");
         setLoginStatus("none");
     }
-    
+    useEffect(()=>{
+        setToken(localStorage.getItem("token"));
+    },[]);
     return (
         <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,wishlistProducts, setWishlistProducts,userAddress, setUserAddresss,loginStatus,signupStatus}}>
             {children}

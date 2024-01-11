@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
     const { displayLogin, } = props;
-    const {login, userToken, loginStatus,setToken, closeHandler } = useContext(AppContext);
+    const [userExistErrorMsg, setUserExistErrorMsg] = useState("none");
+    const {login,setToken, loginStatus, closeHandler } = useContext(AppContext);
     const [user, setUser] = useState({ email: '', password: '', "appType": "ecommerce" })
     const handleChange2 = (e) => {
         if (e.target.id === "username") {
@@ -29,25 +30,42 @@ const Login = (props) => {
                     headers: { 'projectId': 'zx5u429ht9oj', "Content-Type": "application/json",},
                     body: JSON.stringify({...user}),
                 });
-            if (postData.ok) {
                 let jsonData = await postData.json();                
                 console.log("jsonData", jsonData);
-                setToken(jsonData.token);
+            if (postData.ok) { 
+                localStorage.setItem("token", jsonData.token);
+                setToken(localStorage.getItem("token"));
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
                 closeHandler();
-            }else{
-                alert("unable to login check your id or password..")
+            }
+            else if(jsonData.status==="fail"){
+                setUserExistErrorMsg("flex")
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
             }
         }
         catch (error) {
             console.log("error", error);
-            alert("unable to login check your id or password..")
+           
         }
 
+    }
+    const closeAlreadyExistUser = (e) => {
+        e.stopPropagation();
+        setUserExistErrorMsg("none")
     }
 
     return (
         <div style={{ display: loginStatus }} className=" absolute  loginFormOutsideBox">
+            
             <div className=" bg-white relative text-left rounded-md overflow-hidden loginFormInsideBox">
+            <div style={{ display: userExistErrorMsg }} className=" absolute w-full  h-full alreadyExistsBox">
+                <div className="flex flex-col gap-5 bg-white py-4 px-7 rounded">
+                    <p className=" font-semibold">Incorrect EmailId or Password!!!</p>
+                    <button onClick={closeAlreadyExistUser} className=" rounded py-1 bg-red-600 text-white text-sm font-semibold">Close</button>
+                </div>
+            </div>
                 <div onClick={() => closeHandler()} className=" absolute top-2 right-6 cursor-pointer text-base font-semibold">X</div>
                 <img src="https://www.beyoung.in/images/login-and-signup-image.jpg" alt="" />
                 <div className=" px-7 py-4">

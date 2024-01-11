@@ -5,7 +5,10 @@
     margin-bottom: 2.5rem;
 
 }
-
+.profileInfoBox{
+    width: 15rem;
+    border: 1px solid gray;
+}
 .wishlistTag {
     background-color: rgba(0, 0, 0, 0.03);
 }
@@ -24,7 +27,11 @@
 }
 
 
+
 @media (max-width:1280px) {
+    .noWishlistProductImg{
+        width: 38%;
+    }
     .wishlistMainBox {
         width: 98vw;
         margin-top: 1rem;
@@ -38,13 +45,19 @@
     }
 
 }
-
+@media (max-width:820px){
+    .noWishlistProductImg{
+        width: 45%;
+    }
+}
 @media (max-width:620px) {
     .wishlistMainBox {
         width: 98vw;
         margin-top: 1rem;
     }
-
+    .noWishlistProductImg{
+        width: 80%;
+    }
     .gap-5 {
         gap: 0.5rem;
     }
