@@ -54,7 +54,8 @@ const Signup = (props) => {
                 let jsonData = await postData.json();
                 console.log("jsonData.tokan", jsonData);
                 if (jsonData.status === "success") {
-                    setToken(jsonData.token);
+                    localStorage.setItem("token", jsonData.token);
+                    setToken(localStorage.getItem("token"));
                     setUser({ name: "", email: '', password: '', "appType": "ecommerce" })
                     document.getElementById("username").value = "";
                     document.getElementById("email").value = "";
