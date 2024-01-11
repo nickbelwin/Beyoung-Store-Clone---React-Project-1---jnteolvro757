@@ -52,6 +52,9 @@
     bottom: -35rem;
     left: 0;
 }
+.productCategoryInfo {
+    text-align: justify;
+}
   
   .icon-wishlist {
     cursor: pointer;
@@ -102,6 +105,7 @@
     }
     .productCategoryInfo {
         /* top: 1.4rem; */
+        text-align: justify;
         width: 95vw;
         position: static;
         font-size: .8rem;
