@@ -53,13 +53,16 @@ const Signup = (props) => {
                     });
                 let jsonData = await postData.json();
                 console.log("jsonData.tokan", jsonData);
+                // document.getElementById("username").value = "";
+                // document.getElementById("email").value = "";
+                // document.getElementById("password").value = "";
+                clearForm();
+
                 if (jsonData.status === "success") {
                     localStorage.setItem("token", jsonData.token);
                     setToken(localStorage.getItem("token"));
                     setUser({ name: "", email: '', password: '', "appType": "ecommerce" })
-                    document.getElementById("username").value = "";
-                    document.getElementById("email").value = "";
-                    document.getElementById("password").value = "";
+
                     closeHandler();
                 } else if (jsonData.status === "fail") {
                     setUserExistErrorMsg("flex");
@@ -80,12 +83,12 @@ const Signup = (props) => {
     }
     const closeAlreadyExistUser = (e) => {
         e.stopPropagation();
-        // setUser({ name: "", email: '', password: '', "appType": "ecommerce" })
-        document.getElementById("username").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
         setUserExistErrorMsg("none")
     }
+    const clearForm = () => { 
+        console.log("clearForm enter");
+        document.getElementById("signupForm").reset();
+      }
     useEffect(() => {
 
     })
@@ -112,7 +115,7 @@ const Signup = (props) => {
                 <div className=" px-7 py-4">
                     <p className=" font-semibold text-2xl mb-1 px-5">Signup</p>
                     <p className=" text-gray-500 text-xs px-5">Get Exciting Offers & Track Order</p>
-                    <form className=" flex p-3 flex-col" onSubmit={postSignup}>
+                    <form id="signupForm" className=" flex p-3 flex-col" onSubmit={postSignup}>
                         <input id="username" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="off" type="text" placeholder="Enter your name" />
                         <span style={{ display: nameErrorMsg }} className=" text-xs ml-1 mb-1 text-red-600">Please Enter Your Name!!!</span>
                         <input id="email" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="off" type="email" placeholder="Enter your email" />

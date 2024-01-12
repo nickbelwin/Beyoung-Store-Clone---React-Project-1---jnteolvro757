@@ -32,17 +32,15 @@ const Login = (props) => {
                 });
                 let jsonData = await postData.json();                
                 console.log("jsonData", jsonData);
+                clearForm();
             if (postData.ok) { 
                 localStorage.setItem("token", jsonData.token);
                 setToken(localStorage.getItem("token"));
-                document.getElementById("username").value = "";
-                document.getElementById("password").value = "";
+                
                 closeHandler();
             }
             else if(jsonData.status==="fail"){
                 setUserExistErrorMsg("flex")
-                document.getElementById("username").value = "";
-                document.getElementById("password").value = "";
             }
         }
         catch (error) {
@@ -55,6 +53,10 @@ const Login = (props) => {
         e.stopPropagation();
         setUserExistErrorMsg("none")
     }
+    const clearForm = () => { 
+        console.log("clearForm enter");
+        document.getElementById("loginForm").reset();
+      }
 
     return (
         <div style={{ display: loginStatus }} className=" absolute  loginFormOutsideBox">
@@ -71,7 +73,7 @@ const Login = (props) => {
                 <div className=" px-7 py-4">
                     <p className=" font-semibold text-2xl mb-1 px-5">Login</p>
                     <p className=" text-gray-500 text-xs px-5">Get Exciting Offers & Track Order</p>
-                    <form className=" flex p-3 flex-col" onSubmit={postLogin}>
+                    <form id="loginForm" className=" flex p-3 flex-col" onSubmit={postLogin}>
                         <input onChange={handleChange2} autoComplete="on" id="username" className=" h-10 mb-2 px-3 rounded loginsignInput" type="email" placeholder="Enter your email" />
                         <input onChange={handleChange2} id="password" className=" h-10 mb-3 px-3 rounded loginsignInput" type="password" placeholder="Enter your password" />
                         <button type="submit" autoComplete="current-password" className=" font-semibold py-3 rounded text-white loginButton">Login</button>

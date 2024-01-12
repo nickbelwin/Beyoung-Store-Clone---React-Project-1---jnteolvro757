@@ -83,19 +83,21 @@
     height: 3rem;
     font-weight: 700;
 }
-
+.cardDetailBtn{
+    grid-template-columns: repeat(2,1fr);
+}
 .cartbtn {
     display: flex;
     border-radius: 7px;
     color: white;
     font-size: .8rem;
     align-items: center;
-    padding: 0.69rem .5rem;
+    
 }
 
 .buybtn {
     align-items: center;
-    padding: .7rem 5vw;
+    
     border-radius: 7px;
     font-size: .9rem;
 }
