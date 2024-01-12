@@ -50,7 +50,7 @@ const Screen = () => {
                             <Link to={`/category/Oversized shirt/Men`}><div className="block1"></div></Link>
                             <Link to={`/category/Printed shirt/Men`}><div className="block2"></div></Link>
                             <Link to={`/category/shirt/Men`}><div className="block3"></div></Link>
-                            <Link to={`/category/Printed T-shirt/Men`}><div className="block4"></div></Link>
+                            <Link to={`*`}><div className="block4"></div></Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-8 mb-20  mainBox">
@@ -60,7 +60,7 @@ const Screen = () => {
                             })}
                         </div>
                         <div className="flex justify-between w-full container1Box">
-                            <Link to={`/category/${"T-shirt"}/Men`} ><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/combo-home-page-banner-desktop-view-25-11.jpg" alt="" /></div></Link>
+                            <Link to={`*`} ><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/combo-home-page-banner-desktop-view-25-11.jpg" alt="" /></div></Link>
                             <Link to={`/category/${"Full Sleeve T-shirt"}/Men`} className="container1"><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/home-page-banner-full-sleeve-desktop-view.jpg" alt="" /></div></Link>
 
                         </div>
