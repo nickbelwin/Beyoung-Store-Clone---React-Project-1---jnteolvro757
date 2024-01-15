@@ -9,7 +9,7 @@ const ForMenShirt= ()=>{
             <div className="flex gap-5">
                 <Link to="category/shirt/Men"><img className="rounded-lg " src="https://www.beyoung.in/api/catalog/homepage-28-11/shirts/Regular-Shirts.jpg" alt="" /></Link>
                 <Link to="category/printed shirt/Men"><img className="rounded-lg " src="https://www.beyoung.in/api/catalog/homepage-28-11/shirts/Limited-Edition.jpg" alt="" /></Link>
-                <Link to="category/shirt/Men"><img className="rounded-lg " src="https://www.beyoung.in/api/catalog/homepage-28-11/shirts/Shirt-Combos.jpg" alt="" /></Link>
+                <Link to="/upcomming"><img className="rounded-lg " src="https://www.beyoung.in/api/catalog/homepage-28-11/shirts/Shirt-Combos.jpg" alt="" /></Link>
             </div>
         </div>
     )

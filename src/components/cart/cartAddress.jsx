@@ -9,7 +9,7 @@ const UserAddress = () => {
     const [product, setProduct] = useState("");
     const [loader, setLoader] = useState(true);
     const [allInfo, setAllInfo] = useState(false);
-    const [allInfoMsg, setAllInfoMsg]=useState("none");
+    const [allInfoMsg, setAllInfoMsg] = useState("none");
     const { token, setTotalCart, setUserAddresss } = useContext(AppContext);
     const { id, qty } = useParams();
     const navigate = useNavigate();
@@ -27,6 +27,7 @@ const UserAddress = () => {
                 }
             );
             let jsonData = await getData.json();
+            setCartProduct([jsonData.data]);
             setProduct([...jsonData.data.items]);
             setLoader(false);
         }
@@ -35,10 +36,13 @@ const UserAddress = () => {
             setLoader(false);
         }
     }
-    console.log("product", product, id, qty)
+    console.log("product", product, id, qty);
+
     useEffect(() => {
-        getProduct();
-    }, [id]);
+        if (token) {
+            getProduct();
+        }
+    }, [token]);
 
     const [user, setUser] = useState({ productId: id, quantity: qty, "addressType": "HOME", });
     const [userAddress, setUserAddress] = useState({
@@ -108,29 +112,29 @@ const UserAddress = () => {
 
     console.log("user", user);
 
-    const getCartproducts = async () => {
-        console.log("getCart Token", token);
-        try {
-            setLoader(true);
-            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'projectID': 'zx5u429ht9oj',
-                        "Authorization": `Bearer ${token}`,
-                    },
-                }
-            );
-            let jsonData = await getData.json();
-            console.log("cart Data", jsonData);
-            setCartProduct([jsonData.data])
-            setLoader(false);
-        }
-        catch (error) {
-            console.log(error);
-            setLoader(false);
-        }
-    }
+    // const getCartproducts = async () => {
+    //     console.log("getCart Token", token);
+    //     try {
+    //         setLoader(true);
+    //         let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
+    //             {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     'projectID': 'zx5u429ht9oj',
+    //                     "Authorization": `Bearer ${token}`,
+    //                 },
+    //             }
+    //         );
+    //         let jsonData = await getData.json();
+    //         console.log("cart Data", jsonData);
+    //         setCartProduct([jsonData.data])
+    //         setLoader(false);
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //         setLoader(false);
+    //     }
+    // }
 
     const placeOrder = () => {
         // let update= {...user, address:{...userAddress}}
@@ -138,7 +142,7 @@ const UserAddress = () => {
         // setUser(update);
         if (userInfo.username && userInfo.street && userInfo.state && userInfo.country && userInfo.city && userInfo.zipCode) {
             setUserAddresss([userInfo, user]);
-            navigate(`/payment/:${id}/:${qty}`);
+            navigate(`/payment/${id}/${qty}`);
         }
         else {
             setAllInfoMsg("flex");
@@ -166,9 +170,9 @@ const UserAddress = () => {
         console.log("update", update);
         setUser(update);
     }, [userAddress])
-    useEffect(() => {
-        getCartproducts();
-    }, [])
+    // useEffect(() => {
+    //     getCartproducts();
+    // }, [])
     return (
         <>
             <section className="addressMainbox">
@@ -203,37 +207,62 @@ const UserAddress = () => {
                         </nav>
                     </div>
                 </header>
-                {!loader ? <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
-                    <div className=" mr-9 addressDiv">
-                        <li className=" text-left mb-6 font-semibold">SHIPPING DETAILS</li>
-                        <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
-                            <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" required />
-                            <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" required />
-                            <input onChange={UserAddressHandler} id="city" type="text" placeholder="City/District*" required />
-                            <input onChange={UserAddressHandler} id="state" type="text" placeholder="State*" required />
-                            <input onChange={UserAddressHandler} id="country" type="text" placeholder="Country*" required />
-                            <input onChange={UserAddressHandler} id="pinCode" type="number" placeholder="Pin Code*" required />
-                        </form>
+                <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
+                    <div className="flex w-2/3 justify-center cartTimeLine ">
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
+                            </div>
+                            <p className=" text-xs">My Cart</p>
+                        </div>
+                        <div className=" mb-3 cartLine"></div>
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Location-Filled.png" alt="" />
+                            </div>
+                            <p className=" text-xs ">Address</p>
+                        </div>
+                        <div className="mb-3 cartLine"></div>
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Payment-outline.png" alt="" />
+                            </div>
+                            <p className=" text-xs opacity-20">Payment</p>
+                        </div>
                     </div>
+                </div>
+                {!loader ?
+                    <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
+                        <div className=" mr-9 bg-white p-5 addressDiv">
+                            <li className=" text-left mb-6 font-semibold">Delivery Address</li>
+                            <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
+                                <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" required />
+                                <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" required />
+                                <input onChange={UserAddressHandler} id="city" type="text" placeholder="City/District*" required />
+                                <input onChange={UserAddressHandler} id="state" type="text" placeholder="State*" required />
+                                <input onChange={UserAddressHandler} id="country" type="text" placeholder="Country*" required />
+                                <input onChange={UserAddressHandler} id="pinCode" type="number" placeholder="Pin Code*" required />
+                            </form>
+                        </div>
 
-                    <div className=" bg-white py-8 productDetailsBox ">
-                        {cartProduct?.map((val) => {
-                            return (
-                                <div className="px-8">
-                                    <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
-                                    <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
-                                        <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
-                                        <p className=" flex justify-between ">Discount <span>-268</span></p>
-                                        <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
-                                        <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
+                        <div className=" bg-white py-8 productDetailsBox ">
+                            {cartProduct?.map((val) => {
+                                return (
+                                    <div className="px-8">
+                                        <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val?.items?.length} Items) </h1>
+                                        <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
+                                            <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val?.totalPrice + 268}</span></p>
+                                            <p className=" flex justify-between ">Discount <span>-268</span></p>
+                                            <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
+                                            <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
+                                        </div>
+                                        <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
+                                        <button onClick={placeOrder} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                                     </div>
-                                    <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                    <button onClick={placeOrder} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div> : <Loading />}
+                                )
+                            })}
+                        </div>
+                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}
             </section>
         </>
     )

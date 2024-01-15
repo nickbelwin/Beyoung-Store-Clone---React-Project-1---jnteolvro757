@@ -1,95 +1,147 @@
-.cartMainbox{
+.cartMainbox {
     width: 100vw;
     min-height: 100vh;
     background-color: #F4F4F6;
 }
-.headerBox{
+
+.headerBox {
     width: 100vw;
     background-color: white;
     /* border: 1px solid rgb(202, 201, 201); */
 }
-.header{
+
+.header {
     align-items: center;
     max-width: 75%;
     border: none;
     margin: auto;
 }
-.secureTag{
+
+.secureTag {
     align-items: center;
     background-color: #F4F4F6;
 }
-.emptyCartImg{
+
+.emptyCartImg {
     width: 32%;
 }
-.headerMainBox{
+
+.headerMainBox {
     justify-content: center;
     align-items: center;
     background-color: #F4F4F6;
     height: 50%;
 }
-.productDiv{
+.productDiv::-webkit-scrollbar {
+    display: none;
+}
+.productDiv {
     max-height: 75vh;
     margin: auto;
     gap: 1rem;
+    -ms-overflow-style: none;
 }
-.products{
+
+.products {
     /* width: 100%; */
     width: 50vw;
     border: 1px solid black;
 }
-.cartImgBox{
+
+.cartImgBox {
     border-bottom: 1px dotted black;
 }
-.cartImage{
+
+.cartImage {
     width: 7rem;
 }
-.removeBtn{
+
+.removeBtn {
     width: 40%;
     border-right: 1px solid black;
 }
-.removeBtn:hover{
+
+.removeBtn:hover {
     background-color: #F4F4F6;
     transition: .5s;
 }
-.moveToFovoritesBtn:hover{
+
+.moveToFovoritesBtn:hover {
     background-color: #F4F4F6;
     transition: .5s;
 }
-.borderBottom{
+
+.borderBottom {
     border-bottom: 1px solid rgb(199, 199, 199);
 }
-.productDetailsBox{
+
+.productDetailsBox {
     width: 20rem;
 }
-.checkoutBtn{
+
+.checkoutBtn {
     background-color: #51CBCC;
 }
-.addressHeader{
+
+.addressHeader {
     width: 80%;
     align-items: center;
     margin: auto;
 }
-.addressMainbox{
+
+.addressMainbox {
     margin: auto;
     width: 96%;
     min-height: 100vh;
     background-color: #F4F4F6;
 }
-.addressDiv{
+
+.addressDiv {
     width: 40vw;
     gap: 1rem;
 }
 
-.addressAllBox{
-    height: auto;
+.cartLoading {
+    align-items: center;
+    height: 85vh;
+    width: 90vw;
+    margin: auto;
 }
-.addressDiv input{
+
+.cartLineIconBox {
+    align-items: center;
+}
+
+.cartLineIcon {
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.cartTimeLine {
+    align-items: center;
+}
+
+.cartLine {
+    border: 1px solid black;
+    height: 1px;
+    width: 40%;
+}
+
+.addressAllBox {
+    height: auto;
+    background-color: white;
+    width: 75%;
+    padding-bottom: 2rem;
+}
+
+.addressDiv input {
     border: 1px solid;
     border-radius: 3px;
     padding: .5rem .5rem;
     width: 48%;
 }
-.paymentSections div{
+
+.paymentSections div {
     display: flex;
     align-items: center;
     padding: 1.29rem 1rem;
@@ -98,12 +150,14 @@
     cursor: pointer;
     /* width: 100%; */
 }
-.paymentSections div img{
+
+.paymentSections div img {
     width: 2rem;
     margin-right: .5rem;
 
 }
-.paymentMsg{
+
+.paymentMsg {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.51);
@@ -111,116 +165,172 @@
     justify-content: center;
     align-items: center;
 }
-.payCloseBtn:hover{
+
+.payCloseBtn:hover {
     background-color: red;
 }
-.backToShopBtn{
+
+.backToShopBtn {
     background-color: black;
 
 }
-.backToShopBtn:hover{
+
+.backToShopBtn:hover {
     color: rgb(204, 204, 208);
 }
-.cartContinueBtn:hover{
+
+.cartContinueBtn:hover {
     transform: scale(1.05);
 }
 
 
-@media (max-width:1120px){
-    .productDetailsBox{
-        width: 90vw;
+@media (max-width:1120px) {
+    .productDetailsBox {
+        width: 80vw;
     }
-    .products{
-       width: 90%;
+
+    .products {
+        width: 90%;
         border: 1px solid black;
     }
-    .productDiv{
-        width: 90vw;
+
+    .productDiv {
+        width: 80vw;
         max-height: 40vh;
         min-height: 30vh;
 
     }
+
     .py-8 {
         padding-top: 0rem;
         padding-bottom: 2rem;
     }
-    .secureText{
+
+    .secureText {
         font-size: 2vw;
         padding: 0;
         margin: 0;
     }
-    .secureTag{
+
+    .secureTag {
         padding: .3rem;
     }
-    .cartSecureIcon{
+
+    .cartSecureIcon {
         width: 1.2rem;
     }
-    .headerMainBox{
+
+    .headerMainBox {
         height: 75vh;
-        
+
     }
-    .emptyCartImg{
+
+    .emptyCartImg {
         width: 70vw;
     }
-    .cartContinueBtn{
+
+    .cartContinueBtn {
         padding: 1rem 3rem;
         font-size: 1rem;
         width: 40vw;
     }
-    
-    .addressFormBox{
+
+    .addressFormBox {
         justify-content: center;
     }
-    .addressDiv{
-        width: 90vw;
+
+    .addressDiv {
+        width: 80vw;
         gap: 1rem;
     }
+
     .mr-9 {
         margin-right: 0rem !important;
     }
+
     .addressDiv input {
         border: 1px solid;
         border-radius: 3px;
         padding: 0.5rem 0.5rem;
         width: 90%;
     }
+
     /* .cartProductName{
         overflow: hidden;
         text-overflow: ellipsis;
         height: 1.5rem;
     } */
 }
-@media (max-width:720px){
-    .cartContinueBtn{
-        width: 70vw;
+
+@media (max-width:820px) {
+    .addressAllBox {
+        width: 95%;
+        padding-bottom: 2rem;
+
+    }
+
+    .cartLine {
+        border: 1px solid black;
+        height: 1px;
+        width: 25%;
+    }
+
+    .cartTimeLine {
+        width: 90%;
+    }
+
+    .w-3\/4 {
+        width: 95%;
     }
 }
-@media (max-width:520px){
-    .products{
-        padding: .4rem;
-        
+
+@media (max-width:720px) {
+    .cartContinueBtn {
+        width: 70vw;
     }
-    .cartProductName{
+
+    .addressAllBox {
+        height: auto;
+        background-color: white;
+        width: 95%;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (max-width:520px) {
+    .products {
+        padding: .4rem;
+
+    }
+
+    .cartProductName {
         font-size: .8rem;
     }
+
     .cartImage {
         width: 7rem;
     }
-    .removeBtn, .moveToFovoritesBtn{
+
+    .removeBtn,
+    .moveToFovoritesBtn {
         font-size: .8rem;
     }
-    .headerMainBox{
+
+    .headerMainBox {
         height: 75vh;
-        
+
     }
-    .emptyCartImg{
+
+    .emptyCartImg {
         width: 70vw;
     }
-    .cartContinueBtn{
+
+    .cartContinueBtn {
         padding: 1rem;
         font-size: .8rem;
     }
-    .logo{
+
+    .logo {
         width: 7rem;
         height: 2rem;
     }

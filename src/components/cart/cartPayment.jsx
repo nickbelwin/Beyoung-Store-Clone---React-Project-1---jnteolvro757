@@ -53,8 +53,10 @@ const CartPayment = () => {
     console.log("allOrderProduct", allOrderProduct);
 
     useEffect(() => {
-        getCartproducts();
-    }, []);
+        if(token){
+            getCartproducts();
+        }
+    }, [token]);
 
     useEffect(() => {
         allOrders();
@@ -163,7 +165,6 @@ const CartPayment = () => {
                 </div>
             </header>
             <header className="headerBox">
-
                 <div className="flex justify-between header">
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                     <nav className="flex px-8 py-4 secureTag">
@@ -174,7 +175,32 @@ const CartPayment = () => {
                     </nav>
                 </div>
             </header>
-            {!loader ? <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox ">
+            <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
+                                <div className="flex w-2/3 justify-center cartTimeLine ">
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs">My Cart</p>
+                                    </div>
+                                    <div className=" mb-3 cartLine"></div>
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Location-Filled.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs ">Address</p>
+                                    </div>
+                                    <div className="mb-3 cartLine"></div>
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Payment-Filled.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs ">Payment</p>
+                                    </div>
+                                </div>
+                            </div>
+            {!loader ? 
+            <div className="flex flex-wrap justify-center mt-5 w-fit m-auto pt-4 addressAllBox ">
                 <div className=" mr-3  addressDiv">
                     <li className=" text-left mb-6 font-semibold">CHOOSE PAYMENT METHOD</li>
                     <div className="p-1 bg-white addressFormBox paymentBox">
@@ -219,7 +245,7 @@ const CartPayment = () => {
                     })}
 
                 </div>
-            </div> : <Loading />}
+            </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}
         </section>
     </>)
 }

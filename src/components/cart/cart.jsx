@@ -9,7 +9,7 @@ const Cart = () => {
     const [product, setProduct] = useState([]);
     const [cartProduct, setCartProduct] = useState([]);
     const [loader, setLoader] = useState(true);
-    const { token, totalCart,setTotalCart, setWishlistProducts } = useContext(AppContext);
+    const { token, totalCart, setTotalCart, setWishlistProducts } = useContext(AppContext);
     const navigate = useNavigate();
 
     const getCartproducts = async () => {
@@ -41,9 +41,9 @@ const Cart = () => {
     console.log(product);
     console.log(totalCart);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(totalCart);
-    },[totalCart]);
+    }, [totalCart]);
 
     const removeFromCart = async (idx) => {
         // let productId = parentId? parentId : e.target.parentNode.id;
@@ -129,69 +129,95 @@ const Cart = () => {
                 </div>
             </header>
             <main>
-                {!totalCart && !loader? <div className="flex flex-col headerMainBox ">
-                    <img className="emptyCartImg" src="https://www.beyoung.in/desktop/images/checkout/EMPTY%20CARTORDER%20PAGE..png" alt="" />
-                    <Link to="/">
-                    <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
-                    </Link>  
-                </div>: 
-                <>{!loader? <div className=" mt-10 checkoutProccessBox">
-                    <div className="flex flex-wrap justify-center bg-white w-fit m-auto">
-                        <div className="p-5">
-                            <div className=" productDiv  overflow-y-scroll">
-                                {product.map((val) => {
-                                    return (
-                                        <>
-                                            <div className="flex flex-col m-4 bg-white p-5 products">
-                                                <div className="flex mb-2 pb-4 cartImgBox">
-                                                    <div className="cartImage">
-                                                        <Link to={`/product-details/${val.product._id}`}><img className="" src={val.product.displayImage} alt="" /></Link>
-                                                    </div>
-                                                    <div className="flex flex-col ml-4 gap-3 ">
-                                                        <p className=" w-fit text-left cartProductName">{val.product
-                                                            .name
-                                                        }</p>
+                {!totalCart && !loader ?
+                    <div className="flex flex-col headerMainBox ">
+                        <img className="emptyCartImg" src="https://www.beyoung.in/desktop/images/checkout/EMPTY%20CARTORDER%20PAGE..png" alt="" />
+                        <Link to="/">
+                            <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
+                        </Link>
+                    </div> :
+                    <>{!loader ?
+                        <div className=" mt-10 checkoutProccessBox">
+                            <div className="flex m-auto bg-white p-3  w-3/4 justify-center">
+                                <div className="flex w-2/3 justify-center cartTimeLine ">
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs">My Cart</p>
+                                    </div>
+                                    <div className=" mb-3 cartLine"></div>
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Location-Outline.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs opacity-20">Address</p>
+                                    </div>
+                                    <div className="mb-3 cartLine"></div>
+                                    <div className=" flex flex-col justify-center cartLineIconBox">
+                                        <div className=" w-10 p-2 bg-white cartLineIcon">
+                                            <img src="https://www.beyoung.in/mobile/images/home/new/Payment-outline.png" alt="" />
+                                        </div>
+                                        <p className=" text-xs opacity-20">Payment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap justify-center w-3/4 mt-4 bg-white m-auto">
+                                <div className="p-3">
+                                    <div className=" productDiv  overflow-y-scroll">
+                                        {product.map((val) => {
+                                            return (
+                                                <>
+                                                    <div className="flex flex-col m-4 bg-white p-5 products">
+                                                        <div className="flex mb-2 pb-4 cartImgBox">
+                                                            <div className="cartImage">
+                                                                <Link to={`/product-details/${val.product._id}`}><img className="" src={val.product.displayImage} alt="" /></Link>
+                                                            </div>
+                                                            <div className="flex flex-col ml-4 gap-3 ">
+                                                                <p className=" w-fit text-left cartProductName">{val.product
+                                                                    .name
+                                                                }</p>
 
-                                                        <p className="text-start w-fit text-xl font-semibold">₹ {val.product
-                                                            .price
-                                                        }</p>
-                                                        <p className=" w-fit text-left">Size: {val.size}</p>
-                                                        <p className=" w-fit text-left">Quantity: {val.quantity}</p>
+                                                                <p className="text-start w-fit text-xl font-semibold">₹ {val.product
+                                                                    .price
+                                                                }</p>
+                                                                <p className=" w-fit text-left">Size: {val.size}</p>
+                                                                <p className=" w-fit text-left">Quantity: {val.quantity}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex">
+                                                            <button onClick={() => { removeFromCart(val.product._id) }} className=" my-2 removeBtn">REMOVE</button>
+                                                            <button onClick={() => { moveToWishlist(val.product._id) }} className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
+                                                        </div>
                                                     </div>
+                                                </>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                                <div className=" bg-white py-6 productDetailsBox ">
+                                    {cartProduct?.map((val) => {
+                                        return (
+                                            <div className="px-8">
+                                                <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
+                                                <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
+                                                    <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
+                                                    <p className=" flex justify-between ">Beyoung Discount <span>-268</span></p>
+                                                    <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
+                                                    <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
                                                 </div>
-                                                <div className="flex">
-                                                    <button onClick={()=>{removeFromCart(val.product._id)}} className=" my-2 removeBtn">REMOVE</button>
-                                                    <button onClick={()=>{moveToWishlist(val.product._id)}} className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
+                                                <div>
+                                                    <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
+                                                    <button onClick={checkOutHandler} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
                                                 </div>
                                             </div>
-                                        </>
-                                    )
-                                })}
+                                        )
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                        <div className=" bg-white py-8 productDetailsBox ">
-                            {cartProduct?.map((val) => {
-                                return (
-                                    <div className="px-8">
-                                        <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
-                                        <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
-                                            <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
-                                            <p className=" flex justify-between ">Beyoung Discount <span>-268</span></p>
-                                            <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
-                                            <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
-                                        </div>
-                                        <div>
-                                            <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                            <button onClick={checkOutHandler} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </div>: <Loading/>}</>}
-                 
-                
+                        </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}</>}
+
+
 
             </main>
 

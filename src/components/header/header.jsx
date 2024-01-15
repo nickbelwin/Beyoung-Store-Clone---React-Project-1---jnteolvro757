@@ -282,7 +282,7 @@ const Header = (props) => {
                     <section id="mainHeader" className=" relative">
                     <div id="productAddedToCart" className=" absolute z-50 w-full bottom-0 ">
                             <div className=" w-full flex justify-center ">
-                                <p className=" productAddedToCartTag w-fit py-1 px-5 rounded-md font-semibold text-white">Product added to your cart</p>
+                                <p className=" productAddedToCartTag w-fit py-1 px-5 rounded-md font-semibold ">Product added to your cart</p>
                             </div>
                         </div>
                         <header className=" flex justify-center py-2 relative headerContainer">

@@ -28,7 +28,7 @@ export const mensCatagory=[
 
  export const womenCatagory=[
     {classname:"box", heading1:"Topwear",list1:[{id:"Printed", name:"Printed T-Shirts"},{id:"Oversized T-Shirt", name:"Oversize T-Shirts"},{id:"kurti", name:"Kurti"},{id:"shirt", name:"Women Shirts"},{id:"kurta", name:"Kurta Sets"},{id:"Plus Size T-Shirt", name:"Plus Size T-Shirts"},
-     ],heading2:"Bottomwear",list2:[{id:"Shorts", name:"Boxer for Women"},{id:"Jeans", name:"Jeggings"},{id:"pant", name:"Women Jogger"},
+     ],heading2:"Bottomwear",list2:[{id:"Short", name:"Short Kurta for Women"},{id:"Jeans", name:"Jeggings"},{id:"pant", name:"Women Jogger"},
     ]},
      {classname:"box", heading1:"Theme",list1:[{id:"T-shirt", name:"Travel"},{id:"Printed", name:"Cartoon"},{id:"Oversized T-Shirt", name:"Funcky"}],
      },
