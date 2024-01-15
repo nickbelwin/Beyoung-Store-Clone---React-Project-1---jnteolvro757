@@ -251,9 +251,9 @@ const CardDetails = (props) => {
                                     <div className="boxOfColor"><div style={{ backgroundColor: `${val.color}` }} className="colorofProduct"></div></div>
                                 </div>
                                 {/* selected size */}
-                                <div className=" ">
-                                    <p className="flex">SIZE</p>
-                                    <div className="flex gap-4 mt-1 mb-1">
+                                <div className="">
+                                    <p className="flex">SIZE:</p>
+                                    <div className="flex gap-4 mt-1 mb-1 cursor-pointer">
                                         {val.size?.map((val) => {
                                             return (
                                                 <div onClick={checkSize} id={val} className="size">{val}</div>
@@ -264,7 +264,7 @@ const CardDetails = (props) => {
                                 </div>
                                 {/* selected Quantity */}
                                 <div className="w-fit my-2">
-                                    <select onChange={checkQuantity} id="quantity">
+                                    <select className=" cursor-pointer" onChange={checkQuantity} id="quantity">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -272,7 +272,7 @@ const CardDetails = (props) => {
                                     </select>
                                 </div>
                                 <div className="grid gap-2 cardDetailBtn ">
-                                    <button onClick={addToCartHandler}  className="bg-sky-400 py-4 justify-center relative font-semibold text-base cartbtn "><img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
+                                    <button onClick={addToCartHandler}  className="bg-sky-400 py-4 justify-center relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />: <div className=" w-5 h-5"><img src="https://www.beyoung.in/beyoung-loader.gif" alt="loading" /></div> } ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
                                     <button onClick={buyNowHandler} className="flex justify-center bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>

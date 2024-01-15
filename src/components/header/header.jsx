@@ -269,7 +269,7 @@ const Header = (props) => {
                     {/* header 2 */}
                     <section className=" bg-black z-20">
                         <header className="navBox2 flex items-center bg-black text-white justify-between py-2">
-                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-5 mr-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0iaH7H_gERqAbi6PJ-Hpij_YJAVizDGB1ZyFULhxu6ju2TTc9xxumITsIDXuErTD_QI&usqp=CAU" alt="" /><span className="fit-content">YOUR ORDER</span></nav>
+                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-4 mr-1" src="/img/orderIcon.png" alt="order icon" /><span className="fit-content">YOUR ORDER</span></nav>
                             <nav className="flex items-center" >
                                 {!token ? <>
                                     <p onClick={() => openLogin()} className="fit-content cursor-pointer mr-4">LOG IN</p><span>|</span><p onClick={() => openSignup()} className="fit-content cursor-pointer ml-4">SIGNUP</p>

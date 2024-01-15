@@ -314,7 +314,7 @@ const ShowNavbarProducts = () => {
         if (idx != prevCheckbox) {
             document.getElementById("lth").checked = false;
             document.getElementById("htl").checked = false;
-            setPrevCheckbox(idx)
+            setPrevCheckbox(idx);
             document.getElementById(idx).checked = true;
             setSelectCheckbox(idx);
             if(idx==="lth"){
