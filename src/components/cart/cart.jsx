@@ -45,11 +45,11 @@ const Cart = () => {
         console.log(totalCart);
     },[totalCart]);
 
-    const removeFromCart = async (e, parentId) => {
-        let productId = parentId? parentId : e.target.parentNode.id;
+    const removeFromCart = async (idx) => {
+        // let productId = parentId? parentId : e.target.parentNode.id;
         try {
             setLoader(true);
-            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${idx}`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -99,10 +99,9 @@ const Cart = () => {
             console.log("ERROR", error);
         }
     }
-    const moveToWishlist = async (e) => {
-        let productId = e.target.parentNode.id;
-        addFavotiteItems(productId);
-        removeFromCart(e,productId);
+    const moveToWishlist = async (idx) => {
+        addFavotiteItems(idx);
+        removeFromCart(idx);
 
     }
     const checkOutHandler = (e) => {
@@ -118,7 +117,7 @@ const Cart = () => {
 
     return (
         <section className="cartMainbox">
-            <header className="headerBox">
+            <header className=" mb-3 headerBox">
                 <div className="flex justify-between header">
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                     <nav className="flex px-8 py-4 secureTag">
@@ -130,7 +129,7 @@ const Cart = () => {
                 </div>
             </header>
             <main>
-                {!totalCart? <div className="flex flex-col headerMainBox ">
+                {!totalCart && !loader? <div className="flex flex-col headerMainBox ">
                     <img className="emptyCartImg" src="https://www.beyoung.in/desktop/images/checkout/EMPTY%20CARTORDER%20PAGE..png" alt="" />
                     <Link to="/">
                     <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
@@ -160,9 +159,9 @@ const Cart = () => {
                                                         <p className=" w-fit text-left">Quantity: {val.quantity}</p>
                                                     </div>
                                                 </div>
-                                                <div id={val.product._id} className="flex">
-                                                    <button onClick={removeFromCart} className=" my-2 removeBtn">REMOVE</button>
-                                                    <button onClick={moveToWishlist} className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
+                                                <div className="flex">
+                                                    <button onClick={()=>{removeFromCart(val.product._id)}} className=" my-2 removeBtn">REMOVE</button>
+                                                    <button onClick={()=>{moveToWishlist(val.product._id)}} className=" my-2 w-full moveToFovoritesBtn">MOVE TO FAVORITES</button>
                                                 </div>
                                             </div>
                                         </>

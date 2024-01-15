@@ -401,7 +401,7 @@ const ShowNavbarProducts = () => {
                 </div> : <NotFoundProduct /> : ""}
                 <div style={{flexGrow: grow}} id="allCardBoxId" className="flex relative mt-7 flex-wrap  gap-8 pt-24 allCardBox">
                 {!loader? <>
-                    <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id}'s ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
+                    <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id} ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
                 <p className=" absolute text-left top-2 font-light text-base productCategoryInfo" > <span className=" font-semibold">{id[0].toLocaleUpperCase()}{id.slice(1,id.length)} for {gender}</span> - Buy trending <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} online in India at Beyoung. We offer a collection of {product.length-1}+ {gender.toLocaleLowerCase()}s <span className=" font-medium">{id.toLocaleLowerCase()}s</span> online. You can get ₹100 OFF on all best <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} when you spend more than ₹999, use the coupon code "BEYOUNG100". Free Shipping. COD Available.</p>
                 </>: <Loading/>}
                     {!loader ? filterProducts?.map((val) => {

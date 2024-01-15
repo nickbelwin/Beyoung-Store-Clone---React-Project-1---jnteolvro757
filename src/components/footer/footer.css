@@ -52,6 +52,13 @@
     }
 }
 @media (max-width:520px){
+    .text-2xl {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .w-3\/4 {
+        width: 41%;
+    }
     .footerInfoBox1{
         flex-wrap: wrap;
     }
@@ -61,7 +68,7 @@
     .footerInfoBox1 p {
         margin-top: 0.5rem;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: .7rem;
     }
     .paymentSocialMediaBox{
         flex-direction: column;
@@ -71,10 +78,10 @@
         width: 100%;
     }
     .paymentIcon h1{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     .socialMediaIcon h1{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     .socialMediaIcon img{
         width: 1.7rem;

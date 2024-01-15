@@ -56,9 +56,9 @@ const OrderDetails = () => {
                             </Link>
                         </div> :
                             token ? <>
-                                <p className=" text-2xl font-bold p-4 bg-gray-300 mb-3">Orders</p>
+                                <p className=" text-2xl font-bold p-4 bg-gray-100 mt-3 mb-3 w-3/4 m-auto">Your Orders</p>
                                 <div className="">
-                                    <div className="  m-auto gap-y-4 justify-start orderBox">
+                                    <div className="  m-auto gap-4 justify-start w-3/4 orderBox">
                                         {allOrder?.map((val) => {
                                             return (
                                                 <div className="flex bg-gray-100 p-2 mx-4 gap-2 orderCard">
@@ -66,7 +66,7 @@ const OrderDetails = () => {
                                                     <div className="flex flex-col text-left justify-around">
                                                         <p className=" font-semibold">{val.order.items[0].product.name}</p>
                                                         <p><span className=" font-semibold">Price: </span>{val.order.items[0].product.price}</p>
-                                                        <p><span className=" font-semibold">Order Date:</span> {val.createdAt}</p>
+                                                        <p><span className=" font-semibold">Order Date:</span> { val.createdAt.slice(0,10)}</p>
                                                     </div>
                                                 </div>
 

@@ -1,5 +1,5 @@
 .orderBox{
-    max-width: fit-content;
+    /* max-width: fit-content; */
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
