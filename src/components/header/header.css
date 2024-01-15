@@ -87,6 +87,15 @@
     background-color: white;
     z-index: 10;
 }
+#productAddedToCart{
+    bottom: -2.4rem;
+    transition: .5s;
+    transform: scale(0);
+}
+.productAddedToCartTag{
+    background-color: rgb(4, 234, 4);
+}
+
 .navBox1{
     background-color: rgb(255, 217, 0);
 }

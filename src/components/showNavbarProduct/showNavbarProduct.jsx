@@ -396,17 +396,18 @@ const ShowNavbarProducts = () => {
         <>
             
             <section className="flex pb-10 relative justify-start pt-7 mt-10 navCategoryBox">
-            
                 {!loader ? product ? <div className=" overflow-y-scroll filterSide">
                     <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} closeFilter={closeFilter} />
                 </div> : <NotFoundProduct /> : ""}
                 <div style={{flexGrow: grow}} id="allCardBoxId" className="flex relative mt-7 flex-wrap  gap-8 pt-24 allCardBox">
-                <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id}'s ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
+                {!loader? <>
+                    <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id}'s ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
                 <p className=" absolute text-left top-2 font-light text-base productCategoryInfo" > <span className=" font-semibold">{id[0].toLocaleUpperCase()}{id.slice(1,id.length)} for {gender}</span> - Buy trending <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} online in India at Beyoung. We offer a collection of {product.length-1}+ {gender.toLocaleLowerCase()}s <span className=" font-medium">{id.toLocaleLowerCase()}s</span> online. You can get ₹100 OFF on all best <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} when you spend more than ₹999, use the coupon code "BEYOUNG100". Free Shipping. COD Available.</p>
+                </>: <Loading/>}
                     {!loader ? filterProducts?.map((val) => {
                         return (
 
-                            <div className=" text-left card" onClick={() => { linkHandler(val._id) }} key={val._id}>
+                            <div className=" text-left  card" onClick={() => { linkHandler(val._id) }} key={val._id}>
 
                                 <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyoung-loader.gif"} />
                                 {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}

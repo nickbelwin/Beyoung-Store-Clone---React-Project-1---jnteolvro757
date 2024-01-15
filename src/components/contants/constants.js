@@ -17,7 +17,7 @@ export const mobileBannerCategory=[
 
 export const mensCatagory=[
     {classname:"box", heading1:"Topwear",gender:"Men",list1:[{id:"Printed T-Shirt", name:"Printed T-Shirts"},{id:"Oversized T-Shirt", name:"Oversize T-Shirts"},{id:"Full Sleeve T-Shirt", name:"Full Sleeve T-Shirts"},{id:"shirt", name:"Shirts"},{id:"Plus Size Shirt", name:"Plus Size Shirts"},{id:"Polo", name:"Polo T-Shirts"},{id:"Half Sleeve T-Shirt", name:"Half Sleeve T-Shirts"},
-     ],heading2:"Bottomwear",list2:[{id:"Jogger", name:"Joggers"},{id:"Chino", name:"Chino Shorts"},{id:"Shorts", name:"Boxers"},{id:"Shorts", name:"Shorts"},{id:"Cargo Pants", name:"Cargo Pants"},{id:"Pyjamas", name:"Pyjamas"},{id:"Jeans", name:"Jeans"},
+     ],heading2:"Bottomwear",list2:[{id:"Jogger", name:"Joggers"},{id:"Chino", name:"Chino Shorts"},{id:"Shorts", name:"Boxers"},{id:"Shorts", name:"Shorts"},{id:"Jogger", name:"Cargo Pants"},{id:"Pyjamas", name:"Pyjamas"},{id:"Jeans", name:"Jeans"},
      ]},
      {classname:"box", heading1:"Theme",gender:"Men",list1:[{id:"shirt", name:"Travel"},{id:"tracksuit", name:"Gym"},{id:"Oversized T-Shirt", name:"Cartoon"},{id:"tracksuit", name:"Sports"},{id:"Oversized T-Shirts", name:"Funcky"}],heading2:"Shirts",list2:[{id:"Regular", name:"Regular Track"},{id:"hoodie", name:"Limited Edition"},],
      },

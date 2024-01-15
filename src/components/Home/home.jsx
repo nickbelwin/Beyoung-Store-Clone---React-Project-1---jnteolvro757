@@ -18,6 +18,7 @@ import UserAddress from "../cart/cartAddress";
 import Loading from "../loading/loading";
 import CartPayment from "../cart/cartPayment";
 import OrderDetails from "../orders/orders";
+import Upcomming from "../../upcomming/upcomming";
 
 const ShowAllProducts= React.lazy(()=> import('../showAllProducts/showAllProducts'));
 const ShowNavbarProducts= React.lazy(()=> import('../showNavbarProduct/showNavbarProduct'));
@@ -93,6 +94,7 @@ const Home = () => {
                         <Route path="orders" element={<OrderDetails/>} />
                         <Route path="login" element={<Login/>} />
                         <Route path="signup" element={<Signup/>} />
+                        <Route path="upcomming" element={<Upcomming/>} />
                         <Route path="*" element={<NotFoundProduct />} />
                     </Route>
 

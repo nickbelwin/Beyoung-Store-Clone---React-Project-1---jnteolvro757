@@ -12,6 +12,7 @@ const AppContextProvider = ({children})=>{
     const [loginStatus, setLoginStatus] = useState("none");
     const [signupStatus, setSignupStatus] = useState("none");
     const [totalCart, setTotalCart]= useState(0);
+    const [isAdded, setIsAdded]= useState(false);
     const [wishlistProducts, setWishlistProducts]=useState([]);
     const [userAddress, setUserAddresss]= useState([]);
     
@@ -39,7 +40,7 @@ const AppContextProvider = ({children})=>{
         setToken(localStorage.getItem("token"));
     },[]);
     return (
-        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,wishlistProducts, setWishlistProducts,userAddress, setUserAddresss,loginStatus,signupStatus}}>
+        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,isAdded,setIsAdded,wishlistProducts, setWishlistProducts,userAddress, setUserAddresss,loginStatus,signupStatus}}>
             {children}
         </AppContext.Provider>
     )

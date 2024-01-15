@@ -74,7 +74,7 @@ const Signup = (props) => {
             setNameErrorMsg("block");
         }
         else if (!user.email.includes("@gmail.com")) {
-            setEmailErrorMsg("block")
+            setEmailErrorMsg("block");
         }
         else if (!user.password.length < 4) {
             setPassErrorMsg("block");
@@ -116,9 +116,9 @@ const Signup = (props) => {
                     <p className=" font-semibold text-2xl mb-1 px-5">Signup</p>
                     <p className=" text-gray-500 text-xs px-5">Get Exciting Offers & Track Order</p>
                     <form id="signupForm" className=" flex p-3 flex-col" onSubmit={postSignup}>
-                        <input id="username" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="off" type="text" placeholder="Enter your name" />
+                        <input id="username" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="on" type="text" placeholder="Enter your name" />
                         <span style={{ display: nameErrorMsg }} className=" text-xs ml-1 mb-1 text-red-600">Please Enter Your Name!!!</span>
-                        <input id="email" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="off" type="email" placeholder="Enter your email" />
+                        <input id="email" onChange={handleChange} className=" h-10 mb-2 px-3 rounded loginsignInput" autoComplete="on" type="email" placeholder="Enter your email" />
                         <span style={{ display: emailErrorMsg }} className=" text-xs ml-1 mb-1 text-red-600">Enter Correct E-mail!!!</span>
                         <input id="password" onChange={handleChange} className=" h-10  px-3 mb-2 rounded loginsignInput" autoComplete="current-password" type="password" placeholder="Enter your password" />
                         <span style={{ display: passErrorMsg }} className=" text-xs ml-1 mb-1 text-red-600">minimum 4 character required for password!!!</span>

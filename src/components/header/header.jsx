@@ -22,7 +22,7 @@ const Header = (props) => {
     const [searchLink, setSearchLink] = useState("");
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
-    const { token, logout, openLogin, openSignup, totalCart, setTotalCart } = useContext(AppContext);
+    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,  } = useContext(AppContext);
     const searchFunc = () => {
         if (!searchFlag) {
             setSearchFlags(true);
@@ -235,6 +235,17 @@ const Header = (props) => {
         document.getElementById("sidebar").style.transform = "translateX(-100rem)"
     }
 
+    useEffect(()=>{
+        if(isAdded){
+            document.getElementById("productAddedToCart").style.transform="scale(1)"
+            setTimeout(()=>{
+                setIsAdded(false);
+                document.getElementById("productAddedToCart").style.transform="scale(0)";
+            },2000);
+            
+        }
+    },[isAdded])
+
     useEffect(() => {
         window.addEventListener('scroll', isSticky);
         return () => {
@@ -247,7 +258,6 @@ const Header = (props) => {
             <div className=" fixed w-5 h-5 z-30 ">
                 <Login />
                 <Signup />
-
             </div>
             <header className="header1 relative">
                 <section className="headerBox ">
@@ -269,7 +279,12 @@ const Header = (props) => {
                         </header>
                     </section>
                     {/* header 3 */}
-                    <section id="mainHeader">
+                    <section id="mainHeader" className=" relative">
+                    <div id="productAddedToCart" className=" absolute z-50 w-full bottom-0 ">
+                            <div className=" w-full flex justify-center ">
+                                <p className=" productAddedToCartTag w-fit py-1 px-5 rounded-md font-semibold text-white">Product added to your cart</p>
+                            </div>
+                        </div>
                         <header className=" flex justify-center py-2 relative headerContainer">
                             <MobileViewCategory closeCategory={closeCategory} />
                             <div className="navBox3 flex justify-between items-center">

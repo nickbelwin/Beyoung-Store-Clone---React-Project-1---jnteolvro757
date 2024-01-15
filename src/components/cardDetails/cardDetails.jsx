@@ -15,13 +15,15 @@ const CardDetails = (props) => {
     const [review, setReview] = useState("");
     const [loader, setLoader] = useState(true);
     const [loader2, setLoader2] = useState(false);
+    const [addedwithCartBtn, setAddedwithCartBtn] = useState(false);
     const [displayImg, setDisplayImg] = useState("");
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [totalReviews, setTotalReviews] = useState("");
     const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""});
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-    const { openLogin, token,setTotalCart } = useContext(AppContext);
+    const [sizeErrorMsg, setSizeErrorMsg] = useState("none");
+    const { openLogin, token,setTotalCart,  setIsAdded } = useContext(AppContext);
     const navigate=useNavigate();
     const getProduct = async () => {
         try {
@@ -65,7 +67,7 @@ const CardDetails = (props) => {
             let data = await getData.json();
             console.log("patch Data",data);
             getCartproducts();
-            setLoader2(false);
+            setIsAdded(true);
            }
            setLoader2(false);
         }
@@ -79,14 +81,12 @@ const CardDetails = (props) => {
     const addToCartHandler = () => {
         if (token ) {
             if(selectedQuantity && selectedSize){
+                setSizeErrorMsg("none");
                 console.log(selectedQuantity,selectedSize);
                 patchCart();
             }
-            else if(!selectedQuantity){
-                alert("please select quantity")
-            }
             else if(!selectedSize){
-                alert("please select size")
+                setSizeErrorMsg("block");
             }
         }else{
             openLogin();
@@ -94,7 +94,7 @@ const CardDetails = (props) => {
     }
     useEffect(()=>{
         setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
-    },[selectedQuantity,selectedSize])
+    },[selectedQuantity,selectedSize]);
     const buyNowHandler=()=>{
         if (token ) {
             if(selectedQuantity && selectedSize){
@@ -186,8 +186,13 @@ const CardDetails = (props) => {
         console.log(product);
         product[0].size?.forEach((val) => {
             document.getElementById(val).style.border = "2px solid black";
+            document.getElementById(val).style.backgroundColor="white";
+            document.getElementById(val).style.color="black";
         })
         document.getElementById(id).style.border = "2px solid blue";
+        document.getElementById(id).style.backgroundColor="#B9BEC1";
+        document.getElementById(id).style.color="black";
+        setSizeErrorMsg("none");
         setSelectedSize(id);
     }
     const checkQuantity = (e) => {
@@ -202,7 +207,8 @@ const CardDetails = (props) => {
         <>
             {!loader ? Array.isArray(product) && product?.map((val) => {
                 return (
-                    <div id={val._id} key={val._id} className="singleCard">
+                    <div id={val._id} key={val._id} className=" singleCard">
+                        
                         <div className=" justify-center cardImage">
                             {/* Display Images */}
                             <div className="flex w-fit gap-x-2 justify-center flex-row p-4 displayImage">
@@ -245,7 +251,7 @@ const CardDetails = (props) => {
                                     <div className="boxOfColor"><div style={{ backgroundColor: `${val.color}` }} className="colorofProduct"></div></div>
                                 </div>
                                 {/* selected size */}
-                                <div>
+                                <div className=" ">
                                     <p className="flex">SIZE</p>
                                     <div className="flex gap-4 mt-1 mb-1">
                                         {val.size?.map((val) => {
@@ -254,6 +260,7 @@ const CardDetails = (props) => {
                                             )
                                         })}
                                     </div>
+                                    <p style={{display:sizeErrorMsg}} className=" text-left text-red-600">Please select size!!!</p>
                                 </div>
                                 {/* selected Quantity */}
                                 <div className="w-fit my-2">
@@ -264,9 +271,9 @@ const CardDetails = (props) => {
                                         <option value="4">4</option>
                                     </select>
                                 </div>
-                                <div className="grid cardDetailBtn ">
-                                    <button onClick={addToCartHandler}  className="bg-sky-400 relative font-semibold text-base cartbtn ">{!loader2? "":<img className=" absolute left-12 w-10 mr-2" src="https://www.beyoung.in/beyoung-loader.gif" />}<img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
-                                    <button onClick={buyNowHandler} className="flex bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
+                                <div className="grid gap-2 cardDetailBtn ">
+                                    <button onClick={addToCartHandler}  className="bg-sky-400 py-4 justify-center relative font-semibold text-base cartbtn "><img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
+                                    <button onClick={buyNowHandler} className="flex justify-center bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>
                         </div>
