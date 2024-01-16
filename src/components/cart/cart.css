@@ -38,13 +38,15 @@
 .productDiv {
     max-height: 75vh;
     margin: auto;
+    margin-bottom: 1rem;
     gap: 1rem;
     -ms-overflow-style: none;
 }
 
 .products {
     /* width: 100%; */
-    width: 50vw;
+    width: 41vw;
+    
     border: 1px solid black;
 }
 
@@ -145,7 +147,7 @@
     display: flex;
     align-items: center;
     padding: 1.29rem 1rem;
-    margin: .2rem;
+    margin: 0.2rem .5rem;
     background-color: #F4F4F6;
     cursor: pointer;
     /* width: 100%; */
@@ -188,16 +190,20 @@
     .productDetailsBox {
         width: 80vw;
     }
-
+    .w-3\/4 {
+        width: 94%;
+    }
     .products {
+        margin: auto;
         width: 90%;
+        margin-bottom: 1rem;
         border: 1px solid black;
     }
 
     .productDiv {
         width: 80vw;
         max-height: 40vh;
-        min-height: 30vh;
+        min-height: 23vh;
 
     }
 
@@ -213,7 +219,7 @@
     }
 
     .secureTag {
-        padding: .3rem;
+        padding: 1rem;
     }
 
     .cartSecureIcon {
@@ -238,9 +244,14 @@
     .addressFormBox {
         justify-content: center;
     }
-
+    .p-5 {
+        padding: 0.25rem;
+    }
+    .mr-3 {
+        margin-right: 0rem;
+    }
     .addressDiv {
-        width: 80vw;
+        width: 90vw;
         gap: 1rem;
     }
 
@@ -268,7 +279,10 @@
         padding-bottom: 2rem;
 
     }
-
+    .py-6 {
+        padding-top: 0rem;
+        padding-bottom: 1.5rem;
+    }
     .cartLine {
         border: 1px solid black;
         height: 1px;
@@ -288,12 +302,35 @@
     .cartContinueBtn {
         width: 70vw;
     }
-
+    .products {
+        margin: auto;
+        padding: 0.4rem;
+        width: 100%;
+        margin-bottom: 1rem;
+        border: 1px solid black;
+    }
+    .productDiv {
+        padding-top: 1rem;
+        width: 90vw;
+    }
+    .gap-3 {
+        gap: 0rem;
+    }
+    .pb-4 {
+        padding-bottom: 0.3rem;
+    }
+    .px-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
     .addressAllBox {
         height: auto;
         background-color: white;
         width: 95%;
         padding-bottom: 2rem;
+    }
+    .productDetailsBox {
+        width: 95vw;
     }
 }
 

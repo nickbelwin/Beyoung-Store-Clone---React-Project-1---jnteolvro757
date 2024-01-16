@@ -207,7 +207,7 @@ const UserAddress = () => {
                         </nav>
                     </div>
                 </header>
-                <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
+                {!loader? <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
                     <div className="flex w-2/3 justify-center cartTimeLine ">
                         <div className=" flex flex-col justify-center cartLineIconBox">
                             <div className=" w-10 p-2 bg-white cartLineIcon">
@@ -230,11 +230,11 @@ const UserAddress = () => {
                             <p className=" text-xs opacity-20">Payment</p>
                         </div>
                     </div>
-                </div>
+                </div>:""}
                 {!loader ?
                     <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
                         <div className=" mr-9 bg-white p-5 addressDiv">
-                            <li className=" text-left mb-6 font-semibold">Delivery Address</li>
+                            <li className=" text-left mb-6 font-semibold pl-5 pt-2">Delivery Address</li>
                             <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
                                 <input onChange={UserAddressHandler} id="username" type="text" placeholder="Your Name*" required />
                                 <input onChange={UserAddressHandler} id="street" type="text" placeholder="Address (House No, Building,Street,Area)*" required />
