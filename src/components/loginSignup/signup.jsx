@@ -10,7 +10,7 @@ const Signup = (props) => {
     const [emailErrorMsg, setEmailErrorMsg] = useState("none");
     const [passErrorMsg, setPassErrorMsg] = useState("none");
     const [userExistErrorMsg, setUserExistErrorMsg] = useState("none");
-    const { userToken, signupStatus, setToken, closeHandler } = useContext(AppContext);
+    const { userToken, signupStatus, setToken, closeHandler,setNameOfUser } = useContext(AppContext);
     const handleChange = (e) => {
         if (e.target.id === "username") {
             if (e.target.value.length >= 1) {
@@ -60,6 +60,8 @@ const Signup = (props) => {
 
                 if (jsonData.status === "success") {
                     localStorage.setItem("token", jsonData.token);
+                    localStorage.setItem("name", jsonData.data.user.name);
+                    setNameOfUser(localStorage.getItem("name"));
                     setToken(localStorage.getItem("token"));
                     setUser({ name: "", email: '', password: '', "appType": "ecommerce" })
 

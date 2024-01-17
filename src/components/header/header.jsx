@@ -22,7 +22,7 @@ const Header = (props) => {
     const [searchLink, setSearchLink] = useState("");
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
-    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,  } = useContext(AppContext);
+    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,nameOfUser  } = useContext(AppContext);
     const searchFunc = () => {
         if (!searchFlag) {
             setSearchFlags(true);
@@ -228,7 +228,6 @@ const Header = (props) => {
 
     }
     const openCategory = () => {
-
         document.getElementById("sidebar").style.transform = "translateX(0rem)";
     }
     const closeCategory = () => {
@@ -274,7 +273,7 @@ const Header = (props) => {
                                 {!token ? <>
                                     <p onClick={() => openLogin()} className="fit-content cursor-pointer mr-4">LOG IN</p><span>|</span><p onClick={() => openSignup()} className="fit-content cursor-pointer ml-4">SIGNUP</p>
                                 </>
-                                    : <p className="fit-content cursor-pointer ml-4 font-semibold" onClick={() => logout()}>Logout</p>}
+                                    : <><span className=" cursor-default font-semibold">&#128512; Hello, {nameOfUser}</span><span className=" ml-4 cursor-default">|</span><p className="fit-content cursor-pointer ml-4 font-semibold" onClick={() => logout()}>Logout</p></>}
                             </nav>
                         </header>
                     </section>

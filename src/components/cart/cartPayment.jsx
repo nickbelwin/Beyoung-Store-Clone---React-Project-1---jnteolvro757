@@ -10,7 +10,7 @@ const CartPayment = () => {
     const [paymentType, setPaymentType] = useState("");
     const [orderDone, setOrderDone] = useState(false);
     const [loader, setLoader] = useState(true);
-    const { token, setTotalCart, userAddress } = useContext(AppContext);
+    const { token,totalCart, setTotalCart, userAddress } = useContext(AppContext);
     const [payMsg, setPayMsg] = useState("none");
     const [doneMsg, setDoneMsg] = useState("none");
     const { id, qty } = useParams();
@@ -33,7 +33,7 @@ const CartPayment = () => {
             );
             let jsonData = await getData.json();
             console.log("cart Data", jsonData);
-            setCartProduct([jsonData.data])
+            setCartProduct([jsonData.data]);
             setLoader(false);
         }
         catch (error) {
@@ -41,6 +41,7 @@ const CartPayment = () => {
             setLoader(false);
         }
     }
+    console.log("cartProduct=>",cartProduct);
     // for update the product id and quantity for place orders
     const allOrders = () => {
         let update = { ...userAddress[1] };
@@ -126,6 +127,7 @@ const CartPayment = () => {
         setPaymentType("");
         setDoneMsg("none");
         setOrderDone(false);
+        setTotalCart(0);
         navigate("/");
     }
     // selecting payment method
@@ -140,8 +142,6 @@ const CartPayment = () => {
         document.getElementById(payId).style.border = "1px solid black";
         setPaymentType(payId);
     }
-
-
     return (<>
         <section className="addressMainbox">
             <header className=" sticky top-0 left-0 headerBox">
@@ -176,7 +176,7 @@ const CartPayment = () => {
                 </div>
             </header>
             {/* cart timeline */}
-            { userAddress[0]?.username? 
+            { userAddress[0]?.username && totalCart ? 
                 <>
                 {!loader? <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
                     <div className="flex w-2/3 justify-center cartTimeLine ">
@@ -247,7 +247,16 @@ const CartPayment = () => {
                             })}
     
                         </div>
-                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}</>: <Navigate to="/" />}
+                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}
+                </>
+                    : 
+                    <div className="flex flex-col headerMainBox ">
+                        <img className="emptyCartImg" src="/img/orderPlaced.webp" alt="" />
+                        <p className=" font-semibold text-2xl mb-4">Order Placed Successfully!!!</p>
+                        <Link to="/">
+                            <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
+                        </Link>
+                    </div> }
         </section>
     </>)
 }

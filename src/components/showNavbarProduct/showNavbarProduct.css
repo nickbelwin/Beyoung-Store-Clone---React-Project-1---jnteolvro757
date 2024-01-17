@@ -33,6 +33,9 @@
     min-height: 15.7rem;
     overflow: hidden;
 }
+.card span img{
+    min-height: 19.7rem;
+}
 .cardName{
     text-align: left;
     white-space: nowrap;

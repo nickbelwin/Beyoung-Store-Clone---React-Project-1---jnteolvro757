@@ -392,6 +392,12 @@ const ShowNavbarProducts = () => {
         }
     },[product]);
 
+    useEffect(()=>{
+        filterProducts.map((val)=>{
+            console.log(val.displayImage);
+        });
+    },[filterProducts]);
+
     return (
         <>
             
@@ -407,9 +413,8 @@ const ShowNavbarProducts = () => {
                 </>: ""}
                     {!loader ? filterProducts?.map((val) => {
                         return (
-
                             <div className=" text-left  card" onClick={() => { linkHandler(val._id) }} key={val._id}>
-                                <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyloader-long.gif"} />
+                                <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyloader-long.gif"} alt={val.subCategory} />
                                 {/* <img className="image rounded-md" src={val.displayImage} alt="" />  */}
                                 <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.name}</span>
                                 <span className="text-left cursor-pointer text-gray-400 text-sm">{val.subCategory}</span>

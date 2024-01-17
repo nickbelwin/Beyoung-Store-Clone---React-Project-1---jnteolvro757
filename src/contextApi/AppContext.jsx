@@ -15,6 +15,7 @@ const AppContextProvider = ({children})=>{
     const [isAdded, setIsAdded]= useState(false);
     const [wishlistProducts, setWishlistProducts]=useState([]);
     const [userAddress, setUserAddresss]= useState([]);
+    const [nameOfUser, setNameOfUser]=useState("");
     
     // for logout
     const logout=()=>{     
@@ -38,9 +39,10 @@ const AppContextProvider = ({children})=>{
     }
     useEffect(()=>{
         setToken(localStorage.getItem("token"));
+        setNameOfUser(localStorage.getItem("name"));
     },[]);
     return (
-        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,isAdded,setIsAdded,wishlistProducts, setWishlistProducts,userAddress, setUserAddresss,loginStatus,signupStatus}}>
+        <AppContext.Provider value= {{openLogin,openSignup,logout,closeHandler,token,setToken,totalCart,setTotalCart,isAdded,setIsAdded,wishlistProducts, setWishlistProducts,userAddress, setUserAddresss,loginStatus,signupStatus,nameOfUser, setNameOfUser}}>
             {children}
         </AppContext.Provider>
     )

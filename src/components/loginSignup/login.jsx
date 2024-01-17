@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Login = (props) => {
     const { displayLogin, } = props;
     const [userExistErrorMsg, setUserExistErrorMsg] = useState("none");
-    const {login,setToken, loginStatus, closeHandler } = useContext(AppContext);
+    const {login,setToken, loginStatus, closeHandler,nameOfUser, setNameOfUser } = useContext(AppContext);
     const [emailErrorMsg, setEmailErrorMsg] = useState("none");
     const [passErrorMsg, setPassErrorMsg] = useState("none");
     const [user, setUser] = useState({ email: '', password: '', "appType": "ecommerce" });
@@ -44,6 +44,8 @@ const Login = (props) => {
                     clearForm();
                 if (jsonData.status === "success") { 
                     localStorage.setItem("token", jsonData.token);
+                    localStorage.setItem("name", jsonData.data.name);
+                    setNameOfUser(localStorage.getItem("name"));
                     setToken(localStorage.getItem("token"));
                     closeHandler();
                 }

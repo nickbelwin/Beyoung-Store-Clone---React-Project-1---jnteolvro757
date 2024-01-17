@@ -215,7 +215,7 @@ const Cart = () => {
                                     })}
                                 </div>
                             </div>
-                        </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}</>}
+                        </div> : <div className="flex justify-center cartLoading"><img className=" w-10" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}</>}
 
 
 

@@ -10,7 +10,7 @@ const UserAddress = () => {
     const [loader, setLoader] = useState(true);
     const [allInfo, setAllInfo] = useState(false);
     const [allInfoMsg, setAllInfoMsg] = useState("none");
-    const { token, setTotalCart, setUserAddresss } = useContext(AppContext);
+    const { token, setTotalCart,totalCart, setUserAddresss } = useContext(AppContext);
     const { id, qty } = useParams();
     const navigate = useNavigate();
 
@@ -231,7 +231,7 @@ const UserAddress = () => {
                         </div>
                     </div>
                 </div>:""}
-                {!loader ?
+                {totalCart? !loader ?
                     <div className=" mt-10 w-fit m-auto addressAllBox">
                         <div className=" mr-9 bg-white p-5 addressDiv">
                             <li className=" text-left mb-6 font-semibold pl-5 pt-2">Delivery Address</li>
@@ -261,7 +261,15 @@ const UserAddress = () => {
                                 )
                             })}
                         </div>
-                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}
+                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>:
+                    <div className="flex flex-col headerMainBox ">
+                        <img className="emptyCartImg" src="/img/orderPlaced.webp" alt="" />
+                        <p className=" font-semibold text-2xl mb-4">Order Placed Successfully!!!</p>
+                        <Link to="/">
+                            <button className="py-3 px-40 rounded-lg bg-black text-white font-bold text-xl cartContinueBtn">Continue Shopping</button>
+                        </Link>
+                    </div>}
+                
             </section>
         </>
     )
