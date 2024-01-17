@@ -8,7 +8,7 @@ import { firstnameReview, lastnameReview, reviewNameList } from "../contants/con
 
 const CardDetails = (props) => {
     // const { addToCartHandler } = props;
-    
+
     const { id } = useParams();
     console.log("id: ", id);
     const [product, setProduct] = useState("");
@@ -20,11 +20,11 @@ const CardDetails = (props) => {
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [totalReviews, setTotalReviews] = useState("");
-    const [addToCartData, setAddToCartData]=useState({quantity : 1,size : ""});
+    const [addToCartData, setAddToCartData] = useState({ quantity: 1, size: "" });
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const [sizeErrorMsg, setSizeErrorMsg] = useState("none");
-    const { openLogin, token,setTotalCart,  setIsAdded } = useContext(AppContext);
-    const navigate=useNavigate();
+    const { openLogin, token, setTotalCart, setIsAdded } = useContext(AppContext);
+    const navigate = useNavigate();
     const getProduct = async () => {
         try {
             setLoader(true);
@@ -48,28 +48,30 @@ const CardDetails = (props) => {
     }
 
     const patchCart = async () => {
-        console.log("patchCart Token",token, "id: ",id);
+        console.log("patchCart Token", token, "id: ", id);
         setLoader2(true);
-        console.log(JSON.stringify({...addToCartData}))
+        console.log(JSON.stringify({ ...addToCartData }))
         try {
-            
+
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${id}`,
                 {
                     method: 'PATCH',
-                    headers: { 'projectId': 'zx5u429ht9oj',
-                    "Authorization": `Bearer ${token}`,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json' },
-                    body: JSON.stringify({...addToCartData})
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...addToCartData })
                 }
             );
-           if(getData.ok){
-            let data = await getData.json();
-            console.log("patch Data",data);
-            getCartproducts();
-            setIsAdded(true);
-           }
-           setLoader2(false);
+            if (getData.ok) {
+                let data = await getData.json();
+                console.log("patch Data", data);
+                getCartproducts();
+                setIsAdded(true);
+            }
+            setLoader2(false);
         }
         catch (error) {
             console.log(error);
@@ -79,36 +81,36 @@ const CardDetails = (props) => {
     }
 
     const addToCartHandler = () => {
-        if (token ) {
-            if(selectedQuantity && selectedSize){
+        if (token) {
+            if (selectedQuantity && selectedSize) {
                 setSizeErrorMsg("none");
-                console.log(selectedQuantity,selectedSize);
+                console.log(selectedQuantity, selectedSize);
                 patchCart();
             }
-            else if(!selectedSize){
+            else if (!selectedSize) {
                 setSizeErrorMsg("block");
             }
-        }else{
+        } else {
             openLogin();
         }
     }
-    useEffect(()=>{
-        setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
-    },[selectedQuantity,selectedSize]);
-    const buyNowHandler=()=>{
-        if (token ) {
-            if(selectedQuantity && selectedSize){
-                setAddToCartData({...addToCartData, quantity:selectedQuantity, size:selectedSize});
+    useEffect(() => {
+        setAddToCartData({ ...addToCartData, quantity: selectedQuantity, size: selectedSize });
+    }, [selectedQuantity, selectedSize]);
+    const buyNowHandler = () => {
+        if (token) {
+            if (selectedQuantity && selectedSize) {
+                setAddToCartData({ ...addToCartData, quantity: selectedQuantity, size: selectedSize });
                 patchCart();
                 navigate("/cart");
             }
-            else if(!selectedQuantity){
+            else if (!selectedQuantity) {
                 alert("please select quantity")
             }
-            else if(!selectedSize){
+            else if (!selectedSize) {
                 alert("please select size")
             }
-        }else{
+        } else {
             openLogin();
         }
     }
@@ -131,7 +133,7 @@ const CardDetails = (props) => {
         }
     }
     console.log(addToCartData);
-    
+
     const getProductReview = async () => {
         try {
             setLoader(true);
@@ -161,21 +163,21 @@ const CardDetails = (props) => {
         setDisplayImg(product[0].images[e.target.id]);
     }
     const showNextPrevImg = () => {
-        console.log("activeSlideIndex",activeSlideIndex);
+        console.log("activeSlideIndex", activeSlideIndex);
         setDisplayImg(product[0].images[activeSlideIndex]);
     }
-    const nextImg=()=>{
-        console.log("activeSlideIndex",activeSlideIndex);
-        if( activeSlideIndex < product[0].images.length-1){
-            setActiveSlideIndex(activeSlideIndex+1);
-            setDisplayImg(product[0].images[activeSlideIndex+1]);
-           
+    const nextImg = () => {
+        console.log("activeSlideIndex", activeSlideIndex);
+        if (activeSlideIndex < product[0].images.length - 1) {
+            setActiveSlideIndex(activeSlideIndex + 1);
+            setDisplayImg(product[0].images[activeSlideIndex + 1]);
+
         }
     }
-    const prevImg=()=>{
-        if( activeSlideIndex > 0){
-            setActiveSlideIndex(activeSlideIndex-1);
-            setDisplayImg(product[0].images[activeSlideIndex-1]);
+    const prevImg = () => {
+        if (activeSlideIndex > 0) {
+            setActiveSlideIndex(activeSlideIndex - 1);
+            setDisplayImg(product[0].images[activeSlideIndex - 1]);
         }
     }
     // useEffect(()=>{
@@ -186,12 +188,12 @@ const CardDetails = (props) => {
         console.log(product);
         product[0].size?.forEach((val) => {
             document.getElementById(val).style.border = "2px solid black";
-            document.getElementById(val).style.backgroundColor="white";
-            document.getElementById(val).style.color="black";
+            document.getElementById(val).style.backgroundColor = "white";
+            document.getElementById(val).style.color = "black";
         })
         document.getElementById(id).style.border = "2px solid blue";
-        document.getElementById(id).style.backgroundColor="#B9BEC1";
-        document.getElementById(id).style.color="black";
+        document.getElementById(id).style.backgroundColor = "#B9BEC1";
+        document.getElementById(id).style.color = "black";
         setSizeErrorMsg("none");
         setSelectedSize(id);
     }
@@ -208,7 +210,7 @@ const CardDetails = (props) => {
             {!loader ? Array.isArray(product) && product?.map((val) => {
                 return (
                     <div id={val._id} key={val._id} className=" singleCard">
-                        
+
                         <div className=" justify-center cardImage">
                             {/* Display Images */}
                             <div className="flex w-fit gap-x-2 justify-center flex-row p-4 displayImage">
@@ -219,11 +221,13 @@ const CardDetails = (props) => {
                                         )
                                     })}
                                 </div>
-                                
-                                    <img className="" src={displayImg} alt="" />
-                                    <div onClick={prevImg} className=" absolute w-5  cardImgArrowL"><img src="/img/leftSide.png" alt="" /></div>
-                                    <div onClick={nextImg} className=" absolute w-5  cardImgArrowR"><img src="/img/rightSide.png" alt="" /></div>
-                               
+
+                                <img src={displayImg} alt="" />
+                                <img onClick={prevImg} className="  absolute cardImgMobArrowL" src="/img/previousBtn.png" alt="" />
+                                <img onClick={nextImg} className="  absolute cardImgMobArrowR" src="/img/nextBtn.png" alt="" />
+                                <div onClick={prevImg} className=" absolute w-5  cardImgArrowL"><img src="/img/leftSide.png" alt="" /></div>
+                                <div onClick={nextImg} className=" absolute w-5  cardImgArrowR"><img src="/img/rightSide.png" alt="" /></div>
+
                             </div>
                             {/* Product Details Box */}
                             <div className="w-2/5 p-4 flex flex-col gap-3 productDetailBox">
@@ -260,7 +264,7 @@ const CardDetails = (props) => {
                                             )
                                         })}
                                     </div>
-                                    <p style={{display:sizeErrorMsg}} className=" text-left text-red-600">Please select size!!!</p>
+                                    <p style={{ display: sizeErrorMsg }} className=" text-left text-red-600">Please select size!!!</p>
                                 </div>
                                 {/* selected Quantity */}
                                 <div className="w-fit my-2">
@@ -272,7 +276,7 @@ const CardDetails = (props) => {
                                     </select>
                                 </div>
                                 <div className="grid gap-2 cardDetailBtn ">
-                                    <button onClick={addToCartHandler}  className="bg-sky-400 py-4 justify-center relative font-semibold text-base cartbtn ">{!loader2? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" />: <div className=" w-5 h-5"><img src="https://www.beyoung.in/beyoung-loader.gif" alt="loading" /></div> } ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
+                                    <button onClick={addToCartHandler} className="bg-sky-400 py-4 justify-center relative font-semibold text-base cartbtn ">{!loader2 ? <img src="https://www.beyoung.in/desktop/images/product-details-2/cart.svg" alt="" /> : <div className=" w-5 h-5"><img src="https://www.beyoung.in/beyoung-loader.gif" alt="loading" /></div>} ADD<span className="text-sky-400">_</span>TO<span className="text-sky-400">_</span>CART</button>
                                     <button onClick={buyNowHandler} className="flex justify-center bg-yellow-400 font-semibold buybtn"><img src="https://www.beyoung.in/desktop/images/product-details-2/arrow-right.svg" alt="" />BUY<span className="text-yellow-400">_</span>NOW</button>
                                 </div>
                             </div>
@@ -322,7 +326,7 @@ const CardDetails = (props) => {
 
                     </div>
                 )
-            }) : <Loading/>}
+            }) : <Loading />}
         </>
     )
 }

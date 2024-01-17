@@ -51,13 +51,32 @@
         margin-bottom: 1.5rem;
     }
 }
+@media (max-width:1000px){
+    .downloadBtnBox{
+        grid-template-columns: 1fr;
+        width: 15vw;
+    }
+}
+@media (max-width:800px){
+    .text-2xl {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+    .footerInfoBox1{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
 @media (max-width:520px){
+    
     .text-2xl {
         font-size: 1rem;
         line-height: 1rem;
     }
     .w-3\/4 {
         width: 41%;
+    }
+    .mb-10 {
+        margin-bottom: 0.5rem;
     }
     .footerInfoBox1{
         flex-wrap: wrap;
@@ -69,6 +88,7 @@
         margin-top: 0.5rem;
         font-weight: 600;
         font-size: .7rem;
+
     }
     .paymentSocialMediaBox{
         flex-direction: column;
@@ -88,10 +108,16 @@
         margin-right: .8rem;
     }
     .footerMainBox {
-        width: 86vw; 
+        width: 95vw; 
         margin: auto;
     }
-    .mb-10 {
-        margin-bottom: 1.5rem;
+}
+@media (max-width:300px){
+    .footerInfoBox1{
+        grid-template-columns: repeat(2,1fr);
     }
+    .footerInfoBox1 p{
+        line-height: .8rem;
+    }
+    
 }

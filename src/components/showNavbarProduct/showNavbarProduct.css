@@ -1,7 +1,7 @@
 .navCategoryBox{
     margin: auto;
     justify-content: center;
-    margin-bottom: 35rem;
+    margin-bottom: 38rem;
     min-height: 80vh;
     /* width: 80vw; */
     /* background-color: aqua; */
@@ -50,7 +50,8 @@
     cursor: default;
     background-color: black;
     width: 100vw;
-    bottom: -35rem;
+    z-index: 11;
+    bottom: -38rem;
     left: 0;
 }
 .productCategoryInfo {
@@ -125,7 +126,7 @@
         padding-bottom: 0rem;
      }
     .navCategoryBox{
-        margin-bottom: 68rem;
+        margin-bottom: 50rem;
     }
     .footerBottom{
         cursor: default;
@@ -136,11 +137,17 @@
     }
 }
 @media (max-width:800px){
+    .footerBottom {
+        bottom: -54rem;
+    }
     .card {
         min-height: 12.7rem;
         max-width: 28vw;
         min-width: 8rem; 
         font-size: .8rem;
+    }
+    .navCategoryBox{
+        margin-bottom: 54rem;
     }
 }
 @media (max-width:520px){
@@ -149,8 +156,11 @@
         max-width: 45vw;
         min-width: 5rem; 
     }
+    .navCategoryBox{
+        margin-bottom: 45rem;
+    }
     .footerBottom {
-        bottom: -68rem;
+        bottom: -45rem;
     }
     .gap-8 {
         gap: .7rem;
