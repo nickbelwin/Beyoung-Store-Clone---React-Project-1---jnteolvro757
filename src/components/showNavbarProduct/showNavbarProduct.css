@@ -140,6 +140,9 @@
     }
 }
 @media (max-width:800px){
+    .card span img{
+        min-height: 14.7rem;
+    }
     .footerBottom {
         bottom: -54rem;
     }
@@ -167,6 +170,11 @@
     }
     .gap-8 {
         gap: .7rem;
+    }
+}
+@media (max-width:350px){
+    .card span img{
+        min-height: 8.7rem;
     }
 }
 
