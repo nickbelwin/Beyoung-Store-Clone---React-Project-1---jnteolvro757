@@ -232,7 +232,7 @@ const UserAddress = () => {
                     </div>
                 </div>:""}
                 {!loader ?
-                    <div className="flex flex-wrap justify-center mt-10 w-fit m-auto addressAllBox">
+                    <div className=" mt-10 w-fit m-auto addressAllBox">
                         <div className=" mr-9 bg-white p-5 addressDiv">
                             <li className=" text-left mb-6 font-semibold pl-5 pt-2">Delivery Address</li>
                             <form className=" flex flex-wrap mb-4 gap-x-4 gap-y-5 addressFormBox">
@@ -244,7 +244,6 @@ const UserAddress = () => {
                                 <input onChange={UserAddressHandler} id="pinCode" type="number" placeholder="Pin Code*" required />
                             </form>
                         </div>
-
                         <div className=" bg-white py-8 productDetailsBox ">
                             {cartProduct?.map((val) => {
                                 return (

@@ -99,7 +99,6 @@
 }
 
 .addressDiv {
-    width: 40vw;
     gap: 1rem;
 }
 
@@ -130,8 +129,10 @@
 }
 
 .addressAllBox {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
     height: auto;
-    background-color: white;
+    /* background-color: white; */
     width: 75%;
     padding-bottom: 2rem;
 }
@@ -187,6 +188,12 @@
 
 
 @media (max-width:1120px) {
+    .addressAllBox {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 2rem;
+
+    }
     .productDetailsBox {
         width: 80vw;
     }
@@ -275,7 +282,6 @@
 
 @media (max-width:820px) {
     .addressAllBox {
-        width: 95%;
         padding-bottom: 2rem;
 
     }

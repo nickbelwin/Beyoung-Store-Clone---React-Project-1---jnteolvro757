@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Loading from "../loading/loading";
 import "./cart.css";
 import { AppContext } from "../../contextApi/AppContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 const CartPayment = () => {
     const [cartProduct, setCartProduct] = useState([]);
@@ -176,77 +176,78 @@ const CartPayment = () => {
                 </div>
             </header>
             {/* cart timeline */}
-            {!loader? <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
-                <div className="flex w-2/3 justify-center cartTimeLine ">
-                    <div className=" flex flex-col justify-center cartLineIconBox">
-                        <div className=" w-10 p-2 bg-white cartLineIcon">
-                            <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
-                        </div>
-                        <p className=" text-xs">My Cart</p>
-                    </div>
-                    <div className=" mb-3 cartLine"></div>
-                    <div className=" flex flex-col justify-center cartLineIconBox">
-                        <div className=" w-10 p-2 bg-white cartLineIcon">
-                            <img src="https://www.beyoung.in/mobile/images/home/new/Location-Filled.png" alt="" />
-                        </div>
-                        <p className=" text-xs ">Address</p>
-                    </div>
-                    <div className="mb-3 cartLine"></div>
-                    <div className=" flex flex-col justify-center cartLineIconBox">
-                        <div className=" w-10 p-2 bg-white cartLineIcon">
-                            <img src="https://www.beyoung.in/mobile/images/home/new/Payment-Filled.png" alt="" />
-                        </div>
-                        <p className=" text-xs ">Payment</p>
-                    </div>
-                </div>
-            </div>:""}
-            {!loader ?
-                <div className="flex flex-wrap justify-center mt-5 w-fit m-auto pt-4 addressAllBox ">
-                    <div className=" mr-3  addressDiv">
-                        <li className=" text-left mb-6 pl-3 font-semibold">CHOOSE PAYMENT METHOD</li>
-                        <div className="p-1 bg-white addressFormBox paymentBox">
-                            <div onClick={selectPaymentOption} className="paymentSections">
-                                <div id="paytm" className="" ><img src="https://i.pinimg.com/736x/0f/9c/e9/0f9ce975819decad215620187697cdc1.jpg" alt="" />Pay With Paytm</div>
-                                <div id="debitCredit"><img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png" alt="" /> Debit/Credit Card</div>
-                                <div id="upi"><img src="https://getlogo.net/wp-content/uploads/2020/10/unified-payments-interface-upi-logo-vector.png" alt="" />UPI</div>
-                                <div id="wallet"><img src="https://i.pinimg.com/1200x/98/4d/d7/984dd7865d06ed7186f77236ae88c3ad.jpg" alt="" />Wallet <span className=" text-xs ml-1 mt-1 font-bold text-green-500"> Offers</span></div>
-                                <div id="netbanking"><img src="https://cdn-icons-png.flaticon.com/512/4826/4826345.png" alt="" />Netbanking</div>
-                                <div id="cashOnDelivery"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGUF_c53BOG-qECe5Z3hLDLGM9kQDlLXuYg&usqp=CAU" alt="" />Cash on Delivery</div>
+            { userAddress[0]?.username? 
+                <>
+                {!loader? <div className="flex m-auto bg-white p-3 mt-4  w-3/4 justify-center">
+                    <div className="flex w-2/3 justify-center cartTimeLine ">
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
                             </div>
-                            <div></div>
+                            <p className=" text-xs">My Cart</p>
+                        </div>
+                        <div className=" mb-3 cartLine"></div>
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Location-Filled.png" alt="" />
+                            </div>
+                            <p className=" text-xs ">Address</p>
+                        </div>
+                        <div className="mb-3 cartLine"></div>
+                        <div className=" flex flex-col justify-center cartLineIconBox">
+                            <div className=" w-10 p-2 bg-white cartLineIcon">
+                                <img src="https://www.beyoung.in/mobile/images/home/new/Payment-Filled.png" alt="" />
+                            </div>
+                            <p className=" text-xs ">Payment</p>
                         </div>
                     </div>
-
-                    <div className="mt-12 mb-12 productDetailsBox ">
-                        <div className=" bg-white mb-3 p-3">
-                            <div className="flex">
-                                <img className=" w-8" src="/img/checked.png" alt="" />
-                                <p ><span className=" font-semibold">Deliver To: </span>{userAddress[0]?.username}</p>
-                            </div>
-                            <p className=" text-left "><span className=" font-semibold">Address: </span>{userAddress[0]?.street}</p>
-                            <p className=" text-left "><span className=" font-semibold">City: </span> {userAddress[0]?.city}</p>
-                            <p className=" text-left"><span className=" font-semibold">State: </span> {userAddress[0]?.state}</p>
-
-                        </div>
-                        {cartProduct?.map((val) => {
-                            return (
-                                <div className=" bg-white p-3">
-
-                                    <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
-                                    <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
-                                        <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
-                                        <p className=" flex justify-between ">Discount <span>-268</span></p>
-                                        <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
-                                        <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
-                                    </div>
-                                    <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
-                                    <button onClick={sendOrders} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                </div>:""}
+                {!loader ?
+                    <div className="flex flex-wrap justify-center mt-5 w-fit m-auto pt-4 addressAllBox ">
+                        <div className=" mr-3 mb-3 p-3 bg-white  addressDiv">
+                            <li className=" text-left mb-6 pl-3 font-semibold">CHOOSE PAYMENT METHOD</li>
+                            <div className="p-1 addressFormBox paymentBox">
+                                <div onClick={selectPaymentOption} className="paymentSections">
+                                    <div id="paytm" className="" ><img src="https://i.pinimg.com/736x/0f/9c/e9/0f9ce975819decad215620187697cdc1.jpg" alt="" />Pay With Paytm</div>
+                                    <div id="debitCredit"><img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png" alt="" /> Debit/Credit Card</div>
+                                    <div id="upi"><img src="https://getlogo.net/wp-content/uploads/2020/10/unified-payments-interface-upi-logo-vector.png" alt="" />UPI</div>
+                                    <div id="wallet"><img src="https://i.pinimg.com/1200x/98/4d/d7/984dd7865d06ed7186f77236ae88c3ad.jpg" alt="" />Wallet <span className=" text-xs ml-1 mt-1 font-bold text-green-500"> Offers</span></div>
+                                    <div id="netbanking"><img src="https://cdn-icons-png.flaticon.com/512/4826/4826345.png" alt="" />Netbanking</div>
+                                    <div id="cashOnDelivery"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUGUF_c53BOG-qECe5Z3hLDLGM9kQDlLXuYg&usqp=CAU" alt="" />Cash on Delivery</div>
                                 </div>
-                            )
-                        })}
-
-                    </div>
-                </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}
+                                <div></div>
+                            </div>
+                        </div>
+    
+                        <div className=" productDetailsBox ">
+                            <div className=" bg-white flex flex-col justify-around mb-3 h-44 p-3">
+                                <div className="flex">
+                                    <img className=" w-8" src="/img/checked.png" alt="" />
+                                    <p ><span className=" font-semibold">Deliver To: </span>{userAddress[0]?.username}</p>
+                                </div>
+                                <p className=" text-left "><span className=" font-semibold">Address: </span>{userAddress[0]?.street}</p>
+                                <p className=" text-left "><span className=" font-semibold">City: </span> {userAddress[0]?.city}</p>
+                                <p className=" text-left"><span className=" font-semibold">State: </span> {userAddress[0]?.state}</p>
+    
+                            </div>
+                            {cartProduct?.map((val) => {
+                                return (
+                                    <div className=" bg-white px-3 py-8">
+                                        <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
+                                        <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
+                                            <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
+                                            <p className=" flex justify-between ">Discount <span>-268</span></p>
+                                            <p className=" flex justify-between">Shipping <span className=" text-green-500 font-medium"><span className=" text-black text-sm line-through font-normal">₹49</span> Free</span></p>
+                                            <p className=" flex justify-between mb-2">Cart Total <span>{val.totalPrice}</span></p>
+                                        </div>
+                                        <h2 className=" flex justify-between my-1">Total Amount <span>{val.totalPrice}</span></h2>
+                                        <button onClick={sendOrders} className=" w-full py-3 text-white font-semibold mt-4 checkoutBtn">CHECKOUT SECURELY</button>
+                                    </div>
+                                )
+                            })}
+    
+                        </div>
+                    </div> : <div className="flex justify-center cartLoading"><img className="" src="https://www.beyoung.in/beyoung-loader.gif" /></div>}</>: <Navigate to="/" />}
         </section>
     </>)
 }
