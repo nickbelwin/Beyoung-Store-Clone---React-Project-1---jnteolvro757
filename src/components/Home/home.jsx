@@ -10,7 +10,6 @@ import { Route, Routes } from "react-router-dom";
 import React from "react";
 import NotFoundProduct from "../../notFound/notFound";
 import AppContextProvider from "../../contextApi/AppContext";
-import Favorites from "../../favorites/favorites";
 import Login from "../loginSignup/login";
 import Signup from "../loginSignup/signup";
 import UserAddress from "../cart/cartAddress";

@@ -2,7 +2,6 @@ import Header from "../header/header"
 import { Link, useNavigate } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
-import isAuth from "../../isAuth/isAuth";
 import { AppContext } from "../../contextApi/AppContext";
 import Loading from "../loading/loading";
 const Cart = () => {
@@ -225,5 +224,5 @@ const Cart = () => {
     )
 }
 
-export default isAuth(Cart);
+export default Cart;
 
