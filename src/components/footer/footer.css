@@ -54,7 +54,7 @@
 @media (max-width:1000px){
     .downloadBtnBox{
         grid-template-columns: 1fr;
-        width: 15vw;
+        width: 20vw;
     }
 }
 @media (max-width:800px){

@@ -28,7 +28,7 @@
 .card{
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    /* justify-content: end; */
     width: 17rem; 
     min-height: 15.7rem;
     overflow: hidden;
