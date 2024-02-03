@@ -45,8 +45,13 @@ const ShowNavbarProducts = () => {
             );
             let data = await getData.json();
             console.log("data: ", data);
-            setProduct(data.data);
-            setFilterProducts(data.data);
+            if (data.status === "success") {
+                setProduct(data.data);
+                setFilterProducts(data.data);
+            }
+            else if(data.status==="fail"){
+                setGrow("0");
+            }
             setLoader(false);
             // console.log("setProduct 0:", product)
         }
@@ -246,7 +251,7 @@ const ShowNavbarProducts = () => {
             });
             document.getElementById(id).style.border = "1px solid blue";
             setSelectColor(id);
-            setPrevColor(id); 
+            setPrevColor(id);
         }
         else {
             allColors?.forEach((val) => {
@@ -317,22 +322,22 @@ const ShowNavbarProducts = () => {
             setPrevCheckbox(idx);
             document.getElementById(idx).checked = true;
             setSelectCheckbox(idx);
-            if(idx==="lth"){
-                let data= filterProducts.sort((a,b)=>{
+            if (idx === "lth") {
+                let data = filterProducts.sort((a, b) => {
                     return a.price - b.price;
                 })
                 setFilterProducts(data);
             }
-            else if(idx==="htl"){
-                let data= filterProducts.sort((a,b)=>{
-                    return  b.price - a.price;
+            else if (idx === "htl") {
+                let data = filterProducts.sort((a, b) => {
+                    return b.price - a.price;
                 })
                 setFilterProducts(data);
             }
         }
         else {
             document.getElementById(idx).checked = false;
-            if(!selectSize && !selectColor){
+            if (!selectSize && !selectColor) {
                 getProducts();
             }
             filterColor();
@@ -384,34 +389,34 @@ const ShowNavbarProducts = () => {
         window.scrollTo(0, 0);
     }, [id, selectColor, selectSize, filterProducts]);
 
-    useEffect(()=>{
-        if(product){
+    useEffect(() => {
+        if (product) {
             setGrow("1")
-        }else{
+        } else {
             setGrow("0")
         }
-    },[product]);
+    }, [product]);
 
-    useEffect(()=>{
-        filterProducts.map((val)=>{
+    useEffect(() => {
+        filterProducts.map((val) => {
             console.log(val.displayImage);
         });
-    },[filterProducts]);
+    }, [filterProducts]);
 
     return (
         <>
-            
+
             <section className="flex pb-10 relative justify-start pt-7 mt-10 navCategoryBox">
-                {!loader ? product ? <div className=" overflow-y-scroll filterSide">
+                {!loader ? product?.length >= 1 && product ? <div className=" overflow-y-scroll filterSide">
                     <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} closeFilter={closeFilter} />
                 </div> : <NotFoundProduct /> : ""}
-                <div style={{flexGrow: grow}} id="allCardBoxId" className="flex relative mt-7 flex-wrap  gap-8 pt-24 allCardBox">
-                {!loader? 
-                <>
-                    <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id} ( <span className=" text-green-600">{filterProducts.length}</span> )</h1>
-                <p className=" absolute text-left top-2 font-light text-base productCategoryInfo" > <span className=" font-semibold">{id[0].toLocaleUpperCase()}{id.slice(1,id.length)} for {gender}</span> - Buy trending <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} online in India at Beyoung. We offer a collection of {product.length-1}+ {gender.toLocaleLowerCase()}s <span className=" font-medium">{id.toLocaleLowerCase()}s</span> online. You can get ₹100 OFF on all best <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} when you spend more than ₹999, use the coupon code "BEYOUNG100". Free Shipping. COD Available.</p>
-                </>: ""}
-                    {!loader ? filterProducts?.map((val) => {
+                <div style={{ flexGrow: grow }} id="allCardBoxId" className="flex relative mt-7 flex-wrap  gap-8 pt-24 allCardBox">
+                    {!loader && product?.length >= 1 ?
+                        <>
+                            <h1 className=" absolute text-left w-full text-lg font-semibold productCategory">{id} ( <span className=" text-green-600">{filterProducts?.length}</span> )</h1>
+                            <p className=" absolute text-left top-2 font-light text-base productCategoryInfo" > <span className=" font-semibold">{id[0].toLocaleUpperCase()}{id.slice(1, id.length)} for {gender}</span> - Buy trending <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} online in India at Beyoung. We offer a collection of {product?.length === 1 ? 1 : product?.length - 1 + "+"} {gender.toLocaleLowerCase()}s <span className=" font-medium">{id.toLocaleLowerCase()}s</span> online. You can get ₹100 OFF on all best <span className=" font-medium">{id.toLocaleLowerCase()}</span> for {gender.toLocaleLowerCase()} when you spend more than ₹999, use the coupon code "BEYOUNG100". Free Shipping. COD Available.</p>
+                        </> : ""}
+                    {!loader ? filterProducts?.length >= 1 && filterProducts?.map((val) => {
                         return (
                             <div className=" text-left  card" onClick={() => { linkHandler(val._id) }} key={val._id}>
                                 <LazyLoadImage className="image rounded-md" src={val.displayImage} placeholderSrc={"https://www.beyoung.in/beyloader-long.gif"} alt={val.subCategory} />

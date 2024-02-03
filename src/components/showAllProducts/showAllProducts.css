@@ -1,20 +1,31 @@
 .allBox{
     margin: auto;
-    /* width: 80vw; */
     justify-content: center;
-    margin-bottom: 35rem;
+    margin-bottom: 38rem;
     min-height: 80vh;
 }
 .cardBox{
     max-width: 57vw;
     justify-content: center;
 }
+.allCardBox{
+    max-width: 58vw;
+    flex-grow: 1;
+    justify-content: center;
+}
 .cardName{
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 .card{
-    max-width: 14rem;
-    min-width: 8rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: end; */
+    width: 17rem; 
+    min-height: 15.7rem;
+    overflow: hidden;
 }
 
 
@@ -61,27 +72,53 @@
       50%  {transform: scale(1.2);}
       100% {transform: scale(1);}
   }
+  @media (max-width:1920px){
+    .allCardBox{
+        display: grid;
+        max-width: 54vw;
+        grid-template-columns: repeat(3,1fr);
+    }
+    .card{
+        width: auto;
+    }
+  }
 @media (max-width:1280px){
     .allBox{
-        justify-content: center;
+        margin-bottom: 54rem;
+    }
+    .card span img{
+        min-height: 14.7rem;
     }
     .cardBox{
         max-width: 98vw;
         justify-content: center;
         margin-bottom: 31rem;
     }
-    .card{
-        max-width: 12rem;
-        min-width: 8rem;
-    }
-}
-@media (max-width:520px){
     .card {
         min-height: 12.7rem;
         max-width: 45vw;
-        min-width: 8rem;
+        min-width: 5rem; 
+    }
+}
+@media (max-width:520px){
+    .allCardBox{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .card {
+        min-height: 12.7rem;
+        max-width: 15rem;
+        min-width: 5rem; 
+    }
+    .footerBottom {
+        bottom: -45rem;
     }
     .gap-8 {
         gap: .7rem;
+    }
+}
+@media (max-width:350px){
+    .card span img{
+        min-height: 8.7rem;
     }
 }

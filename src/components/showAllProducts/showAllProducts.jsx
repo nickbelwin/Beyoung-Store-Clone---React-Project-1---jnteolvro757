@@ -314,7 +314,7 @@ const ShowAllProducts = () => {
                 {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
                     <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
                 </div> : <NotFoundProduct /> : ""}
-                <div style={{flexGrow: grow}} className="flex cardBox">
+                <div style={{flexGrow: grow}} className="flex cardBox allCardBox"> 
                     {!loader ? filterProducts?.map((val) => {
                         return (
                            

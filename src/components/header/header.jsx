@@ -263,7 +263,6 @@ const Header = (props) => {
                     {/* header 1 */}
                     <header className="navBox1 text-sm py-1.5 z-20">
                         <p>Free shipping available on all orders. Don't miss out – shop now!</p>
-
                     </header>
                     {/* header 2 */}
                     <section className=" bg-black z-20">
