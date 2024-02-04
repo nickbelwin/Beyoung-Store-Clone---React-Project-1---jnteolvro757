@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./loginSignup.css";
 import { AppContext } from "../../contextApi/AppContext";
-import { useNavigate } from "react-router-dom";
 
-const Login = (props) => {
-    const { displayLogin, } = props;
+const Login = () => {
     const [userExistErrorMsg, setUserExistErrorMsg] = useState("none");
-    const {login,setToken, loginStatus, closeHandler,nameOfUser, setNameOfUser } = useContext(AppContext);
+    const {setToken, loginStatus, closeHandler, setNameOfUser } = useContext(AppContext);
     const [emailErrorMsg, setEmailErrorMsg] = useState("none");
     const [passErrorMsg, setPassErrorMsg] = useState("none");
     const [user, setUser] = useState({ email: '', password: '', "appType": "ecommerce" });

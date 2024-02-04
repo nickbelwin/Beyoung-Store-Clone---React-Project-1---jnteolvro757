@@ -4,13 +4,12 @@ import { AppContext } from "../../contextApi/AppContext";
 
 const Signup = (props) => {
     const { displaySignup } = props;
-    const [dis, setDis] = useState(displaySignup);
     const [user, setUser] = useState({ name: "", email: '', password: '', "appType": "ecommerce" });
     const [nameErrorMsg, setNameErrorMsg] = useState("none");
     const [emailErrorMsg, setEmailErrorMsg] = useState("none");
     const [passErrorMsg, setPassErrorMsg] = useState("none");
     const [userExistErrorMsg, setUserExistErrorMsg] = useState("none");
-    const { userToken, signupStatus, setToken, closeHandler,setNameOfUser } = useContext(AppContext);
+    const { signupStatus, setToken, closeHandler,setNameOfUser } = useContext(AppContext);
     const handleChange = (e) => {
         if (e.target.id === "username") {
             if (e.target.value.length >= 1) {
