@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./orders.css";
 import { AppContext } from "../../contextApi/AppContext";
-import NotFoundProduct from "../../notFound/notFound";
+import NotFoundProduct from "../notFound/notFound";
 import { Link } from "react-router-dom";
 import { Suspense } from "react";
 import Loading from "../loading/loading";

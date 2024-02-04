@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import Filter from "../filterSection/filter";
 import "./showAllProducts.css"
-import NotFoundProduct from "../../notFound/notFound";
+import NotFoundProduct from "../notFound/notFound";
 import Loading from "../loading/loading";
 import Footer from "../footer/footer";
 import { AppContext } from "../../contextApi/AppContext";
@@ -23,7 +23,7 @@ const ShowAllProducts = () => {
     const [colorFlag, setColorFlag] = useState(true);
     const [sizeFlag, setSizeFlag] = useState(true);
     const [grow, setGrow] = useState("0");
-    const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
+    const { token, openLogin, wishlistProducts, setWishlistProducts,setTotalWishlist } = useContext(AppContext);
     console.log(id);
 
     const getProducts = async () => {
@@ -76,7 +76,12 @@ const ShowAllProducts = () => {
                 }
             );
             let jsonData = await getData.json();
-            console.log("added", jsonData);
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setTotalWishlist(cartItem.length);
         }
         catch (error) {
             console.log("ERROR", error);
@@ -101,6 +106,7 @@ const ShowAllProducts = () => {
             });
             console.log("cart", cartItem);
             setWishlistProducts(cartItem);
+            setTotalWishlist(cartItem.length);
         }
         catch (error) {
             console.log("ERROR", error);
@@ -121,6 +127,13 @@ const ShowAllProducts = () => {
                     },
                 }
             );
+            let jsonData= await getData.json();
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setTotalWishlist(cartItem.length);
 
         }catch(error){
             console.log(error)
@@ -133,11 +146,16 @@ const ShowAllProducts = () => {
         if (token) {
             if (!wishlistProducts.includes(productid)) {
                 document.getElementById(idx).classList.add("in-wishlist");
+                setWishlistProducts([...wishlistProducts,productid]);
                 addFavotiteItems(productid);
                 console.log("added")
             }
             else {
                 document.getElementById(idx).classList.remove("in-wishlist");
+                let data= wishlistProducts.filter((val)=>{
+                    return val!==productid;
+                });
+                setWishlistProducts(data);
                 removeFavoriteItem(productid);
                 console.log("removed")
             }

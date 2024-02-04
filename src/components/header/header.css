@@ -128,6 +128,18 @@
     min-width: 1rem;
     min-height: .8rem;
 }
+.wishlistCount{
+    background-color: rgb(255, 225, 0);
+    border-radius: 50%;
+    top: -6px;
+    right: -3px;
+}
+.wishlistCount p{
+    margin: 0;
+    font-size: 70%;
+    min-width: 1rem;
+    min-height: .8rem;
+}
 .fit-content{
     height: fit-content;
     width: fit-content;

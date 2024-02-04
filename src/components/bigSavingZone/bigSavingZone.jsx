@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { bigSavingZone } from "../contants/constants";
 import "./bigSavingZone.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const BigSavingZone = (props) => {
     const { bigSavingZoneHandler } = props;
@@ -18,11 +17,6 @@ const BigSavingZone = (props) => {
             setActiveSlideIndex(activeSlideIndex + 1);
         }
     }
-
-    // useEffect(() => {
-    //     setBigSavingProducts(bigSavingZone);
-    //     console.log("activeSlideIndex", activeSlideIndex)
-    // }, [activeSlideIndex]);
     return ( 
         <div className=" relative">
             <img onClick={prevImg} className="  absolute leftArrow" src="/img/previousBtn.png" alt="" />

@@ -13,7 +13,7 @@ import MobileViewCategory from "../navListCatagory/mobileViewCategory";
 
 
 const Header = (props) => {
-    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, winterDisplay, newDisplay, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox, submitData } = props;
+    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, winterDisplay, newDisplay, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox } = props;
     const [searchStatus, setSearchStatus] = useState("none");
     const [searchParam, setSearchParam] = useState("");
     const [searchFlag, setSearchFlags] = useState(false);
@@ -22,7 +22,7 @@ const Header = (props) => {
     const [searchLink, setSearchLink] = useState("");
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
-    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,nameOfUser  } = useContext(AppContext);
+    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,nameOfUser,totalWishlist  } = useContext(AppContext);
     const searchFunc = () => {
         if (!searchFlag) {
             setSearchFlags(true);
@@ -308,8 +308,9 @@ const Header = (props) => {
                                 <nav className="flex items-center">
                                     <div className="relative mr-3"><img onClick={searchFunc} className="w-4 h-4 mr-4 cursor-pointer" src="/img/searchIcon.png" alt="" />
                                         <SearchBar displaySearch={searchStatus} searchHandler={searchHandler} searchButtonHandler={searchButtonHandler} /></div>
-                                    <p onClick={favoriteItems}>
+                                    <p onClick={favoriteItems} className="relative cursor-pointer">
                                         <img className="w-4 h-4 cursor-pointer mr-3" src="/img/love-icon.png" alt="" />
+                                        <div className="wishlistCount absolute cursor-pointer"><p>{totalWishlist}</p></div>
                                     </p>
                                     <p onClick={cartHandler} className="relative ml-4 cursor-pointer">
                                         <img className="w-4 h-4 cursor-pointer" src="/img/cart-icon.png" alt="" />

@@ -1,9 +1,7 @@
-import Header from "../header/header"
 import { Link, useNavigate } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contextApi/AppContext";
-import Loading from "../loading/loading";
 const Cart = () => {
     const [product, setProduct] = useState([]);
     const [cartProduct, setCartProduct] = useState([]);
@@ -45,7 +43,6 @@ const Cart = () => {
     }, [totalCart]);
 
     const removeFromCart = async (idx) => {
-        // let productId = parentId? parentId : e.target.parentNode.id;
         try {
             setLoader(true);
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${idx}`,
@@ -106,8 +103,8 @@ const Cart = () => {
     const checkOutHandler = (e) => {
         e.stopPropagation();
 
-        console.log(`/address/${product[0].product._id}/${product[0].quantity}`);
-        navigate(`/address/${product[0].product._id}/${product[0].quantity}`)
+        console.log(`/address`);
+        navigate(`/address`)
     }
 
     useEffect(() => {
@@ -121,7 +118,7 @@ const Cart = () => {
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
                     <nav className="flex px-8 py-4 secureTag">
                         <div>
-                            <img className="w-8 cartSecureIcon" src="./img/cartSecureIcon.png" alt="" />
+                            <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
                         </div>
                         <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
                     </nav>

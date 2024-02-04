@@ -6,11 +6,9 @@ import { AppContext } from "../../contextApi/AppContext";
 import Loading from "../loading/loading";
 import { firstnameReview, lastnameReview, reviewNameList } from "../contants/constants";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import NotFoundProduct from "../../notFound/notFound";
+import NotFoundProduct from "../notFound/notFound";
 
-const CardDetails = (props) => {
-    // const { addToCartHandler } = props;
-
+const CardDetails = () => {
     const { id } = useParams();
     console.log("id: ", id);
     const [product, setProduct] = useState("");
@@ -33,7 +31,6 @@ const CardDetails = (props) => {
             let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/product/${id}`,
                 {
                     method: 'GET',
-
                     headers: { 'projectId': 'zx5u429ht9oj' }
                 }
             );
@@ -220,7 +217,7 @@ const CardDetails = (props) => {
                                         <div className="flex flex-col overflow-y-scroll overflow-hidden gap-y-1 scrollImg" >
                                             {val.images?.map((val, index) => {
                                                 return (
-                                                    <img onClick={showImg} id={index} className="w-28" src={val} alt="" />
+                                                    <LazyLoadImage onClick={showImg} id={index} className="w-28" src={val} placeholderSrc={"https://www.beyoung.in/beyloader-long.gif"} />
                                                 )
                                             })}
                                         </div>

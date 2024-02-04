@@ -11,7 +11,7 @@ const Wishlist = () => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [addToCartData, setAddToCartData] = useState({ quantity: 1, size: "S" });
     const navigate = useNavigate();
-    const { token, openLogin, wishlistProducts, setWishlistProducts, setTotalCart } = useContext(AppContext);
+    const { token, openLogin, wishlistProducts, setWishlistProducts, setTotalCart, setTotalWishlist } = useContext(AppContext);
 
     const getWishlistProducts = async () => {
         try {
@@ -28,6 +28,7 @@ const Wishlist = () => {
             let jsonData = await getData.json();
             let cartItem = jsonData.data.items;
             setFavoriteItems(cartItem);
+            setTotalWishlist(cartItem.length);
             console.log("wishlist", cartItem);
             setLoader(false);
         }
@@ -37,9 +38,9 @@ const Wishlist = () => {
         }
         console.log(favoriteItems);
     }
-    const linkHandler = (e) => {
+    const linkHandler = (e,id) => {
         e.stopPropagation();
-        navigate(`/product-details/${e.target.parentNode.id}`);
+        navigate(`/product-details/${id}`);
     }
     const getWishProductId = async () => {
         try {
@@ -64,9 +65,6 @@ const Wishlist = () => {
             console.log("ERROR", error);
         }
     }
-    // useEffect(()=>{
-    //     getWishProductId();
-    // },[token]);
     useEffect(() => {
         getWishProductId();
         getWishlistProducts();
@@ -154,9 +152,6 @@ const Wishlist = () => {
                 removeFavoriteItem(idx);
                 getCartCount();
                 getCartproducts();
-
-
-
             }
             setLoader(false);
         }
@@ -206,12 +201,11 @@ const Wishlist = () => {
                         <div className="flex flex-wrap gap-5 wishlistItems">
                             {token && wishlistProducts && favoriteItems?.map((val) => {
                                 return (
-                                    <div onClick={linkHandler} key={val.products._id} className=" cursor-pointer">
+                                    <div onClick={(e)=>linkHandler(e,val.products._id)} key={val.products._id} className=" cursor-pointer">
                                         <div className=" relative wishlistCard" id={val.products._id}>
 
                                             {val.products.displayImage ? <img className="image rounded-md" src={val.products.displayImage} alt="" /> : <Loading />}
                                             <span className="cardName cursor-pointer text-left text-slate-700 font-semibold">{val.products.name}</span>
-                                            {/* <span className="text-left cursor-pointer text-gray-400 text-sm">rating {Math.floor(val.products.ratings)}</span> */}
                                             <div className="flex mr-3 pt-1">
                                                 {[...Array(Math.floor(val.products.ratings))].map((val) => {
                                                     console.log("img");

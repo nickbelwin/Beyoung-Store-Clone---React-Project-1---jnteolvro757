@@ -4,7 +4,7 @@ import "./showNavbarProduct.css"
 import Filter from "../filterSection/filter";
 import { AppContext } from "../../contextApi/AppContext";
 import Filter2 from "../filterSection/filter";
-import NotFoundProduct from "../../notFound/notFound";
+import NotFoundProduct from "../notFound/notFound";
 import Loading from "../loading/loading";
 import Heart from "react-animated-heart";
 import Footer from "../footer/footer";
@@ -30,7 +30,7 @@ const ShowNavbarProducts = () => {
     const [active, setActive] = useState(false);
     const [grow, setGrow] = useState("0");
 
-    const { token, openLogin, wishlistProducts, setWishlistProducts, } = useContext(AppContext);
+    const { token, openLogin, wishlistProducts, setWishlistProducts,totalWishlist,setTotalWishlist } = useContext(AppContext);
 
     console.log(id);
     // const body= {a:1};
@@ -98,8 +98,7 @@ const ShowNavbarProducts = () => {
                 return val.products._id;
             });
             console.log("cart", cartItem);
-            setWishlistProducts(cartItem);
-
+            setTotalWishlist(cartItem.length);
         }
         catch (error) {
             console.log("ERROR", error);
@@ -118,12 +117,18 @@ const ShowNavbarProducts = () => {
                     },
                 }
             );
+            let jsonData= await getData.json();
+            let cartItem = jsonData.data.items;
+            cartItem = cartItem.map((val) => {
+                return val.products._id;
+            });
+            console.log("cart", cartItem);
+            setTotalWishlist(cartItem.length);
 
         } catch (error) {
             console.log(error)
         }
     }
-
     const getCartProducts = async () => {
         try {
             setLoader(true);
@@ -144,6 +149,7 @@ const ShowNavbarProducts = () => {
             });
             console.log("cart", cartItem);
             setWishlistProducts(cartItem);
+            setTotalWishlist(cartItem.length);
         }
         catch (error) {
             console.log("ERROR", error);
@@ -159,11 +165,16 @@ const ShowNavbarProducts = () => {
         if (token) {
             if (!wishlistProducts.includes(productid)) {
                 document.getElementById(idx).classList.add("in-wishlist");
+                setWishlistProducts([...wishlistProducts,productid]);
                 addFavotiteItems(productid);
                 console.log("added")
             }
             else {
                 document.getElementById(idx).classList.remove("in-wishlist");
+                let data= wishlistProducts.filter((val)=>{
+                    return val!==productid;
+                });
+                setWishlistProducts(data);
                 removeFavoriteItem(productid);
                 console.log("removed")
             }
@@ -175,6 +186,7 @@ const ShowNavbarProducts = () => {
     useEffect(() => {
         if (!token) {
             setWishlistProducts([])
+            setTotalWishlist(0);
         }
     }, [token])
     useEffect(() => {

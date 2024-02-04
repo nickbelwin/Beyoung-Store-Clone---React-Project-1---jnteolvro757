@@ -10,7 +10,7 @@ const UserAddress = () => {
     const [loader, setLoader] = useState(true);
     const [allInfo, setAllInfo] = useState(false);
     const [allInfoMsg, setAllInfoMsg] = useState("none");
-    const { token, setTotalCart,totalCart, setUserAddresss } = useContext(AppContext);
+    const { token,totalCart, setUserAddresss } = useContext(AppContext);
     const { id, qty } = useParams();
     const navigate = useNavigate();
 
@@ -109,70 +109,21 @@ const UserAddress = () => {
             setUserInfo(userUpdate);
         }
     }
-
     console.log("user", user);
-
-    // const getCartproducts = async () => {
-    //     console.log("getCart Token", token);
-    //     try {
-    //         setLoader(true);
-    //         let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart`,
-    //             {
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'projectID': 'zx5u429ht9oj',
-    //                     "Authorization": `Bearer ${token}`,
-    //                 },
-    //             }
-    //         );
-    //         let jsonData = await getData.json();
-    //         console.log("cart Data", jsonData);
-    //         setCartProduct([jsonData.data])
-    //         setLoader(false);
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //         setLoader(false);
-    //     }
-    // }
-
     const placeOrder = () => {
-        // let update= {...user, address:{...userAddress}}
-        // console.log("update",update);
-        // setUser(update);
         if (userInfo.username && userInfo.street && userInfo.state && userInfo.country && userInfo.city && userInfo.zipCode) {
             setUserAddresss([userInfo, user]);
-            navigate(`/payment/${id}/${qty}`);
+            navigate(`/payment`);
         }
         else {
             setAllInfoMsg("flex");
         }
-
-        // try{
-        //     let getData= await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order",
-        //     {
-        //         method: 'POST',
-        //         headers: {
-        //             'projectID': 'zx5u429ht9oj',
-        //             "Authorization": `Bearer ${token}`,
-        //         },
-        //         body: JSON.stringify({...user})
-        //     })
-        //     let data = getData.json();
-        //     console.log("placeOrder", data);
-
-        // }catch(error){
-        //     console.log(error)
-        // }
     }
     useEffect(() => {
         let update = { ...user, address: { ...userAddress } }
         console.log("update", update);
         setUser(update);
     }, [userAddress])
-    // useEffect(() => {
-    //     getCartproducts();
-    // }, [])
     return (
         <>
             <section className="addressMainbox">
