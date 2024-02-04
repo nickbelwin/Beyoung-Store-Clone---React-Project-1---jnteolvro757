@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./forWomen.css";
 import { useState } from "react";
-import { forWomen, newArrivals } from "../contants/constants";
+import { forWomen } from "../contants/constants";
 
 const ForWomen=()=>{
     const navigate=useNavigate();

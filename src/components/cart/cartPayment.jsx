@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import Loading from "../loading/loading";
 import "./cart.css";
 import { AppContext } from "../../contextApi/AppContext";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const CartPayment = () => {
     const [cartProduct, setCartProduct] = useState([]);

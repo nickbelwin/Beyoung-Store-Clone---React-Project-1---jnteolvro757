@@ -2,15 +2,11 @@ import { useEffect } from "react";
 import "./filter.css";
 
 const Filter = (props) => {
-    const { productInfo, allColors, allSizes, closeFuncHandler, checkboxHandler, selectedColor, selectedSize, closeFilter } = props;
+    const { allColors, allSizes, closeFuncHandler, checkboxHandler, selectedColor, selectedSize, closeFilter } = props;
 
     const openFilter = () => {
         document.getElementById("mobileFilterCover").style.transform = "translateX(0rem)";
     }
-    // const closeFilter = (e) => {
-    //     e.stopPropagation();
-    //     document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
-    // }
     const isSticky = (e) => {
         const filter = document.getElementById('filterSection');
         const mobileFilter = document.getElementById("filterBtn");
@@ -25,20 +21,6 @@ const Filter = (props) => {
             window.removeEventListener('scroll', isSticky);
         };
     });
-    // let prevId="";
-    // const checkboxHandler=(idx)=>{
-    //     // let check= e.target.checked;
-    //     document.getElementById("lth").checked=false;
-    //     document.getElementById("htl").checked=false;
-    //     if(idx != prevId){
-    //         prevId=idx;
-    //         document.getElementById(idx).checked=true;
-    //     }
-    //     else{
-    //         prevId="";
-    //         document.getElementById(idx).checked=false;
-    //     }
-    // }
 
     return (
         <>

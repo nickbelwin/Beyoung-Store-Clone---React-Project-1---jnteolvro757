@@ -2,7 +2,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "./cart.css";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../contextApi/AppContext";
-import Loading from "../loading/loading";
 
 const UserAddress = () => {
     const [cartProduct, setCartProduct] = useState([]);

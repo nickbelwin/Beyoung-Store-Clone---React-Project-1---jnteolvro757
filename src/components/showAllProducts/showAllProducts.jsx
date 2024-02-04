@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Filter from "../filterSection/filter";
 import "./showAllProducts.css"
 import NotFoundProduct from "../notFound/notFound";
@@ -198,17 +198,18 @@ const ShowAllProducts = () => {
         size = Array.from(new Set(size));
         setAllSizes(size);
     }
+    // close function for closing colors and size box
     const closeFunc = (e) => {
-        console.log(e.target.parentNode.id)
+        console.log("color:", e.target.parentNode.id);
         if (e.target.parentNode.id === "color") {
             if (colorFlag) {
                 document.getElementById("allColors").style.display = "none";
-                document.querySelector(".colorArrow").style.transform = "rotate(-90deg)";
+                document.getElementById("colorArrow").style.transform = "rotate(-90deg)";
                 setColorFlag(false);
             }
             else {
                 document.getElementById("allColors").style.display = "flex";
-                document.querySelector(".colorArrow").style.transform = "rotate(90deg)";
+                document.getElementById("colorArrow").style.transform = "rotate(90deg)";
                 setColorFlag(true);
             }
 
@@ -227,7 +228,42 @@ const ShowAllProducts = () => {
 
         }
     }
-
+    // to close mobile site filter section
+    const closeFilter = (e) => {
+        e.stopPropagation();
+        document.getElementById("mobileFilterCover").style.transform = "translateX(-100rem)";
+    }
+ // function for low to high and high to low checkbox
+ const checkboxHandler = (idx) => {
+    if (idx != prevCheckbox) {
+        document.getElementById("lth").checked = false;
+        document.getElementById("htl").checked = false;
+        setPrevCheckbox(idx);
+        document.getElementById(idx).checked = true;
+        setSelectCheckbox(idx);
+        if (idx === "lth") {
+            let data = filterProducts.sort((a, b) => {
+                return a.price - b.price;
+            })
+            setFilterProducts(data);
+        }
+        else if (idx === "htl") {
+            let data = filterProducts.sort((a, b) => {
+                return b.price - a.price;
+            })
+            setFilterProducts(data);
+        }
+    }
+    else {
+        document.getElementById(idx).checked = false;
+        if (!selectSize && !selectColor) {
+            getProducts();
+        }
+        filterColor();
+        setSelectCheckbox("");
+        setPrevCheckbox("");
+    }
+}
     const checkColor = (e) => {
         let id = e.target.id;
         if (prevColor != id) {
@@ -330,7 +366,7 @@ const ShowAllProducts = () => {
         <>
             <section id="allBoxId" className="flex relative justify-start pt-8 mt-8 allBox">
                 {!loader ? filterProducts ? <div className=" overflow-y-scroll  filterContainer">
-                    <Filter className="justify-start" allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} />
+                <Filter className="justify-start" checkboxHandler={checkboxHandler} allColors={allColors} allSizes={allSizes} closeFuncHandler={closeFunc} selectedColor={checkColor} selectedSize={checkSize} closeFilter={closeFilter} />
                 </div> : <NotFoundProduct /> : ""}
                 <div style={{flexGrow: grow}} className="flex cardBox allCardBox"> 
                     {!loader ? filterProducts?.map((val) => {

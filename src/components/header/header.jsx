@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { products } from "../contants/constants";
 import MenCatagory from "../navListCatagory/menCatagory";
 import "./header.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -8,7 +7,6 @@ import WomenCatagory from "../navListCatagory/womenCategory";
 import Login from "../loginSignup/login";
 import Signup from "../loginSignup/signup";
 import { AppContext } from "../../contextApi/AppContext";
-import { Filter } from "interweave";
 import MobileViewCategory from "../navListCatagory/mobileViewCategory";
 
 

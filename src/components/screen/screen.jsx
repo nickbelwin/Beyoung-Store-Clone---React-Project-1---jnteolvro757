@@ -1,12 +1,7 @@
 import { Suspense, useState } from "react";
-import Header from "../header/header";
-import HomeDesign from "../homePageDesign/homeDesign";
 import "./screen.css";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { bigSavingZone, mobileBannerCategory, mobileCategory, offerZone } from "../contants/constants";
-// import BigSavingZone from "../bigSavingZone/bigSavingZone";
-// import NewArrivals from "../newArrivals/newArrivals";
-// import ForMenTshirt from "../forMenTshirt/forMenTshirt";
+import { Link, useNavigate } from "react-router-dom";
+import { mobileBannerCategory, mobileCategory, offerZone } from "../contants/constants";
 import ForMenShirt from "../forMenShirt/forMenShirt";
 import Footer from "../footer/footer";
 import ForWomen from "../forWomen/forWomen";
@@ -20,7 +15,6 @@ const ForMenTshirt = React.lazy(() => import('../forMenTshirt/forMenTshirt'));
 
 const Screen = () => {
     const navigate = useNavigate();
-    const [offerZoneData, setOfferZoneData] = useState(offerZone);
     const bigSavingZoneHandler = (e) => {
         e.stopPropagation();
         navigate(`/category/${e.target.id}/Men`);

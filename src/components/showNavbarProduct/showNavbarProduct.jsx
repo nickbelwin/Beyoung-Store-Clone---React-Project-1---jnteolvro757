@@ -66,8 +66,6 @@ const ShowNavbarProducts = () => {
     }, [id, token]);
 
     const linkHandler = (productid) => {
-        // e.stopPropagation();
-        // console.log("product: ", e.target.parentNode.id,"==>", e.target.id);
         navigate(`/product-details/${productid}`);
     }
 

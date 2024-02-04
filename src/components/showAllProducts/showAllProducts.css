@@ -4,7 +4,27 @@
     margin-bottom: 38rem;
     min-height: 80vh;
 }
+
+.card p{
+    cursor: pointer;
+}
+.cardName{
+    height: 1.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.image{
+    width: 100%;
+}
+.loading{
+    margin: auto;
+    width: 10rem;
+}
 .cardBox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.7rem;
+    cursor: pointer;
     max-width: 57vw;
     justify-content: center;
 }
@@ -90,7 +110,7 @@
         min-height: 14.7rem;
     }
     .cardBox{
-        max-width: 98vw;
+        max-width: 80vw;
         justify-content: center;
         margin-bottom: 31rem;
     }
@@ -110,6 +130,10 @@
         max-width: 15rem;
         min-width: 5rem; 
     }
+    .cardBox{
+        max-width: 98vw;
+        gap: .7rem;
+    }
     .footerBottom {
         bottom: -45rem;
     }
@@ -117,8 +141,12 @@
         gap: .7rem;
     }
 }
-@media (max-width:350px){
+
+@media (max-width:359px){
     .card span img{
         min-height: 8.7rem;
+    }
+    .footerBottom {
+        bottom: -68rem;
     }
 }
