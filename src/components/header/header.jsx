@@ -90,7 +90,7 @@ const Header = (props) => {
             setTotalCart(0);
             setTotalWishlist(0);
         }
-    }, [token, totalCart])
+    }, [token, totalCart,totalWishlist])
 
     const isSticky = (e) => {
         const header = document.getElementById('mainHeader');
