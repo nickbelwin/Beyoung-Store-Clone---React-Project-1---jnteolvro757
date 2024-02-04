@@ -20,7 +20,7 @@ const Header = (props) => {
     const [searchLink, setSearchLink] = useState("");
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
-    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,nameOfUser,totalWishlist  } = useContext(AppContext);
+    const { token, logout, openLogin, openSignup, totalCart,setTotalCart,isAdded,setIsAdded,nameOfUser,totalWishlist,setTotalWishlist  } = useContext(AppContext);
     const searchFunc = () => {
         if (!searchFlag) {
             setSearchFlags(true);
@@ -59,13 +59,36 @@ const Header = (props) => {
             console.log(error);
         }
     }
-
+    const getWishlistProducts = async () => {
+        try {
+            
+            let getData = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'projectId': 'zx5u429ht9oj',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                }
+            );
+            let jsonData = await getData.json();
+            let cartItem = jsonData.data.items;
+            setTotalWishlist(cartItem.length);
+            console.log("wishlist", cartItem);
+        }
+        catch (error) {
+            console.log("ERROR", error);
+        }
+        console.log(favoriteItems);
+    }
     useEffect(() => {
         if (token) {
-            getCartproducts()
+            getCartproducts();
+            getWishlistProducts();
         }
         else {
-            setTotalCart(0)
+            setTotalCart(0);
+            setTotalWishlist(0);
         }
     }, [token, totalCart])
 
