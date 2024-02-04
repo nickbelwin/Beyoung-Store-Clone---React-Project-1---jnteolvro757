@@ -23,7 +23,6 @@ const Home = () => {
     const [status2, setStatus2] = useState("none");
     const [status3, setStatus3] = useState("none");
     const [status4, setStatus4] = useState("none");
-    const [showProducts, setShowProducts] = useState("none");
 
     const goToHomeHandler = () => {
         setShowProducts("none");
@@ -56,7 +55,6 @@ const Home = () => {
         setStatus4("flex");
     }
     const showlist = () => {
-        setShowProducts("flex");
         setStatus("none");
         setStatus2("none");
         setStatus3("none");
@@ -94,5 +92,3 @@ const Home = () => {
 }
 
 export default Home;
-
-// 1234 

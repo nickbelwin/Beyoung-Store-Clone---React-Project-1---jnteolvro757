@@ -8,7 +8,6 @@ import ForWomen from "../forWomen/forWomen";
 import React from "react";
 import Loading from "../loading/loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
 const BigSavingZone = React.lazy(() => import('../bigSavingZone/bigSavingZone'));
 const NewArrivals = React.lazy(() => import('../newArrivals/newArrivals'));
 const ForMenTshirt = React.lazy(() => import('../forMenTshirt/forMenTshirt'));

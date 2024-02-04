@@ -75,10 +75,10 @@ const Signup = (props) => {
         } else if (!user.name.length >= 1) {
             setNameErrorMsg("block");
         }
-        else if (!user.email.includes("@gmail.com")) {
+        if (!user.email.includes("@gmail.com")) {
             setEmailErrorMsg("block");
         }
-        else if (!user.password.length < 4) {
+        if (!user.password.length < 4) {
             setPassErrorMsg("block");
         }
 
