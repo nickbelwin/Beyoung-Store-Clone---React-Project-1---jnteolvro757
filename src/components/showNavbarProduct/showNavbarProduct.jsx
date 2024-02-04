@@ -304,10 +304,8 @@ const ShowNavbarProducts = () => {
         if (prevSize != id) {
             allSizes?.forEach((val) => {
                 document.getElementById(val).style.color = "";
-                document.getElementById(id).style.fontWeight = "400";
             })
             document.getElementById(id).style.color = "blue";
-            document.getElementById(id).style.fontWeight = "700";
             setSelectSize(id);
             setPrevSize(id);
 
@@ -315,7 +313,6 @@ const ShowNavbarProducts = () => {
         else {
             allSizes?.forEach((val) => {
                 document.getElementById(val).style.color = "";
-                document.getElementById(id).style.fontWeight = "400";
             })
             setFilterProducts(product);
             setPrevSize("");

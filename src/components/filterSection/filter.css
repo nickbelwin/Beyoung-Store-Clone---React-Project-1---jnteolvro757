@@ -36,6 +36,9 @@
     border: 1px solid rgb(203, 203, 203);
     border-radius: 50%;
 }
+.sizeContainer{
+    font-weight: 700;
+}
 .sizeContainer:hover{
     color: blue;
 }
