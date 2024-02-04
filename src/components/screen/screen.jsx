@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import "./screen.css";
 import { Link, useNavigate } from "react-router-dom";
 import { mobileBannerCategory, mobileCategory, offerZone } from "../contants/constants";
