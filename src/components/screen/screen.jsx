@@ -19,9 +19,9 @@ const Screen = () => {
         navigate(`/category/${e.target.id}/Men`);
     }
     return (
-        <div>
+        <>
             <Suspense fallback={<Loading />}>
-                <div>
+                <>
                     <div className="flex justify-between overflow-x-scroll showOnMob">
                         {mobileCategory?.map((val) => {
                             return <Link to={`/category/${val.link}/Men`}><div className="mobileCatImg p-2 mr-1"><LazyLoadImage className="" src={val.img} placeholderSrc="https://www.beyoung.in/beyoung-loader.gif" /></div></Link>
@@ -57,16 +57,16 @@ const Screen = () => {
                             <Link to={`/category/${"Full Sleeve T-shirt"}/Men`} className="container1"><div className="container1"><img className=" rounded-2xl " loading="lazy" src="https://www.beyoung.in/api/catalog/homepage-3-10/banner-new/new/home-page-banner-full-sleeve-desktop-view.jpg" alt="" /></div></Link>
 
                         </div>
-                        <div>
+                        <>
                             <BigSavingZone bigSavingZoneHandler={bigSavingZoneHandler} />
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <NewArrivals />
-                        </div>
-                        <div>
+                        </>
+                        <>
                             <img src="https://www.beyoung.in/api/catalog/homepage-3-10/desktop/number-1-strip-banner/1.jpg" alt="" />
                             <img className="mt-6" src="https://www.beyoung.in/api/catalog/homepage-3-10/desktop/desktop-width/brand-icons-less-width.png" alt="" />
-                        </div>
+                        </>
                         <div className="p-6 bestSelling">
                             <div className="flex justify-between">
                                 <p className="mb-8 text-xl font-semibold pl-4 text-left bestSellingName">BEST SELLING PRODUCT</p>
@@ -74,15 +74,15 @@ const Screen = () => {
                             </div>
                             <img className="rounded-lg" src="https://www.beyoung.in/api/catalog/homepage-3-10/desktop/Combo-banner/Combo-banner.jpg" alt="" />
                         </div>
-                        <div>
+                        <>
                             <img src="https://www.beyoung.in/api/catalog/homepage-3-10/desktop/strip/strip.jpg" alt="" />
-                        </div>
+                        </>
                         {/* Mens Category */}
-                        <div>
+                        <>
                             <img className="forStrips" src="/img/forMenStrip.png" alt="" />
                             <ForMenTshirt />
                             <ForMenShirt />
-                        </div>
+                        </>
                         {/* Womens Category */}
                         <>
                             <img className="forStrips" src="/img/forWomenStrip.png" alt="" />
@@ -92,10 +92,10 @@ const Screen = () => {
 
                     </div>
                     <Footer />
-                </div>
+                </>
             </Suspense>
 
-        </div>
+        </>
 
     )
 }
