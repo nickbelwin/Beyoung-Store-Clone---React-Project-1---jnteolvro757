@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import "./loginSignup.css";
 import { AppContext } from "../../contextApi/AppContext";
 
@@ -53,9 +53,6 @@ const Signup = (props) => {
                     });
                 let jsonData = await postData.json();
                 console.log("jsonData.tokan", jsonData);
-                // document.getElementById("username").value = "";
-                // document.getElementById("email").value = "";
-                // document.getElementById("password").value = "";
                 clearForm();
 
                 if (jsonData.status === "success") {
@@ -91,18 +88,7 @@ const Signup = (props) => {
         console.log("clearForm enter");
         document.getElementById("signupForm").reset();
       }
-    useEffect(() => {
 
-    })
-    // const openSignup=()=>{
-    //     setDis(displaySignup);
-    // }
-    // const signupCloseHandler=()=>{
-    //     setDis("none");
-    // }
-    // useEffect(()=>{
-    //     openSignup();
-    // },[displaySignup])
     return (
         <div style={{ display: signupStatus }} className=" absolute  loginFormOutsideBox">
             <div className=" bg-white relative text-left rounded-md overflow-hidden loginFormInsideBox">
