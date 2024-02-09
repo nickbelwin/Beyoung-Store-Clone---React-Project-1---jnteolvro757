@@ -10,7 +10,7 @@ const CartPayment = () => {
     const [orderDone, setOrderDone] = useState(false);
     const [loader, setLoader] = useState(true);
     const { token,totalCart, setTotalCart, userAddress } = useContext(AppContext);
-    const [payMsg, setPayMsg] = useState("none");
+    const [payMsg, setPayMsg] = useState(false);
     const [doneMsg, setDoneMsg] = useState("none");
     const { id, qty } = useParams();
     const navigate = useNavigate();
@@ -96,7 +96,8 @@ const CartPayment = () => {
             setOrderDone(true);
             setLoader(false);
         } else {
-            setPayMsg("flex");
+            window.scrollTo(0,0);
+            setPayMsg(true);
         }
     }
     // here removing product after order placed
@@ -140,15 +141,13 @@ const CartPayment = () => {
         document.getElementById(payId).style.backgroundColor = "white";
         document.getElementById(payId).style.border = "1px solid black";
         setPaymentType(payId);
+        setPayMsg(false);
     }
     return (<>
-        <section className="addressMainbox">
+        <section className="pt-11 addressMainbox">
             <header className=" sticky top-0 left-0 headerBox">
                 <div className=" w-4 h-4 fixed" >
-                    {!orderDone ?
-                        <div style={{ display: payMsg }} className=" flex-col paymentMsg">
-                            <div className="flex flex-col bg-white py-4 px-10 rounded">Please select Payment Method <button onClick={() => setPayMsg("none")} className=" bg-red-600 text-white font-semibold py-1 mt-5 rounded payCloseBtn" >Close</button></div>
-                        </div> :
+                    {!orderDone ? "":
                         <div style={{ display: doneMsg }} className=" flex-col paymentMsg">
                             <div className="flex flex-col bg-white text-green-500 font-extrabold py-4 px-10 rounded">Order Successfully Placed...<button onClick={orderSuccess} className=" text-white font-semibold py-1 mt-5 rounded backToShopBtn" >Continue Shopping</button></div>
                         </div>}
@@ -159,18 +158,7 @@ const CartPayment = () => {
                         <div>
                             <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
                         </div>
-                        <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
-                    </nav>
-                </div>
-            </header>
-            <header className="headerBox">
-                <div className="flex justify-between header">
-                    <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
-                    <nav className="flex px-8 py-4 secureTag">
-                        <div>
-                            <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
-                        </div>
-                        <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
+                        <p className="font-bold text-2xl ml-3 secureText">100%<span className=" text-gray-100">_</span>SECURE<span className=" text-gray-100">_</span>PAYMENT</p>
                     </nav>
                 </div>
             </header>
@@ -183,7 +171,7 @@ const CartPayment = () => {
                             <div className=" w-10 p-2 bg-white cartLineIcon">
                                 <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
                             </div>
-                            <p className=" text-xs">My Cart</p>
+                            <p className=" text-xs">My<span className=" text-white">_</span>Cart</p>
                         </div>
                         <div className=" mb-3 cartLine"></div>
                         <div className=" flex flex-col justify-center cartLineIconBox">
@@ -203,11 +191,14 @@ const CartPayment = () => {
                 </div>:""}
                 {!loader ?
                     <div className="flex flex-wrap justify-center mt-5 w-fit m-auto pt-4 addressAllBox ">
-                        <div className=" mr-3 mb-3 p-3 bg-white  addressDiv">
-                            <li className=" text-left mb-6 pl-3 font-semibold">CHOOSE PAYMENT METHOD</li>
+                        <div className=" mr-3 mb-3 p-3 bg-white addressDiv">
+                            <div className=" relative overflow-hidden">
+                            <li className=" text-left mb-3 pl-3 font-semibold">CHOOSE PAYMENT METHOD</li>
+                            <p style={{top: !payMsg? "4rem":"1rem"}} className=" absolute text-left text-base top-5 font-semibold ml-3 mb-1 text-red-600 bg-white errorMsg">Please Select Payment Method!!!</p>
+                            </div>
                             <div className="p-1 addressFormBox paymentBox">
-                                <div onClick={selectPaymentOption} className="paymentSections">
-                                    <div id="paytm" className="" ><img src="https://i.pinimg.com/736x/0f/9c/e9/0f9ce975819decad215620187697cdc1.jpg" alt="" />Pay With Paytm</div>
+                                <div style={{border: !payMsg? "none":"1px solid red"}} onClick={selectPaymentOption} className=" flex flex-col paymentSections">
+                                    <div id="paytm" ><img src="https://i.pinimg.com/736x/0f/9c/e9/0f9ce975819decad215620187697cdc1.jpg" alt="" />Pay With Paytm</div>
                                     <div id="debitCredit"><img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png" alt="" /> Debit/Credit Card</div>
                                     <div id="upi"><img src="https://getlogo.net/wp-content/uploads/2020/10/unified-payments-interface-upi-logo-vector.png" alt="" />UPI</div>
                                     <div id="wallet"><img src="https://i.pinimg.com/1200x/98/4d/d7/984dd7865d06ed7186f77236ae88c3ad.jpg" alt="" />Wallet <span className=" text-xs ml-1 mt-1 font-bold text-green-500"> Offers</span></div>
@@ -219,7 +210,7 @@ const CartPayment = () => {
                         </div>
     
                         <div className=" productDetailsBox ">
-                            <div className=" bg-white flex flex-col justify-around mb-3 h-44 p-3">
+                            <div className=" bg-white flex flex-col justify-center mb-3 h-44 p-3">
                                 <div className="flex">
                                     <img className=" w-8" src="/img/checked.png" alt="" />
                                     <p ><span className=" font-semibold">Deliver To: </span>{userAddress[0]?.username}</p>
@@ -231,8 +222,8 @@ const CartPayment = () => {
                             </div>
                             {cartProduct?.map((val) => {
                                 return (
-                                    <div className=" bg-white px-3 py-8">
-                                        <h1 className="py-2 mb-2 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
+                                    <div className=" bg-white px-3 py-6">
+                                        <h1 className="py-2 mb-5 font-semibold flex borderBottom">PRODUCT DETAILS ({val.items.length} Items) </h1>
                                         <div className="flex flex-col gap-y-2 text-left mb-3 borderBottom">
                                             <p className=" flex justify-between">Total MRP(inc. of Taxes) <span>{val.totalPrice + 268}</span></p>
                                             <p className=" flex justify-between ">Discount <span>-268</span></p>

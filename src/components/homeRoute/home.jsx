@@ -24,20 +24,13 @@ const Home = () => {
     const [status3, setStatus3] = useState("none");
     const [status4, setStatus4] = useState("none");
 
-    const goToHomeHandler = () => {
-        setShowProducts("none");
-    }
     const menCatagoryShow = (e) => {
         e.stopPropagation();
         setStatus("flex");
-        // document.getElementById("men").classList.add("backColor");
-        // setCategoryType("men");
     }
     const womenOnMouseOver = (e) => {
         e.stopPropagation();
         setStatus2("flex");
-        // document.getElementById("men").classList.remove("backColor");
-        // setCategoryType("women");
     }
     const winterOnMouseOver=(e)=>{
         e.stopPropagation();
@@ -48,7 +41,6 @@ const Home = () => {
         setStatus2("none");
         setStatus3("none");
         setStatus4("none");
-        // setCategoryType("");
     }
     const newOnMouseOver=(e)=>{
         e.stopPropagation();
@@ -60,14 +52,14 @@ const Home = () => {
         setStatus3("none");
         setStatus4("none");
     }
-
     // Project Link: https://beyoung-store-clone-react-project-1-jnteolvro757.vercel.app/
+
     return (
         <AppContextProvider>
             <div className="overflow-hidden">
                 <Suspense fallback={<Loading/>}>
                 <Routes>
-                    <Route path="/" element={<Header goToHomeHandler={goToHomeHandler} menOnMouseOver={menCatagoryShow} menOnMouseLeave={categoryClose} womenOnMouseOver={womenOnMouseOver} womenOnMouseLeave={categoryClose} winterOnMouseOver={winterOnMouseOver} winterOnMouseLeave={categoryClose} newOnMouseOver={newOnMouseOver} newOnMouseLeave={categoryClose} newDisplay={status4} winterDisplay={status3} stat={status} stat2={status2} onClickHandler={showlist} />} >
+                    <Route path="/" element={<Header menOnMouseOver={menCatagoryShow} menOnMouseLeave={categoryClose} womenOnMouseOver={womenOnMouseOver} womenOnMouseLeave={categoryClose} winterOnMouseOver={winterOnMouseOver} winterOnMouseLeave={categoryClose} newOnMouseOver={newOnMouseOver} newOnMouseLeave={categoryClose} newDisplay={status4} winterDisplay={status3} stat={status} stat2={status2} onClickHandler={showlist} />} >
                         <Route index element={<Screen />} />
                         <Route path="product-details/:id" element={<CardDetails />} />
                         <Route path="category/:id/:gender" element={<ShowNavbarProducts />} />

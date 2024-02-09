@@ -34,7 +34,7 @@
     overflow: hidden;
 }
 .card span img{
-    min-height: 19.7rem;
+    min-height: 14.7rem;
 }
 .cardName{
     text-align: left;
@@ -141,7 +141,7 @@
 }
 @media (max-width:800px){
     .card span img{
-        min-height: 14.7rem;
+        min-height: 10.7rem;
     }
     .footerBottom {
         bottom: -54rem;

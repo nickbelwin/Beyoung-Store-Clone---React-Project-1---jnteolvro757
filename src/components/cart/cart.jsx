@@ -23,7 +23,7 @@ const Cart = () => {
                 }
             );
             let jsonData = await getData.json();
-            setTotalCart(jsonData.data.items.length)
+            setTotalCart(jsonData?.data.items.length);
             console.log("cart Data", jsonData);
             setCartProduct([jsonData.data])
             setProduct([...jsonData.data.items]);
@@ -112,7 +112,7 @@ const Cart = () => {
     }, [token]);
 
     return (
-        <section className="cartMainbox">
+        <section className=" cartMainbox">
             <header className=" mb-3 headerBox">
                 <div className="flex justify-between header">
                     <Link to="/"><img className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 logo" src="/img/beyoungLogo.png" alt="" /></Link>
@@ -120,7 +120,7 @@ const Cart = () => {
                         <div>
                             <img className="w-8 cartSecureIcon" src="/img/cartSecureIcon.png" alt="" />
                         </div>
-                        <p className="font-bold text-2xl ml-3 secureText">100% SECURE PAYMENT</p>
+                        <p className="font-bold text-2xl ml-3 secureText">100%<span className=" text-gray-100">_</span>SECURE<span className=" text-gray-100">_</span>PAYMENT</p>
                     </nav>
                 </div>
             </header>
@@ -140,7 +140,7 @@ const Cart = () => {
                                         <div className=" w-10 p-2 bg-white cartLineIcon">
                                             <img src="https://www.beyoung.in/mobile/images/home/new/Cart.png" alt="" />
                                         </div>
-                                        <p className=" text-xs">My Cart</p>
+                                        <p className=" text-xs">My<span className=" text-white">_</span>Cart</p>
                                     </div>
                                     <div className=" mb-3 cartLine"></div>
                                     <div className=" flex flex-col justify-center cartLineIconBox">

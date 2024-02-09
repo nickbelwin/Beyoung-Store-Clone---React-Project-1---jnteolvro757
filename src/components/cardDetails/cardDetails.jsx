@@ -223,8 +223,10 @@ const CardDetails = () => {
                                         </div>
 
                                         <img src={displayImg} alt="Product Img" />
-                                        <img onClick={prevImg} className="  absolute cardImgMobArrowL" src="/img/previousBtn.png" alt="" />
-                                        <img onClick={nextImg} className="  absolute cardImgMobArrowR" src="/img/nextBtn.png" alt="" />
+                                        {/* for mobile site arrow */}
+                                        <img style={{opacity: activeSlideIndex<=0? "0.5":"1"}} onClick={prevImg} className="  absolute bg-gray-600 rounded-full cardImgMobArrowL" src="/img/previousBtn.png" alt="" />
+                                        <img style={{opacity:activeSlideIndex===product[0].images?.length-1 ? "0.5":"1"}} onClick={nextImg} className=" bg-gray-600 rounded-full absolute cardImgMobArrowR" src="/img/nextBtn.png" alt="" />
+                                        {/* for desktop site arrow */}
                                         <div onClick={prevImg} className=" absolute w-5  cardImgArrowL"><img src="/img/leftSide.png" alt="" /></div>
                                         <div onClick={nextImg} className=" absolute w-5  cardImgArrowR"><img src="/img/rightSide.png" alt="" /></div>
 

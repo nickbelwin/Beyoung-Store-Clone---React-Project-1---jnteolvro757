@@ -3,7 +3,7 @@ import "./footer.css";
 const Footer=()=>{
     return(
         <>
-            <footer className=" text-white bg-black pt-10">
+            <footer className=" text-white cursor-not-allowed bg-black pt-10">
                 <section className="footerMainBox">
                 <div className=" grid mb-10 grid-cols-4 gap-2 footerInfoBox1">
                     <div className=" text-left ">

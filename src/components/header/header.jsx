@@ -11,12 +11,11 @@ import MobileViewCategory from "../navListCatagory/mobileViewCategory";
 
 
 const Header = (props) => {
-    const { goToHomeHandler, loginSignup, menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, winterDisplay, newDisplay, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox } = props;
+    const { menOnMouseOver, menOnMouseLeave, womenOnMouseOver, womenOnMouseLeave, winterOnMouseLeave, winterOnMouseOver, winterDisplay, newDisplay, newOnMouseLeave, newOnMouseOver, stat, stat2, onClickHandler, categoryType, cartOpen, onMouseOverDropBox } = props;
     const [searchStatus, setSearchStatus] = useState("none");
     const [searchParam, setSearchParam] = useState("");
     const [searchFlag, setSearchFlags] = useState(false);
     const [searchAll, setSearchAll] = useState(false);
-    const [cart, setCart] = useState(0);
     const [searchLink, setSearchLink] = useState("");
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
@@ -288,7 +287,7 @@ const Header = (props) => {
                     {/* header 2 */}
                     <section className=" bg-black z-20">
                         <header className="navBox2 flex items-center bg-black text-white justify-between py-2">
-                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-4 mr-1" src="/img/orderIcon.png" alt="order icon" /><span className="fit-content">YOUR ORDER</span></nav>
+                            <nav className="flex cursor-pointer" onClick={ordersFunc} ><img className="w-4 h-4 mr-1" src="/img/orderIcon.png" alt="order icon" /><span className="fit-content">YOUR<span className=" text-black" >_</span>ORDER</span></nav>
                             <nav className="flex items-center" >
                                 {!token ? <>
                                     <p onClick={() => openLogin()} className="fit-content cursor-pointer mr-4">LOG IN</p><span>|</span><p onClick={() => openSignup()} className="fit-content cursor-pointer ml-4">SIGNUP</p>
@@ -314,7 +313,7 @@ const Header = (props) => {
                                             <img className=" w-full" src="/img/hamburger-button.png" alt="" />
                                         </div>
                                         <Link to="/">
-                                            <img onClick={goToHomeHandler} className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 mr-5 logo" src="/img/beyoungLogo.png" alt="" />
+                                            <img onClick={()=>{ window.scrollTo(0,0) }}  className="cursor-pointer w-38 h-10 pr-2 pt-2 pb-2 mr-5 logo" src="/img/beyoungLogo.png" alt="" />
                                         </Link>
                                     </section>
                                     <nav className="flex text-sm font-semibold cursor-pointer navNameList">

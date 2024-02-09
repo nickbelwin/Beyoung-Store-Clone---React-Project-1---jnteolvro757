@@ -4,12 +4,13 @@
     justify-content: center;
 }
 .loading img{
-    width: 12vw;
-    height: 12vw;
+    width: 12rem;
+    height: 12rem;
 }
 
 @media (max-width:1120px){
     .loading img{
-        width: 20vw;
+        width: 8rem;
+        height: 8rem;
     }
 }
